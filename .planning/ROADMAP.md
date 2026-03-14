@@ -23,7 +23,7 @@
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Foundation | 1/3 | In progress | - |
+| 1. Foundation | 2/3 | In progress | - |
 | 2. Content Infrastructure | 0/? | Not started | - |
 | 3. Layout Shell & Legal | 0/? | Not started | - |
 | 4. Core Pages | 0/? | Not started | - |
@@ -49,7 +49,7 @@
 
 Plans:
 - [x] 01-01-PLAN.md — Scaffold Next.js 15 + styled-components SSR + dark theme + responsive breakpoints
-- [ ] 01-02-PLAN.md — next-intl i18n routing (IT default + EN prefix) + bilingual placeholder
+- [x] 01-02-PLAN.md — next-intl i18n routing (IT default + EN prefix) + bilingual placeholder
 - [ ] 01-03-PLAN.md — Vercel deployment + Playwright e2e smoke tests + human verification
 
 **Pitfall gates (must resolve before phase ends):**
@@ -198,4 +198,4 @@ These must be resolved before the indicated phase can close:
 ---
 
 *Created: 2026-03-14*
-*Last updated: 2026-03-14 after Phase 1 planning*
+*Last updated: 2026-03-14 after completing 01-02-PLAN.md*

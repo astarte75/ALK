@@ -13,7 +13,7 @@ Requirements for initial release. Each maps to roadmap phases.
 - [x] **FOUND-02**: Styled Components v6 with proper SSR registry (no hydration mismatch)
 - [x] **FOUND-03**: Dark premium theme implemented via CSS custom properties (not JS ThemeProvider)
 - [ ] **FOUND-04**: Contentful REST API integration with TypeScript types for all content models
-- [ ] **FOUND-05**: i18n support with next-intl (IT default without prefix, EN with /en/ prefix)
+- [x] **FOUND-05**: i18n support with next-intl (IT default without prefix, EN with /en/ prefix)
 - [x] **FOUND-06**: Responsive design working from 320px to 2560px
 - [ ] **FOUND-07**: Vercel deployment with CI/CD pipeline
 - [ ] **FOUND-08**: Contentful webhook for on-demand ISR (no time-based revalidation)
@@ -159,7 +159,7 @@ Which phases cover which requirements. Updated during roadmap creation.
 | FOUND-02 | Phase 1 | Complete |
 | FOUND-03 | Phase 1 | Complete |
 | FOUND-04 | Phase 2 | Pending |
-| FOUND-05 | Phase 1 | Pending |
+| FOUND-05 | Phase 1 | Complete |
 | FOUND-06 | Phase 1 | Complete |
 | FOUND-07 | Phase 1 | Pending |
 | FOUND-08 | Phase 2 | Pending |
