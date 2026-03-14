@@ -252,7 +252,7 @@ export default async function CorporateGovernancePage({
                         src={photoUrl}
                         alt={member.name}
                         fill
-                        style={{ objectFit: 'cover' }}
+                        style={{ objectFit: 'cover', objectPosition: 'top' }}
                         sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
                       />
                     ) : (

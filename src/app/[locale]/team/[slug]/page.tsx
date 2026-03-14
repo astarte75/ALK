@@ -216,7 +216,7 @@ export default async function TeamDetailPage({
                 alt={name}
                 fill
                 sizes="(max-width: 1024px) 100vw, 400px"
-                style={{ objectFit: 'cover' }}
+                style={{ objectFit: 'cover', objectPosition: 'top' }}
               />
             ) : (
               <Initials>{initials}</Initials>
