@@ -155,80 +155,80 @@ Which phases cover which requirements. Updated during roadmap creation.
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| FOUND-01 | — | Pending |
-| FOUND-02 | — | Pending |
-| FOUND-03 | — | Pending |
-| FOUND-04 | — | Pending |
-| FOUND-05 | — | Pending |
-| FOUND-06 | — | Pending |
-| FOUND-07 | — | Pending |
-| FOUND-08 | — | Pending |
-| NAV-01 | — | Pending |
-| NAV-02 | — | Pending |
-| NAV-03 | — | Pending |
-| NAV-04 | — | Pending |
-| HOME-01 | — | Pending |
-| HOME-02 | — | Pending |
-| HOME-03 | — | Pending |
-| HOME-04 | — | Pending |
-| HOME-05 | — | Pending |
-| HOME-06 | — | Pending |
-| HOME-07 | — | Pending |
-| HOME-08 | — | Pending |
-| PORT-01 | — | Pending |
-| PORT-02 | — | Pending |
-| PORT-03 | — | Pending |
-| PORT-04 | — | Pending |
-| PORT-05 | — | Pending |
-| PORT-06 | — | Pending |
-| TEAM-01 | — | Pending |
-| TEAM-02 | — | Pending |
-| TEAM-03 | — | Pending |
-| NEWS-01 | — | Pending |
-| NEWS-02 | — | Pending |
-| NEWS-03 | — | Pending |
-| NEWS-04 | — | Pending |
-| NEWS-05 | — | Pending |
-| INVP-01 | — | Pending |
-| INVP-02 | — | Pending |
-| INVP-03 | — | Pending |
-| INVP-04 | — | Pending |
-| ABOUT-01 | — | Pending |
-| ABOUT-02 | — | Pending |
-| ABOUT-03 | — | Pending |
-| ABOUT-04 | — | Pending |
-| GOV-01 | — | Pending |
-| GOV-02 | — | Pending |
-| GOV-03 | — | Pending |
-| GOV-04 | — | Pending |
-| ESG-01 | — | Pending |
-| ESG-02 | — | Pending |
-| ESG-03 | — | Pending |
-| ESG-04 | — | Pending |
-| CONT-01 | — | Pending |
-| CONT-02 | — | Pending |
-| CONT-03 | — | Pending |
-| CULT-01 | — | Pending |
-| CULT-02 | — | Pending |
-| LEGAL-01 | — | Pending |
-| LEGAL-02 | — | Pending |
-| LEGAL-03 | — | Pending |
-| LEGAL-04 | — | Pending |
-| SEO-01 | — | Pending |
-| SEO-02 | — | Pending |
-| SEO-03 | — | Pending |
-| SEO-04 | — | Pending |
-| SEO-05 | — | Pending |
-| A11Y-01 | — | Pending |
-| A11Y-02 | — | Pending |
-| A11Y-03 | — | Pending |
-| A11Y-04 | — | Pending |
+| FOUND-01 | Phase 1 | Pending |
+| FOUND-02 | Phase 1 | Pending |
+| FOUND-03 | Phase 1 | Pending |
+| FOUND-04 | Phase 2 | Pending |
+| FOUND-05 | Phase 1 | Pending |
+| FOUND-06 | Phase 1 | Pending |
+| FOUND-07 | Phase 1 | Pending |
+| FOUND-08 | Phase 2 | Pending |
+| NAV-01 | Phase 3 | Pending |
+| NAV-02 | Phase 3 | Pending |
+| NAV-03 | Phase 3 | Pending |
+| NAV-04 | Phase 3 | Pending |
+| HOME-01 | Phase 4 | Pending |
+| HOME-02 | Phase 5 | Pending |
+| HOME-03 | Phase 5 | Pending |
+| HOME-04 | Phase 5 | Pending |
+| HOME-05 | Phase 4 | Pending |
+| HOME-06 | Phase 4 | Pending |
+| HOME-07 | Phase 4 | Pending |
+| HOME-08 | Phase 5 | Pending |
+| PORT-01 | Phase 4 | Pending |
+| PORT-02 | Phase 4 | Pending |
+| PORT-03 | Phase 4 | Pending |
+| PORT-04 | Phase 4 | Pending |
+| PORT-05 | Phase 4 | Pending |
+| PORT-06 | Phase 4 | Pending |
+| TEAM-01 | Phase 4 | Pending |
+| TEAM-02 | Phase 4 | Pending |
+| TEAM-03 | Phase 4 | Pending |
+| NEWS-01 | Phase 4 | Pending |
+| NEWS-02 | Phase 4 | Pending |
+| NEWS-03 | Phase 4 | Pending |
+| NEWS-04 | Phase 4 | Pending |
+| NEWS-05 | Phase 4 | Pending |
+| INVP-01 | Phase 4 | Pending |
+| INVP-02 | Phase 4 | Pending |
+| INVP-03 | Phase 4 | Pending |
+| INVP-04 | Phase 4 | Pending |
+| ABOUT-01 | Phase 4 | Pending |
+| ABOUT-02 | Phase 4 | Pending |
+| ABOUT-03 | Phase 4 | Pending |
+| ABOUT-04 | Phase 4 | Pending |
+| GOV-01 | Phase 4 | Pending |
+| GOV-02 | Phase 4 | Pending |
+| GOV-03 | Phase 4 | Pending |
+| GOV-04 | Phase 4 | Pending |
+| ESG-01 | Phase 4 | Pending |
+| ESG-02 | Phase 4 | Pending |
+| ESG-03 | Phase 4 | Pending |
+| ESG-04 | Phase 4 | Pending |
+| CONT-01 | Phase 4 | Pending |
+| CONT-02 | Phase 4 | Pending |
+| CONT-03 | Phase 4 | Pending |
+| CULT-01 | Phase 4 | Pending |
+| CULT-02 | Phase 4 | Pending |
+| LEGAL-01 | Phase 3 | Pending |
+| LEGAL-02 | Phase 3 | Pending |
+| LEGAL-03 | Phase 3 | Pending |
+| LEGAL-04 | Phase 3 | Pending |
+| SEO-01 | Phase 6 | Pending |
+| SEO-02 | Phase 6 | Pending |
+| SEO-03 | Phase 6 | Pending |
+| SEO-04 | Phase 6 | Pending |
+| SEO-05 | Phase 6 | Pending |
+| A11Y-01 | Phase 7 | Pending |
+| A11Y-02 | Phase 7 | Pending |
+| A11Y-03 | Phase 7 | Pending |
+| A11Y-04 | Phase 7 | Pending |
 
 **Coverage:**
-- v1 requirements: 61 total
-- Mapped to phases: 0
-- Unmapped: 61 ⚠️
+- v1 requirements: 68 total
+- Mapped to phases: 68
+- Unmapped: 0
 
 ---
 *Requirements defined: 2026-03-14*
-*Last updated: 2026-03-14 after initial definition*
+*Last updated: 2026-03-14 after roadmap creation — traceability complete*

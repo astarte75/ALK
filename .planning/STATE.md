@@ -1,0 +1,133 @@
+# Project State: Alkemia Capital Website
+
+*Single source of truth for project memory. Updated at each session boundary.*
+
+---
+
+## Project Reference
+
+**Core Value:** The site must look and feel indistinguishable in quality from hgcapital.com while being unmistakably Alkemia Capital in content and branding.
+**Reference site:** hgcapital.com (Next.js + Contentful + Styled Components + GSAP + Vercel)
+**Stack:** Next.js 15 (App Router) · Contentful REST API · styled-components v6 · GSAP + Lenis · next-intl · Vercel
+
+---
+
+## Current Position
+
+**Phase:** 1 — Foundation
+**Plan:** None started
+**Status:** Not started
+**Last action:** Roadmap created
+
+```
+Progress: [░░░░░░░░░░░░░░░░░░░░░░░░░░░░] 0%
+
+Phase 1 [░░░░░░░░░░░░░░░░░░░░] Not started
+Phase 2 [░░░░░░░░░░░░░░░░░░░░] Not started
+Phase 3 [░░░░░░░░░░░░░░░░░░░░] Not started
+Phase 4 [░░░░░░░░░░░░░░░░░░░░] Not started
+Phase 5 [░░░░░░░░░░░░░░░░░░░░] Not started
+Phase 6 [░░░░░░░░░░░░░░░░░░░░] Not started
+Phase 7 [░░░░░░░░░░░░░░░░░░░░] Not started
+```
+
+---
+
+## Performance Metrics
+
+| Metric | Target | Current |
+|--------|--------|---------|
+| Lighthouse Performance | 90+ | — |
+| Lighthouse Accessibility | 90+ | — |
+| Lighthouse SEO | 90+ | — |
+| Lighthouse Best Practices | 90+ | — |
+| TypeScript errors | 0 | — |
+| Hydration mismatches | 0 | — |
+
+---
+
+## Accumulated Context
+
+### Architecture Decisions
+
+| Decision | Rationale | Status |
+|----------|-----------|--------|
+| Next.js 15 (NOT 16) | Next.js 16 breaks styled-components integration (async params mandatory, Turbopack default) | Locked |
+| Contentful REST API (not GraphQL) | GraphQL has query size limits with nested rich text; REST simpler for SSG | Locked |
+| styled-components v6.3 + SSR Registry | Matches HG Capital approach; v6.3 supports RSC natively | Locked |
+| CSS custom properties for dark theme | Prevents FOUC; colors available before JS executes | Locked |
+| next-intl v4 with `localePrefix: 'as-needed'` | Clean IT URLs (`/portfolio`), EN gets prefix (`/en/portfolio`) | Locked |
+| SSG + on-demand ISR (not SSR) | All public pages pre-rendered; Contentful webhook triggers `revalidateTag` | Locked |
+| GSAP (not Framer Motion) for scroll animations | Framer Motion forces Client Components too high in tree; Safari compatibility | Locked |
+| Lenis v1.3 for smooth scroll | RAF synced to GSAP ticker; must validate exact sync pattern in Phase 5 | Locked |
+
+### Open Decisions (Blocking)
+
+| Decision | Blocks | Notes |
+|----------|--------|-------|
+| Alkemia brand accent color | Phase 1 close | Must contrast-check against dark bg before any CSS written |
+| Font choice | Phase 1 close | Inter as placeholder; confirm if licensed font needed |
+| Contentful space + locale setup | Phase 2 start | Non-technical; user must create space with `it-IT` and `en-US` |
+| Vimeo video URL for hero | Phase 5 close | Homepage hero requires actual Vimeo asset |
+
+### Known Pitfalls (Pre-validated)
+
+1. styled-components SSR — install `StyledComponentsRegistry` before writing ANY component
+2. GSAP memory leaks — use `useGSAP()` hook always, never `useEffect`; register plugins once in `gsap-init.ts`
+3. Dark theme FOUC — CSS custom properties on `:root` in GlobalStyle, not JS ThemeProvider
+4. Contentful rate limits — batch fetches per content type, not per page
+5. next-intl locale not wired to Contentful — every API call must receive `locale` from route params; map `it` → `it-IT`, `en` → `en-US`
+6. Vimeo hero LCP — facade pattern: poster image first, inject iframe after mount/intersection
+7. GSAP pixel values on resize — use percentage/viewport-relative values only
+8. WCAG contrast on dark + accent — check every color pair before writing CSS
+9. CLS from Contentful images — use `next/image` with `fill` + aspect-ratio container
+10. Safari scroll-driven animations — CSS scroll-driven not supported until Safari 26; use GSAP for everything
+
+### Contentful Content Models (8 defined)
+
+1. `page` — generic static pages (Approach, Contact, Sustainability)
+2. `portfolioCompany` — platform reference, featured flag, sector
+3. `teamMember` — photo, bio rich text, board flag
+4. `newsArticle` — title, category, body rich text, external URL option
+5. `investmentPlatform` — PE/VC/PIPE, references funds
+6. `fund` — name, vintage, status, platform reference
+7. `siteConfig` — singleton (hero video URL, nav, footer links, offices)
+8. `office` — city, address, map URL
+
+### Research Flags
+
+- **Phase 5 (Animation):** GSAP + Lenis + Next.js 15 App Router integration has MEDIUM confidence. Start Phase 5 with a proof-of-concept before building full animation suite. Validate: (1) Lenis RAF sync to `gsap.ticker` in a Provider component, (2) `ScrollTrigger.refresh()` timing after `usePathname()` changes, (3) mobile performance with multi-section video scroll.
+
+---
+
+## Todos
+
+- [ ] Decide Alkemia brand accent color (blocking Phase 1 close)
+- [ ] Confirm font licensing (blocking Phase 1 close)
+- [ ] Create Contentful space with `it-IT` and `en-US` locales (blocking Phase 2 start)
+- [ ] Obtain Vimeo video URL for homepage hero (blocking Phase 5 close)
+- [ ] Run `/gsd:plan-phase 1` to begin Phase 1 planning
+
+---
+
+## Blockers
+
+None currently.
+
+---
+
+## Session Continuity
+
+**To resume this project:**
+1. Read `.planning/ROADMAP.md` for current phase and success criteria
+2. Read `.planning/STATE.md` (this file) for decisions, pitfalls, and todos
+3. Run `/gsd:plan-phase [N]` to get the execution plan for the next phase
+
+**Phase sequence:** 1 → 2 → 3 → 4 → 5 → 6 → 7
+
+**Current milestone:** v1 (initial launch at alkemiacapital.com)
+
+---
+
+*State initialized: 2026-03-14*
+*Last updated: 2026-03-14 after roadmap creation*
