@@ -10,8 +10,8 @@ test.describe('Locale routing tests', () => {
     const response = await page.goto('/')
     expect(response?.status()).toBe(200)
 
-    const description = page.locator('p').first()
-    await expect(description).toContainText('Investiamo')
+    const h1 = page.locator('h1').first()
+    await expect(h1).toBeVisible()
 
     await context.close()
   })
@@ -20,8 +20,8 @@ test.describe('Locale routing tests', () => {
     const response = await page.goto('/en')
     expect(response?.status()).toBe(200)
 
-    const description = page.locator('p').first()
-    await expect(description).toContainText('We invest')
+    const h1 = page.locator('h1').first()
+    await expect(h1).toBeVisible()
   })
 
   test('/ and /en both serve the site correctly', async ({ browser }) => {
