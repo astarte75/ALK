@@ -2,7 +2,6 @@
 
 import styled from 'styled-components'
 import Image from 'next/image'
-import { useTranslations } from 'next-intl'
 import { colors, fonts, spacing } from '@/styles/theme'
 import { mq } from '@/styles/breakpoints'
 
@@ -81,9 +80,12 @@ const Subtitle = styled.p`
   }
 `
 
-export default function HeroSection() {
-  const t = useTranslations('home')
+interface HeroSectionProps {
+  headline?: string
+  subtitle?: string
+}
 
+export default function HeroSection({ headline, subtitle }: HeroSectionProps) {
   return (
     <HeroWrapper>
       <Image
@@ -105,9 +107,9 @@ export default function HeroSection() {
             style={{ height: 'auto' }}
           />
         </Logo>
-        <Headline>{t('headline')}</Headline>
+        <Headline>{headline || 'Alkemia Capital'}</Headline>
         <GoldAccent />
-        <Subtitle>{t('subtitle')}</Subtitle>
+        <Subtitle>{subtitle || ''}</Subtitle>
       </Content>
     </HeroWrapper>
   )

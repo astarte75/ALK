@@ -1,7 +1,6 @@
 'use client'
 
 import styled from 'styled-components'
-import { useTranslations } from 'next-intl'
 import { colors, fonts, spacing } from '@/styles/theme'
 import { mq } from '@/styles/breakpoints'
 
@@ -47,27 +46,34 @@ const StatLabel = styled.div`
   letter-spacing: 0.05em;
 `
 
-const stats = [
-  { value: '~20', prefix: '', suffix: '', labelKey: 'stats.years' },
-  { value: '270', prefix: 'EUR', suffix: 'M', labelKey: 'stats.aum' },
-  { value: '29', prefix: '', suffix: '', labelKey: 'stats.operations' },
-  { value: '18', prefix: '', suffix: '', labelKey: 'stats.companies' },
-] as const
+interface StatItem {
+  value: string
+  label: string
+}
 
-export default function StatsSection() {
-  const t = useTranslations('home')
+interface StatsSectionProps {
+  stats?: StatItem[]
+}
+
+const DEFAULT_STATS: StatItem[] = [
+  { value: '~20', label: 'Years' },
+  { value: '€270M', label: 'AUM' },
+  { value: '29', label: 'Transactions' },
+  { value: '18', label: 'Companies' },
+]
+
+export default function StatsSection({ stats }: StatsSectionProps) {
+  const data = stats && stats.length > 0 ? stats : DEFAULT_STATS
 
   return (
     <Section>
       <Grid>
-        {stats.map((stat) => (
-          <StatItem key={stat.labelKey}>
+        {data.map((stat, i) => (
+          <StatItem key={i}>
             <StatValue data-stat-value={stat.value}>
-              {stat.prefix}
               {stat.value}
-              {stat.suffix}
             </StatValue>
-            <StatLabel>{t(stat.labelKey)}</StatLabel>
+            <StatLabel>{stat.label}</StatLabel>
           </StatItem>
         ))}
       </Grid>

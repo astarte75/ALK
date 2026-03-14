@@ -1,5 +1,4 @@
 import styled from 'styled-components'
-import { getTranslations } from 'next-intl/server'
 import { getNewsArticles } from '@/lib/contentful/fetchers'
 import { colors, fonts, spacing } from '@/styles/theme'
 import { mq } from '@/styles/breakpoints'
@@ -62,13 +61,12 @@ const Grid = styled.div`
 
 interface NewsPreviewProps {
   locale: string
+  title?: string
+  ctaText?: string
 }
 
-export default async function NewsPreview({ locale }: NewsPreviewProps) {
-  const [t, articles] = await Promise.all([
-    getTranslations('home'),
-    getNewsArticles(locale, 3),
-  ])
+export default async function NewsPreview({ locale, title, ctaText }: NewsPreviewProps) {
+  const articles = await getNewsArticles(locale, 3)
 
   if (!articles || articles.length === 0) return null
 
@@ -77,8 +75,8 @@ export default async function NewsPreview({ locale }: NewsPreviewProps) {
   return (
     <Section>
       <Header>
-        <Title>{t('newsPreview.title')}</Title>
-        <ViewAllLink href={newsPath}>{t('newsPreview.viewAll')}</ViewAllLink>
+        <Title>{title || 'News'}</Title>
+        <ViewAllLink href={newsPath}>{ctaText || '→'}</ViewAllLink>
       </Header>
       <Grid>
         {articles.map((article) => (

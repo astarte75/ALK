@@ -2,7 +2,6 @@
 
 import { type FormEvent } from 'react'
 import styled from 'styled-components'
-import { useTranslations } from 'next-intl'
 import { colors, fonts, spacing } from '@/styles/theme'
 import { mq } from '@/styles/breakpoints'
 
@@ -79,9 +78,14 @@ const Button = styled.button`
   }
 `
 
-export default function NewsletterStrip() {
-  const t = useTranslations('home')
+interface NewsletterStripProps {
+  title?: string
+  description?: string
+  placeholder?: string
+  buttonText?: string
+}
 
+export default function NewsletterStrip({ title, placeholder, buttonText }: NewsletterStripProps) {
   function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault()
   }
@@ -89,14 +93,14 @@ export default function NewsletterStrip() {
   return (
     <Strip>
       <Inner>
-        <Title>{t('newsletter.title')}</Title>
+        <Title>{title || 'Newsletter'}</Title>
         <Form onSubmit={handleSubmit}>
           <Input
             type="email"
-            placeholder={t('newsletter.placeholder')}
-            aria-label={t('newsletter.placeholder')}
+            placeholder={placeholder || 'Email'}
+            aria-label={placeholder || 'Email'}
           />
-          <Button type="submit">{t('newsletter.subscribe')}</Button>
+          <Button type="submit">{buttonText || 'Subscribe'}</Button>
         </Form>
       </Inner>
     </Strip>
