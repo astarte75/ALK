@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import Image from 'next/image'
 import { Link } from '@/i18n/navigation'
 import { getPageBySlug, getTeamMembers } from '@/lib/contentful/fetchers'
+import { getClient } from '@/lib/contentful/client'
 import { colors, fonts, spacing } from '@/styles/theme'
 import { mq } from '@/styles/breakpoints'
 
@@ -191,6 +192,26 @@ export default async function CorporateGovernancePage({
     }
   }
 
+  // Resolve photos for non-team board members (by asset ID)
+  const assetPhotoMap = new Map<string, string>()
+  if (sections.boardMembers) {
+    const assetIds = sections.boardMembers
+      .filter(m => m.photoAssetId && !m.isTeamMember)
+      .map(m => m.photoAssetId!)
+    if (assetIds.length > 0) {
+      const client = getClient()
+      for (const id of assetIds) {
+        try {
+          const asset = await client.getAsset(id)
+          const url = asset.fields.file?.url
+          if (url) assetPhotoMap.set(id, `https:${url}`)
+        } catch {
+          // Asset not found, skip
+        }
+      }
+    }
+  }
+
   if (!page && !sections.boardMembers) {
     return (
       <Page>
@@ -220,7 +241,9 @@ export default async function CorporateGovernancePage({
             {sections.boardMembers.map((member) => {
               const photoUrl = member.isTeamMember && member.slug
                 ? teamPhotoMap.get(member.slug) || null
-                : null
+                : member.photoAssetId
+                  ? assetPhotoMap.get(member.photoAssetId) || null
+                  : null
 
               const card = (
                 <BoardCard key={member.name}>
