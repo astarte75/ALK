@@ -38,15 +38,15 @@ export const portfolioCompanies: PortfolioCompanyData[] = [
     sortOrder: 1,
   },
   {
-    name: { 'it-IT': 'Casta Diva Group S.p.A.', 'en-US': 'Casta Diva Group S.p.A.' },
+    name: { 'it-IT': 'Casta Diva Group', 'en-US': 'Casta Diva Group' },
     slug: 'casta-diva-group',
     shortDescription: {
       'it-IT': 'Multinazionale italiana leader nella comunicazione e nella produzione di eventi e contenuti digitali',
       'en-US': 'Italian multinational leader in communications, event production, and digital content',
     },
     description: {
-      'it-IT': 'Casta Diva Group S.p.A. e una multinazionale italiana specializzata nel settore della comunicazione, nella produzione di film pubblicitari, contenuti digitali ed eventi dal vivo. Fondata nel 2005, ha ampliato la sua presenza a livello globale, operando in quattro continenti con sedi in 15 citta, consolidando la sua posizione nel settore. La societa e quotata sul mercato Euronext Growth Milan di Borsa Italiana.\n\nNel novembre 2025, il fondo PIPE gestito da Alkemia Capital ha acquisito una partecipazione del 10,07% in Casta Diva Group, seguita dall\'acquisizione del ramo eventi di Prodea Group S.p.A. nel gennaio 2026.',
-      'en-US': 'Casta Diva Group S.p.A. is an Italian multinational specializing in communications, advertising film production, digital content, and live events. Founded in 2005, it has expanded its presence globally, operating across four continents with offices in 15 cities. The company is listed on Euronext Growth Milan.\n\nIn November 2025, the PIPE fund managed by Alkemia Capital acquired a 10.07% stake in Casta Diva Group, followed by the acquisition of Prodea Group S.p.A.\'s events division in January 2026.',
+      'it-IT': 'Casta Diva Group e una multinazionale italiana specializzata nel settore della comunicazione, nella produzione di film pubblicitari, contenuti digitali ed eventi dal vivo. Fondata nel 2005, ha ampliato la sua presenza a livello globale, operando in quattro continenti con sedi in 15 citta, consolidando la sua posizione nel settore. La societa e quotata sul mercato Euronext Growth Milan di Borsa Italiana.\n\nNel novembre 2025, il fondo PIPE gestito da Alkemia Capital ha acquisito una partecipazione del 10,07% in Casta Diva Group, seguita dall\'acquisizione del ramo eventi di Prodea Group S.p.A. nel gennaio 2026.',
+      'en-US': 'Casta Diva Group is an Italian multinational specializing in communications, advertising film production, digital content, and live events. Founded in 2005, it has expanded its presence globally, operating across four continents with offices in 15 cities. The company is listed on Euronext Growth Milan.\n\nIn November 2025, the PIPE fund managed by Alkemia Capital acquired a 10.07% stake in Casta Diva Group, followed by the acquisition of Prodea Group S.p.A.\'s events division in January 2026.',
     },
     sector: 'Digital Services',
     investmentType: 'PIPE',
@@ -110,15 +110,15 @@ export const portfolioCompanies: PortfolioCompanyData[] = [
     sortOrder: 5,
   },
   {
-    name: { 'it-IT': 'Convivio S.p.A.', 'en-US': 'Convivio S.p.A.' },
+    name: { 'it-IT': 'Convivio', 'en-US': 'Convivio' },
     slug: 'convivio',
     shortDescription: {
       'it-IT': 'Polo industriale di riferimento nel settore della pasta fresca e dei piatti pronti di alta qualita',
       'en-US': 'Leading industrial hub in premium fresh pasta and ready meals',
     },
     description: {
-      'it-IT': 'Alkemia Capital, tramite il fondo **Alkemia Food Excellence I**, ha promosso la nascita di **Convivio S.p.A.**, una nuova holding operativa italiana. L\'obiettivo e creare un polo di riferimento nel settore della pasta fresca e della gastronomia premium, consolidando le migliori realta produttive del Made in Italy.\n\nIn questa prima fase, Alkemia ha acquisito il 100% di cinque aziende d\'eccellenza regionale: Valsugana Sapori, Parmachef, Casanova Food, Pastificio Cecchin e Poggiolini, che insieme generano circa 27 milioni di euro di fatturato.',
-      'en-US': 'Through its **Alkemia Food Excellence I** fund, Alkemia Capital created **Convivio S.p.A.**, a new Italian operating holding company. The goal is to establish a leading hub in the premium fresh pasta and gastronomy sector, consolidating the finest Made in Italy producers.\n\nIn this initial phase, Alkemia acquired 100% of five regional centers of excellence: Valsugana Sapori, Parmachef, Casanova Food, Pastificio Cecchin, and Poggiolini, which together generate approximately EUR 27 million in revenue.',
+      'it-IT': 'Alkemia Capital, tramite il fondo **Alkemia Food Excellence I**, ha promosso la nascita di **Convivio**, una nuova holding operativa italiana. L\'obiettivo e creare un polo di riferimento nel settore della pasta fresca e della gastronomia premium, consolidando le migliori realta produttive del Made in Italy.\n\nIn questa prima fase, Alkemia ha acquisito il 100% di cinque aziende d\'eccellenza regionale: Valsugana Sapori, Parmachef, Casanova Food, Pastificio Cecchin e Poggiolini, che insieme generano circa 27 milioni di euro di fatturato.',
+      'en-US': 'Through its **Alkemia Food Excellence I** fund, Alkemia Capital created **Convivio**, a new Italian operating holding company. The goal is to establish a leading hub in the premium fresh pasta and gastronomy sector, consolidating the finest Made in Italy producers.\n\nIn this initial phase, Alkemia acquired 100% of five regional centers of excellence: Valsugana Sapori, Parmachef, Casanova Food, Pastificio Cecchin, and Poggiolini, which together generate approximately EUR 27 million in revenue.',
     },
     sector: 'Food & Beverage',
     investmentType: 'Private Equity',
