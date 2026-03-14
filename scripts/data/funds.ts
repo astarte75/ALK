@@ -26,8 +26,8 @@ export const investmentPlatforms: InvestmentPlatformData[] = [
     name: { 'it-IT': 'Private Equity', 'en-US': 'Private Equity' },
     slug: 'private-equity',
     description: {
-      'it-IT': 'L\'approccio di Alkemia al Private Equity si concentra su investimenti in piccole e medie imprese con potenziale di crescita trasformativa. Sosteniamo le aziende in fasi chiave di espansione, con un focus su operazioni di **buy-out**, **expansion capital** e **replacement capital**. Attraverso un coinvolgimento attivo nella gestione, forniamo supporto strategico e operativo, migliorando la governance e accelerando la creazione di valore sostenibile.',
-      'en-US': 'Alkemia\'s approach to Private Equity focuses on investments in small and medium-sized enterprises with transformative growth potential. We support companies at key expansion stages, with a focus on **buy-out**, **expansion capital**, and **replacement capital** operations. Through active management involvement, we provide strategic and operational support, improving governance and accelerating sustainable value creation.',
+      'it-IT': 'L\'approccio di Alkemia al Private Equity si concentra su investimenti in piccole e medie imprese con forte potenziale di sviluppo. Sosteniamo le aziende in fasi chiave di espansione, con un focus su operazioni di **buy-out**, **expansion capital** e **replacement capital**. Attraverso un coinvolgimento attivo nella gestione, forniamo supporto strategico e operativo, migliorando la governance e accelerando la creazione di valore sostenibile.',
+      'en-US': 'Alkemia\'s approach to Private Equity focuses on investments in small and medium-sized enterprises with strong growth potential. We support companies at key expansion stages, with a focus on **buy-out**, **expansion capital**, and **replacement capital** operations. Through active management involvement, we provide strategic and operational support, improving governance and accelerating sustainable value creation.',
     },
     strategy: 'Private Equity',
   },

@@ -19,7 +19,7 @@ export const pages: PageData[] = [
 
 ## Alkemia SGR S.p.A.
 
-Alkemia SGR S.p.A. e una societa di gestione del risparmio specializzata nella creazione di valore sostenibile attraverso investimenti strategici in aziende con un forte potenziale di crescita trasformativa.
+Alkemia SGR S.p.A. e una societa di gestione del risparmio specializzata nella creazione di valore sostenibile attraverso investimenti strategici in aziende con un forte potenziale di sviluppo.
 
 Con oltre 12 anni di esperienza nel settore, Alkemia si distingue per la sua capacita di identificare e sviluppare opportunita di investimento che generano benefici duraturi per investitori, comunita locali e ambiente.
 
@@ -68,7 +68,7 @@ Alkemia integra criteri **ESG** (Environmental, Social, Governance) in tutte le 
 
 ## Alkemia SGR S.p.A.
 
-Alkemia SGR S.p.A. is an asset management company specialized in creating sustainable value through strategic investments in companies with strong transformative growth potential.
+Alkemia SGR S.p.A. is an asset management company specialized in creating sustainable value through strategic investments in companies with strong strong growth potential.
 
 With over 12 years of experience in the industry, Alkemia distinguishes itself by its ability to identify and cultivate investment opportunities that deliver long-term value for investors, local communities, and the environment.
 
