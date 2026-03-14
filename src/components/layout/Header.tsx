@@ -32,7 +32,10 @@ export default function Header({ logoUrl, logoAlt }: HeaderProps) {
     {
       label: t('societa'),
       href: '/societa',
-      subItems: [{ label: t('corporateGovernance'), href: '/corporate-governance' }],
+      subItems: [
+        { label: t('societaPage'), href: '/societa' },
+        { label: t('corporateGovernance'), href: '/corporate-governance' },
+      ],
     },
     { label: t('investmentPlatforms'), href: '/investment-platforms' },
     { label: t('portfolio'), href: '/portfolio' },
