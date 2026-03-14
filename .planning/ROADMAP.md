@@ -26,7 +26,7 @@
 | 1. Foundation | 2/3 | Complete    | 2026-03-14 |
 | 2. Content Infrastructure | 3/3 | Complete | 2026-03-14 |
 | 3. Layout Shell & Legal | 3/3 | Complete | 2026-03-14 |
-| 4. Core Pages | 0/5 | Not started | - |
+| 4. Core Pages | 5/5 | Complete | 2026-03-14 |
 | 5. Animation Layer | 0/? | Not started | - |
 | 6. SEO & Performance | 0/? | Not started | - |
 | 7. Production Hardening | 0/? | Not started | - |

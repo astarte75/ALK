@@ -89,9 +89,9 @@ Requirements for initial release. Each maps to roadmap phases.
 
 ### Contatti
 
-- [ ] **CONT-01**: Office locations for Milano and Padova with addresses and phone numbers
-- [ ] **CONT-02**: Contact form with request type selector (Investitore, Opportunità, Segreteria)
-- [ ] **CONT-03**: reCAPTCHA integration for spam protection
+- [x] **CONT-01**: Office locations for Milano and Padova with addresses and phone numbers
+- [x] **CONT-02**: Contact form with request type selector (Investitore, Opportunità, Segreteria)
+- [x] **CONT-03**: reCAPTCHA integration for spam protection
 
 ### Culture / Life at Alkemia
 
@@ -205,9 +205,9 @@ Which phases cover which requirements. Updated during roadmap creation.
 | ESG-02 | Phase 4 | Pending |
 | ESG-03 | Phase 4 | Pending |
 | ESG-04 | Phase 4 | Pending |
-| CONT-01 | Phase 4 | Pending |
-| CONT-02 | Phase 4 | Pending |
-| CONT-03 | Phase 4 | Pending |
+| CONT-01 | Phase 4 | Complete |
+| CONT-02 | Phase 4 | Complete |
+| CONT-03 | Phase 4 | Complete |
 | CULT-01 | Phase 4 | Pending |
 | CULT-02 | Phase 4 | Pending |
 | LEGAL-01 | Phase 3 | Complete |
