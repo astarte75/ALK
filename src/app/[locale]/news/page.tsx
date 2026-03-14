@@ -30,6 +30,7 @@ export default async function NewsPage({
       <PageHero
         imageSrc="/images/hero-news.jpg"
         title={t('title')}
+        imagePosition="top"
       />
       <Section>
         <NewsList articles={articles} locale={locale} />

@@ -49,12 +49,13 @@ interface PageHeroProps {
   imageSrc: string
   title: string
   subtitle?: string
+  imagePosition?: string
 }
 
-export default function PageHero({ imageSrc, title, subtitle }: PageHeroProps) {
+export default function PageHero({ imageSrc, title, subtitle, imagePosition = 'center' }: PageHeroProps) {
   return (
     <HeroBanner>
-      <Image src={imageSrc} alt={title} fill style={{ objectFit: 'cover' }} priority />
+      <Image src={imageSrc} alt={title} fill style={{ objectFit: 'cover', objectPosition: imagePosition }} priority />
       <HeroContent>
         <HeroTitle>{title}</HeroTitle>
         {subtitle && <HeroSubtitle>{subtitle}</HeroSubtitle>}
