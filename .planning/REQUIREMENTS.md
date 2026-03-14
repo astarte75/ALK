@@ -9,12 +9,12 @@ Requirements for initial release. Each maps to roadmap phases.
 
 ### Foundation
 
-- [ ] **FOUND-01**: Site uses Next.js 15 App Router with SSR/SSG
-- [ ] **FOUND-02**: Styled Components v6 with proper SSR registry (no hydration mismatch)
-- [ ] **FOUND-03**: Dark premium theme implemented via CSS custom properties (not JS ThemeProvider)
+- [x] **FOUND-01**: Site uses Next.js 15 App Router with SSR/SSG
+- [x] **FOUND-02**: Styled Components v6 with proper SSR registry (no hydration mismatch)
+- [x] **FOUND-03**: Dark premium theme implemented via CSS custom properties (not JS ThemeProvider)
 - [ ] **FOUND-04**: Contentful REST API integration with TypeScript types for all content models
 - [ ] **FOUND-05**: i18n support with next-intl (IT default without prefix, EN with /en/ prefix)
-- [ ] **FOUND-06**: Responsive design working from 320px to 2560px
+- [x] **FOUND-06**: Responsive design working from 320px to 2560px
 - [ ] **FOUND-07**: Vercel deployment with CI/CD pipeline
 - [ ] **FOUND-08**: Contentful webhook for on-demand ISR (no time-based revalidation)
 
@@ -155,12 +155,12 @@ Which phases cover which requirements. Updated during roadmap creation.
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| FOUND-01 | Phase 1 | Pending |
-| FOUND-02 | Phase 1 | Pending |
-| FOUND-03 | Phase 1 | Pending |
+| FOUND-01 | Phase 1 | Complete |
+| FOUND-02 | Phase 1 | Complete |
+| FOUND-03 | Phase 1 | Complete |
 | FOUND-04 | Phase 2 | Pending |
 | FOUND-05 | Phase 1 | Pending |
-| FOUND-06 | Phase 1 | Pending |
+| FOUND-06 | Phase 1 | Complete |
 | FOUND-07 | Phase 1 | Pending |
 | FOUND-08 | Phase 2 | Pending |
 | NAV-01 | Phase 3 | Pending |
