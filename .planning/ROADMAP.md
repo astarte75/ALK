@@ -24,7 +24,7 @@
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 1. Foundation | 2/3 | Complete    | 2026-03-14 |
-| 2. Content Infrastructure | 1/3 | In progress | - |
+| 2. Content Infrastructure | 2/3 | In progress | - |
 | 3. Layout Shell & Legal | 0/? | Not started | - |
 | 4. Core Pages | 0/? | Not started | - |
 | 5. Animation Layer | 0/? | Not started | - |
@@ -74,7 +74,7 @@ Plans:
 
 Plans:
 - [x] 02-01-PLAN.md — Contentful SDK + TypeScript types + client + fetchers + ISR webhook (wave 1)
-- [ ] 02-02-PLAN.md — Migration script: content models + image upload + data seeding (wave 2, depends on 02-01)
+- [x] 02-02-PLAN.md — Migration script: content models + image upload + data seeding (wave 2, depends on 02-01)
 - [ ] 02-03-PLAN.md — Run migration + content validation + Vercel env setup (wave 3, depends on 02-01 + 02-02)
 
 **Pitfall gates:**
@@ -203,4 +203,4 @@ These must be resolved before the indicated phase can close:
 ---
 
 *Created: 2026-03-14*
-*Last updated: 2026-03-14 after completing 02-01-PLAN.md*
+*Last updated: 2026-03-14 after completing 02-02-PLAN.md*
