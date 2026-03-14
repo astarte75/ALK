@@ -44,6 +44,19 @@
     "legal": "Legal",
     "social": "Social"
   },
+  "portfolio": {
+    "title": "Portfolio",
+    "companiesCount": "companies",
+    "filterArea": "Investment area",
+    "filterSector": "Sector",
+    "all": "All",
+    "backToPortfolio": "Back to portfolio",
+    "website": "Website",
+    "sector": "Sector",
+    "investmentType": "Investment type",
+    "yearOfInvestment": "Year of investment",
+    "fund": "Fund"
+  },
   "cookie": {
     "title": "Cookie Notice",
     "description": "This site uses technical cookies necessary for its operation. For more information, see our {cookiePolicy}.",
