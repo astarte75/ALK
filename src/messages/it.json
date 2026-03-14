@@ -1,8 +1,24 @@
 {
   "home": {
     "title": "Alkemia Capital",
-    "subtitle": "Private Equity & Venture Capital",
-    "description": "Investiamo in aziende leader nei settori ICT, Automotive, Agri-tech e Food & Beverage."
+    "subtitle": "Alkemia SGR S.p.A. investe in aziende con potenziale di crescita trasformativa, supportandole nel percorso verso l'eccellenza operativa e la leadership di mercato.",
+    "description": "Investiamo in aziende leader nei settori ICT, Automotive, Agri-tech e Food & Beverage.",
+    "headline": "Passione per l'impresa",
+    "stats": {
+      "years": "anni di esperienza",
+      "aum": "AUM",
+      "operations": "operazioni completate",
+      "companies": "aziende in portfolio"
+    },
+    "newsletter": {
+      "title": "Resta aggiornato",
+      "placeholder": "Il tuo indirizzo email",
+      "subscribe": "Iscriviti"
+    },
+    "newsPreview": {
+      "title": "Ultime notizie",
+      "viewAll": "Vedi tutte"
+    }
   },
   "common": {
     "language": "Italiano"
