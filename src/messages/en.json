@@ -64,6 +64,16 @@
     "backToTeam": "Back to team",
     "boardMember": "Board Member"
   },
+  "news": {
+    "title": "News",
+    "all": "All",
+    "filterCategory": "Category",
+    "loadMore": "Load more",
+    "showing": "of",
+    "articles": "articles",
+    "backToNews": "Back to news",
+    "readOriginal": "Read original article"
+  },
   "cookie": {
     "title": "Cookie Notice",
     "description": "This site uses technical cookies necessary for its operation. For more information, see our {cookiePolicy}.",
