@@ -1,11 +1,10 @@
 import { setRequestLocale, getTranslations } from 'next-intl/server'
 import styled from 'styled-components'
 import Image from 'next/image'
+import { Link } from '@/i18n/navigation'
 import { getPageBySlug, getTeamMembers } from '@/lib/contentful/fetchers'
-import { renderRichText } from '@/lib/contentful/richText'
 import { colors, fonts, spacing } from '@/styles/theme'
 import { mq } from '@/styles/breakpoints'
-import type { Document } from '@contentful/rich-text-types'
 
 const Page = styled.div`
   max-width: 1200px;
@@ -33,6 +32,15 @@ const SectionHeading = styled.h2`
   margin: 0 0 ${spacing[6]};
   padding-bottom: ${spacing[2]};
   border-bottom: 2px solid ${colors.accentGold};
+`
+
+const SectionDescription = styled.p`
+  font-family: ${fonts.body};
+  font-size: 1rem;
+  color: ${colors.textSecondary};
+  line-height: 1.7;
+  margin: 0 0 ${spacing[6]};
+  max-width: 800px;
 `
 
 const BoardGrid = styled.div`
@@ -91,6 +99,14 @@ const MemberRole = styled.p`
   margin: 0;
 `
 
+const StyledLink = styled(Link)`
+  text-decoration: none;
+  color: inherit;
+  &:hover h3 {
+    color: ${colors.accentTeal};
+  }
+`
+
 const CompactList = styled.div`
   border: 1px solid ${colors.border};
   border-radius: 8px;
@@ -122,33 +138,6 @@ const CompactRole = styled.span`
   color: ${colors.textSecondary};
 `
 
-const BodyContent = styled.div`
-  font-family: ${fonts.body};
-  color: ${colors.textPrimary};
-  line-height: 1.7;
-  max-width: 800px;
-
-  h2, h3, h4 {
-    font-family: ${fonts.heading};
-    color: ${colors.textPrimary};
-    margin-top: ${spacing[8]};
-    margin-bottom: ${spacing[3]};
-  }
-
-  p {
-    margin-bottom: ${spacing[4]};
-    color: ${colors.textSecondary};
-  }
-
-  a {
-    color: ${colors.accentTeal};
-    text-decoration: none;
-    &:hover {
-      text-decoration: underline;
-    }
-  }
-`
-
 const FallbackMessage = styled.p`
   font-family: ${fonts.body};
   font-size: 1.125rem;
@@ -157,9 +146,24 @@ const FallbackMessage = styled.p`
   padding: ${spacing[16]} 0;
 `
 
+interface BoardMember {
+  name: string
+  role: string
+  isTeamMember?: boolean
+  slug?: string
+  photoAssetId?: string
+}
+
 interface SectionMember {
   name: string
   role: string
+}
+
+interface GovernanceSections {
+  boardMembers?: BoardMember[]
+  sindaci?: SectionMember[]
+  controlFunctions?: SectionMember[]
+  shareholding?: string
 }
 
 export default async function CorporateGovernancePage({
@@ -170,20 +174,24 @@ export default async function CorporateGovernancePage({
   const { locale } = await params
   setRequestLocale(locale)
 
-  const [page, members, t] = await Promise.all([
+  const [page, teamMembers, t] = await Promise.all([
     getPageBySlug('corporate-governance', locale),
     getTeamMembers(locale),
     getTranslations({ locale, namespace: 'governance' }),
   ])
 
-  const boardMembers = members.filter((m) => m.fields.isBoard)
+  const sections = (page?.fields.sections ?? {}) as GovernanceSections
 
-  // Extract sections data from page
-  const sections = (page?.fields.sections ?? {}) as Record<string, unknown>
-  const collegioSindacale = (sections.collegioSindacale ?? []) as SectionMember[]
-  const funzioniControllo = (sections.funzioniControllo ?? []) as SectionMember[]
+  // Build photo URL map from team members
+  const teamPhotoMap = new Map<string, string>()
+  for (const m of teamMembers) {
+    const photo = m.fields.photo as unknown as { fields?: { file?: { url?: string } } } | undefined
+    if (photo?.fields?.file?.url) {
+      teamPhotoMap.set(m.fields.slug, `https:${photo.fields.file.url}`)
+    }
+  }
 
-  if (!page && boardMembers.length === 0) {
+  if (!page && !sections.boardMembers) {
     return (
       <Page>
         <Title>{t('title')}</Title>
@@ -196,53 +204,65 @@ export default async function CorporateGovernancePage({
     <Page>
       <Title>{t('title')}</Title>
 
-      {/* Board of Directors - with photos */}
-      {boardMembers.length > 0 && (
+      {/* Shareholding */}
+      {sections.shareholding && (
+        <Section>
+          <SectionHeading>{t('shareholderTitle')}</SectionHeading>
+          <SectionDescription>{sections.shareholding}</SectionDescription>
+        </Section>
+      )}
+
+      {/* Board of Directors */}
+      {sections.boardMembers && sections.boardMembers.length > 0 && (
         <Section>
           <SectionHeading>{t('boardTitle')}</SectionHeading>
           <BoardGrid>
-            {boardMembers.map((member) => {
-              const photoAsset = member.fields.photo as unknown as {
-                fields?: { file?: { url?: string }; title?: string }
-              } | undefined
-              const photoUrl = photoAsset?.fields?.file?.url
-                ? `https:${photoAsset.fields.file.url}`
+            {sections.boardMembers.map((member) => {
+              const photoUrl = member.isTeamMember && member.slug
+                ? teamPhotoMap.get(member.slug) || null
                 : null
 
-              return (
-                <BoardCard key={member.sys.id}>
+              const card = (
+                <BoardCard key={member.name}>
                   <PhotoContainer>
                     {photoUrl ? (
                       <Image
                         src={photoUrl}
-                        alt={member.fields.name}
+                        alt={member.name}
                         fill
                         style={{ objectFit: 'cover' }}
                         sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
                       />
                     ) : (
                       <PhotoFallback>
-                        {member.fields.name.charAt(0)}
+                        {member.name.split(' ').map(n => n.charAt(0)).join('').slice(0, 2)}
                       </PhotoFallback>
                     )}
                   </PhotoContainer>
-                  <MemberName>{member.fields.name}</MemberName>
-                  {member.fields.role && (
-                    <MemberRole>{member.fields.role}</MemberRole>
-                  )}
+                  <MemberName>{member.name}</MemberName>
+                  <MemberRole>{member.role}</MemberRole>
                 </BoardCard>
               )
+
+              if (member.isTeamMember && member.slug) {
+                return (
+                  <StyledLink key={member.name} href={`/team/${member.slug}`}>
+                    {card}
+                  </StyledLink>
+                )
+              }
+              return card
             })}
           </BoardGrid>
         </Section>
       )}
 
-      {/* Collegio Sindacale - compact list */}
-      {collegioSindacale.length > 0 && (
+      {/* Collegio Sindacale */}
+      {sections.sindaci && sections.sindaci.length > 0 && (
         <Section>
           <SectionHeading>{t('collegioTitle')}</SectionHeading>
           <CompactList>
-            {collegioSindacale.map((item, i) => (
+            {sections.sindaci.map((item, i) => (
               <CompactItem key={i}>
                 <CompactName>{item.name}</CompactName>
                 {item.role && <CompactRole>{item.role}</CompactRole>}
@@ -252,28 +272,18 @@ export default async function CorporateGovernancePage({
         </Section>
       )}
 
-      {/* Funzioni di Controllo - compact list */}
-      {funzioniControllo.length > 0 && (
+      {/* Control Functions */}
+      {sections.controlFunctions && sections.controlFunctions.length > 0 && (
         <Section>
           <SectionHeading>{t('funzioniTitle')}</SectionHeading>
           <CompactList>
-            {funzioniControllo.map((item, i) => (
+            {sections.controlFunctions.map((item, i) => (
               <CompactItem key={i}>
                 <CompactName>{item.name}</CompactName>
                 {item.role && <CompactRole>{item.role}</CompactRole>}
               </CompactItem>
             ))}
           </CompactList>
-        </Section>
-      )}
-
-      {/* Shareholder Structure - rich text body */}
-      {page?.fields.body && (
-        <Section>
-          <SectionHeading>{t('shareholderTitle')}</SectionHeading>
-          <BodyContent>
-            {renderRichText(page.fields.body as unknown as Document)}
-          </BodyContent>
         </Section>
       )}
     </Page>
