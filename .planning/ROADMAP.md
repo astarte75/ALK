@@ -10,7 +10,7 @@
 ## Phases
 
 - [x] **Phase 1: Foundation** — Project scaffolding, dark theme, i18n routing, Vercel CI/CD (completed 2026-03-14)
-- [ ] **Phase 2: Content Infrastructure** — Contentful content models, TypeScript types, data layer
+- [x] **Phase 2: Content Infrastructure** — Contentful content models, TypeScript types, data layer (completed 2026-03-14)
 - [ ] **Phase 3: Layout Shell & Legal** — Header, footer, cookie consent, GDPR pages
 - [ ] **Phase 4: Core Pages** — All site pages with static content, no animations
 - [ ] **Phase 5: Animation Layer** — GSAP, Lenis, Vimeo hero, scroll-triggered reveals
@@ -24,7 +24,7 @@
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 1. Foundation | 2/3 | Complete    | 2026-03-14 |
-| 2. Content Infrastructure | 2/3 | In progress | - |
+| 2. Content Infrastructure | 3/3 | Complete | 2026-03-14 |
 | 3. Layout Shell & Legal | 0/? | Not started | - |
 | 4. Core Pages | 0/? | Not started | - |
 | 5. Animation Layer | 0/? | Not started | - |
@@ -75,7 +75,7 @@ Plans:
 Plans:
 - [x] 02-01-PLAN.md — Contentful SDK + TypeScript types + client + fetchers + ISR webhook (wave 1)
 - [x] 02-02-PLAN.md — Migration script: content models + image upload + data seeding (wave 2, depends on 02-01)
-- [ ] 02-03-PLAN.md — Run migration + content validation + Vercel env setup (wave 3, depends on 02-01 + 02-02)
+- [x] 02-03-PLAN.md — Run migration + content validation + Vercel env setup (wave 3, depends on 02-01 + 02-02)
 
 **Pitfall gates:**
 - Contentful space created with `it-IT` and `en-US` locales before model definition
@@ -203,4 +203,4 @@ These must be resolved before the indicated phase can close:
 ---
 
 *Created: 2026-03-14*
-*Last updated: 2026-03-14 after completing 02-02-PLAN.md*
+*Last updated: 2026-03-14 after completing 02-03-PLAN.md*
