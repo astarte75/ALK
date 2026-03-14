@@ -74,6 +74,28 @@
     "backToNews": "Back to news",
     "readOriginal": "Read original article"
   },
+  "governance": {
+    "title": "Corporate Governance",
+    "boardTitle": "Board of Directors",
+    "collegioTitle": "Board of Statutory Auditors",
+    "funzioniTitle": "Control Functions",
+    "shareholderTitle": "Shareholder Structure"
+  },
+  "sustainability": {
+    "title": "Sustainability",
+    "pdfSection": "Documents",
+    "downloadPdf": "Download PDF"
+  },
+  "about": {
+    "title": "About Us",
+    "history": "Our History",
+    "mission": "Mission",
+    "approach": "Approach",
+    "values": "Values"
+  },
+  "culture": {
+    "title": "Culture"
+  },
   "investmentPlatforms": {
     "title": "Investment Platforms",
     "overview": "Our investment platforms",

@@ -74,6 +74,28 @@
     "backToNews": "Torna alle news",
     "readOriginal": "Leggi l'articolo originale"
   },
+  "governance": {
+    "title": "Corporate Governance",
+    "boardTitle": "Consiglio di Amministrazione",
+    "collegioTitle": "Collegio Sindacale",
+    "funzioniTitle": "Funzioni di Controllo",
+    "shareholderTitle": "Struttura Societaria"
+  },
+  "sustainability": {
+    "title": "Sostenibilità",
+    "pdfSection": "Documenti",
+    "downloadPdf": "Scarica PDF"
+  },
+  "about": {
+    "title": "Società",
+    "history": "La nostra storia",
+    "mission": "Mission",
+    "approach": "Approccio",
+    "values": "Valori"
+  },
+  "culture": {
+    "title": "Culture"
+  },
   "investmentPlatforms": {
     "title": "Investment Platforms",
     "overview": "Le nostre piattaforme di investimento",
