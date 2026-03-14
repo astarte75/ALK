@@ -109,10 +109,10 @@ const PlatformBadge = styled.span<{ $color: string }>`
   justify-content: center;
   width: 48px;
   height: 48px;
-  border-radius: 12px;
-  background: ${({ $color }) => `${$color}20`};
+  border-radius: 50%;
+  border: 2px solid ${({ $color }) => $color};
   font-family: ${fonts.heading};
-  font-size: 1.25rem;
+  font-size: 1.125rem;
   font-weight: 800;
   color: ${({ $color }) => $color};
   flex-shrink: 0;
