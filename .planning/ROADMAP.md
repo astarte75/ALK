@@ -25,7 +25,7 @@
 |-------|----------------|--------|-----------|
 | 1. Foundation | 2/3 | Complete    | 2026-03-14 |
 | 2. Content Infrastructure | 3/3 | Complete | 2026-03-14 |
-| 3. Layout Shell & Legal | 0/3 | Planning complete | - |
+| 3. Layout Shell & Legal | 1/3 | In progress | - |
 | 4. Core Pages | 0/? | Not started | - |
 | 5. Animation Layer | 0/? | Not started | - |
 | 6. SEO & Performance | 0/? | Not started | - |
@@ -98,7 +98,7 @@ Plans:
 **Plans:** 3 plans
 
 Plans:
-- [ ] 03-01-PLAN.md — Header (scroll-aware, mobile menu) + Footer (offices, legal links, social) (wave 1)
+- [x] 03-01-PLAN.md — Header (scroll-aware, mobile menu) + Footer (offices, legal links, social) (wave 1)
 - [ ] 03-02-PLAN.md — Cookie consent modal (GDPR Italy) + Privacy/Cookie Policy pages (wave 2, depends on 03-01)
 - [ ] 03-03-PLAN.md — Custom cursor on desktop (wave 1, parallel with 03-01)
 

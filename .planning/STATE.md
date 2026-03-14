@@ -3,13 +3,13 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: executing
-last_updated: "2026-03-14T17:04:27Z"
+last_updated: "2026-03-14T17:44:00Z"
 progress:
   total_phases: 7
   completed_phases: 0
-  total_plans: 6
-  completed_plans: 5
-  percent: 17
+  total_plans: 8
+  completed_plans: 6
+  percent: 22
 ---
 
 # Project State: Alkemia Capital Website
@@ -29,16 +29,16 @@ progress:
 ## Current Position
 
 **Phase:** 3 — Layout Shell & Legal
-**Plan:** 1 (next: plan Phase 3)
+**Plan:** 2 (next: 03-02-PLAN.md)
 **Status:** Executing
-**Last action:** Completed 02-03-PLAN.md (Migration execution + content validation)
+**Last action:** Completed 03-01-PLAN.md (Header + Footer layout shell)
 
 ```
-Progress: [#####░░░░░░░░░░░░░░░░░░░░░░░] 17%
+Progress: [######░░░░░░░░░░░░░░░░░░░░░░] 22%
 
 Phase 1 [############░░░░░░░░] 2/3 plans complete
 Phase 2 [####################] 3/3 plans complete
-Phase 3 [░░░░░░░░░░░░░░░░░░░░] Not started
+Phase 3 [#######░░░░░░░░░░░░░] 1/3 plans complete
 Phase 4 [░░░░░░░░░░░░░░░░░░░░] Not started
 Phase 5 [░░░░░░░░░░░░░░░░░░░░] Not started
 Phase 6 [░░░░░░░░░░░░░░░░░░░░] Not started
@@ -75,6 +75,8 @@ Phase 7 [░░░░░░░░░░░░░░░░░░░░] Not start
 | GSAP (not Framer Motion) for scroll animations | Framer Motion forces Client Components too high in tree; Safari compatibility | Locked |
 | Lenis v1.3 for smooth scroll | RAF synced to GSAP ticker; must validate exact sync pattern in Phase 5 | Locked |
 | interface extends EntrySkeletonType (not generic two-arg) | Contentful v11 SDK has Fields as first generic param, not contentTypeId | Locked |
+| next-intl createNavigation for locale-aware Links | v4 requires createNavigation() from routing config; used across all layout components | Locked |
+| IntersectionObserver sentinel for header scroll | More performant than scroll event listeners; zero-cost when idle | Locked |
 
 ### Open Decisions (Blocking)
 
@@ -127,6 +129,7 @@ Phase 7 [░░░░░░░░░░░░░░░░░░░░] Not start
 - [x] ~~Execute 02-01-PLAN.md~~ (done: 8dc6aaf, d426df0)
 - [x] ~~Execute 02-02-PLAN.md~~ (done: 6653271, 957aa42)
 - [x] ~~Execute 02-03-PLAN.md~~ (done: 88c55c2)
+- [x] ~~Execute 03-01-PLAN.md~~ (done: a7948bb, 81787a6)
 
 ---
 
@@ -150,4 +153,4 @@ None currently.
 ---
 
 *State initialized: 2026-03-14*
-*Last updated: 2026-03-14 after completing 02-03-PLAN.md execution*
+*Last updated: 2026-03-14 after completing 03-01-PLAN.md execution*
