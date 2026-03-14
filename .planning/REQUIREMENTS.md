@@ -100,9 +100,9 @@ Requirements for initial release. Each maps to roadmap phases.
 
 ### Legal & Compliance
 
-- [ ] **LEGAL-01**: Cookie consent banner with equal prominence Accept/Reject (GDPR Italy)
-- [ ] **LEGAL-02**: Privacy Notice page with data controller info
-- [ ] **LEGAL-03**: Cookie Notice page with cookie categories
+- [x] **LEGAL-01**: Cookie consent banner with equal prominence Accept/Reject (GDPR Italy)
+- [x] **LEGAL-02**: Privacy Notice page with data controller info
+- [x] **LEGAL-03**: Cookie Notice page with cookie categories
 - [ ] **LEGAL-04**: Accessibility statement page
 
 ### SEO & Performance
@@ -210,9 +210,9 @@ Which phases cover which requirements. Updated during roadmap creation.
 | CONT-03 | Phase 4 | Pending |
 | CULT-01 | Phase 4 | Pending |
 | CULT-02 | Phase 4 | Pending |
-| LEGAL-01 | Phase 3 | Pending |
-| LEGAL-02 | Phase 3 | Pending |
-| LEGAL-03 | Phase 3 | Pending |
+| LEGAL-01 | Phase 3 | Complete |
+| LEGAL-02 | Phase 3 | Complete |
+| LEGAL-03 | Phase 3 | Complete |
 | LEGAL-04 | Phase 3 | Pending |
 | SEO-01 | Phase 6 | Pending |
 | SEO-02 | Phase 6 | Pending |

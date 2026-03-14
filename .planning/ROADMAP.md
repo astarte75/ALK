@@ -11,7 +11,7 @@
 
 - [x] **Phase 1: Foundation** — Project scaffolding, dark theme, i18n routing, Vercel CI/CD (completed 2026-03-14)
 - [x] **Phase 2: Content Infrastructure** — Contentful content models, TypeScript types, data layer (completed 2026-03-14)
-- [ ] **Phase 3: Layout Shell & Legal** — Header, footer, cookie consent, GDPR pages
+- [x] **Phase 3: Layout Shell & Legal** — Header, footer, cookie consent, GDPR pages (completed 2026-03-14)
 - [ ] **Phase 4: Core Pages** — All site pages with static content, no animations
 - [ ] **Phase 5: Animation Layer** — GSAP, Lenis, Vimeo hero, scroll-triggered reveals
 - [ ] **Phase 6: SEO & Performance** — Metadata, structured data, sitemap, Lighthouse 90+
@@ -25,7 +25,7 @@
 |-------|----------------|--------|-----------|
 | 1. Foundation | 2/3 | Complete    | 2026-03-14 |
 | 2. Content Infrastructure | 3/3 | Complete | 2026-03-14 |
-| 3. Layout Shell & Legal | 2/3 | In progress | - |
+| 3. Layout Shell & Legal | 3/3 | Complete | 2026-03-14 |
 | 4. Core Pages | 0/? | Not started | - |
 | 5. Animation Layer | 0/? | Not started | - |
 | 6. SEO & Performance | 0/? | Not started | - |
