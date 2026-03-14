@@ -13,7 +13,7 @@
 - [x] **Phase 2: Content Infrastructure** — Contentful content models, TypeScript types, data layer (completed 2026-03-14)
 - [x] **Phase 3: Layout Shell & Legal** — Header, footer, cookie consent, GDPR pages (completed 2026-03-14)
 - [ ] **Phase 4: Core Pages** — All site pages with static content, no animations
-- [ ] **Phase 5: Animation Layer** — GSAP, Lenis, Vimeo hero, scroll-triggered reveals
+- [ ] **Phase 5: Animation Layer** — GSAP, Lenis, video hero, scroll-triggered reveals
 - [ ] **Phase 6: SEO & Performance** — Metadata, structured data, sitemap, Lighthouse 90+
 - [ ] **Phase 7: Production Hardening** — Accessibility audit, ISR webhooks, error states, cross-browser
 
@@ -27,7 +27,7 @@
 | 2. Content Infrastructure | 3/3 | Complete | 2026-03-14 |
 | 3. Layout Shell & Legal | 3/3 | Complete | 2026-03-14 |
 | 4. Core Pages | 5/5 | Complete | 2026-03-14 |
-| 5. Animation Layer | 0/? | Not started | - |
+| 5. Animation Layer | 0/2 | Planning complete | - |
 | 6. SEO & Performance | 0/? | Not started | - |
 | 7. Production Hardening | 0/? | Not started | - |
 
@@ -135,26 +135,27 @@ Plans:
 ---
 
 ### Phase 5: Animation Layer
-**Goal**: The site feels indistinguishable in animation quality from hgcapital.com — smooth scrolling, staggered text reveals, scroll-triggered section fades, Vimeo video hero, and multi-section scroll narrative are all live.
+**Goal**: The homepage feels indistinguishable in animation quality from hgcapital.com — smooth scrolling, staggered text reveals, scroll-triggered section fades, video hero, and multi-section scroll narrative are all live.
 **Depends on**: Phase 4 (DOM structure must exist before GSAP targets it)
-**Requirements**: HOME-02, HOME-03, HOME-04, HOME-08
+**Requirements**: HOME-01, HOME-02, HOME-03, HOME-04, HOME-05, HOME-06, HOME-07, HOME-08
 **Success Criteria** (what must be TRUE):
-  1. The homepage hero plays a muted Vimeo video (or shows a poster image on slow connections) and the headline text reveals with a staggered split-text animation on load
+  1. The homepage hero plays a muted video (or shows dark bg on slow connections) and the headline text reveals with a staggered split-text animation on load
   2. Scrolling the homepage triggers visible section reveals on all content sections (fade-up or fade-in) with no jank or layout shift
-  3. The multi-section scroll narrative (3-5 fullscreen sections with background video/images) scrolls smoothly with parallax text overlays
-  4. The smooth scroll experience (Lenis) is active: page scrolling has momentum and no abrupt stops; GSAP ScrollTrigger animations stay in sync across page navigations
-  5. All animations are disabled or gracefully degraded on mobile devices where they would impact performance; `prefers-reduced-motion` disables all motion
-**Plans**: TBD
+  3. The multi-section scroll narrative (4 fullscreen sections with background images) scrolls smoothly with parallax text overlays
+  4. The smooth scroll experience (Lenis) is active: page scrolling has momentum; GSAP ScrollTrigger animations stay in sync
+  5. All animations are disabled or gracefully degraded when `prefers-reduced-motion` is set
+**Plans:** 2 plans
+
+Plans:
+- [ ] 05-01-PLAN.md — Fix LenisProvider bugs + refactor animated components to gsap.matchMedia() (wave 1)
+- [ ] 05-02-PLAN.md — Migrate animated homepage to production + Playwright tests + visual verification (wave 2, depends on 05-01)
 
 **Pitfall gates:**
-- Lenis initialized in a `'use client'` Provider component; RAF synced to `gsap.ticker` before any ScrollTrigger is created
-- All GSAP animations use `useGSAP()` hook, never raw `useEffect`
-- GSAP plugins registered once in `gsap-init.ts` at app root
-- `ScrollTrigger.refresh()` called on `usePathname()` change
-- Pin animations disabled on mobile via `ScrollTrigger.matchMedia`
-- Full-screen sections use `100svh` (not `100vh`) for iOS Safari compatibility
-- Actual Vimeo video URL from Alkemia account required before this phase can close (external dependency)
-- Phase begins with proof-of-concept: Lenis + GSAP RAF sync verified before building full animation suite
+- Lenis initialized with `autoRaf: false`; ticker callback stored in variable for correct cleanup
+- `lenis.on('scroll', ScrollTrigger.update)` wired for ScrollTrigger sync
+- All GSAP animations use `useGSAP()` hook with `gsap.matchMedia()` for responsive + reduced-motion
+- GSAP plugins registered once in `gsap-init.ts`
+- Full-screen sections use `height: 100vh; height: 100svh;` fallback pattern
 
 ---
 
@@ -194,7 +195,7 @@ Plans:
 | 2 - Content Infrastructure | FOUND-04, FOUND-08 | 2 |
 | 3 - Layout Shell & Legal | NAV-01, NAV-02, NAV-03, NAV-04, LEGAL-01, LEGAL-02, LEGAL-03, LEGAL-04 | 8 |
 | 4 - Core Pages | HOME-01, HOME-05, HOME-06, HOME-07, PORT-01, PORT-02, PORT-03, PORT-04, PORT-05, PORT-06, TEAM-01, TEAM-02, TEAM-03, NEWS-01, NEWS-02, NEWS-03, NEWS-04, NEWS-05, INVP-01, INVP-02, INVP-03, INVP-04, ABOUT-01, ABOUT-02, ABOUT-03, ABOUT-04, GOV-01, GOV-02, GOV-03, GOV-04, ESG-01, ESG-02, ESG-03, ESG-04, CONT-01, CONT-02, CONT-03, CULT-01, CULT-02 | 39 |
-| 5 - Animation Layer | HOME-02, HOME-03, HOME-04, HOME-08 | 4 |
+| 5 - Animation Layer | HOME-01, HOME-02, HOME-03, HOME-04, HOME-05, HOME-06, HOME-07, HOME-08 | 8 |
 | 6 - SEO & Performance | SEO-01, SEO-02, SEO-03, SEO-04, SEO-05 | 5 |
 | 7 - Production Hardening | A11Y-01, A11Y-02, A11Y-03, A11Y-04 | 4 |
 | **Total** | | **68** |
@@ -217,4 +218,4 @@ These must be resolved before the indicated phase can close:
 ---
 
 *Created: 2026-03-14*
-*Last updated: 2026-03-14 after planning Phase 4*
+*Last updated: 2026-03-15 after planning Phase 5*
