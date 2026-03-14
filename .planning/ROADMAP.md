@@ -23,7 +23,7 @@
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Foundation | 0/? | Not started | - |
+| 1. Foundation | 0/3 | Planning complete | - |
 | 2. Content Infrastructure | 0/? | Not started | - |
 | 3. Layout Shell & Legal | 0/? | Not started | - |
 | 4. Core Pages | 0/? | Not started | - |
@@ -41,11 +41,16 @@
 **Requirements**: FOUND-01, FOUND-02, FOUND-03, FOUND-05, FOUND-06, FOUND-07
 **Success Criteria** (what must be TRUE):
   1. `next build` completes without TypeScript or hydration errors on both local and Vercel
-  2. The site renders in dark theme (#0D1117 or chosen background) with no flash of unstyled content on first load
+  2. The site renders in dark theme (#1A1E22) with no flash of unstyled content on first load
   3. Navigating to `/` shows Italian content and `/en/` shows English content, both served as statically generated HTML
   4. The site is responsive and usable from 320px to 2560px viewport width (verified by resizing)
   5. A Vercel deployment URL is live and auto-deploys on push to main branch
-**Plans**: TBD
+**Plans:** 3 plans
+
+Plans:
+- [ ] 01-01-PLAN.md — Scaffold Next.js 15 + styled-components SSR + dark theme + responsive breakpoints
+- [ ] 01-02-PLAN.md — next-intl i18n routing (IT default + EN prefix) + bilingual placeholder
+- [ ] 01-03-PLAN.md — Vercel deployment + Playwright e2e smoke tests + human verification
 
 **Pitfall gates (must resolve before phase ends):**
 - `StyledComponentsRegistry` using `useServerInsertedHTML` wired in root layout before any component is written
@@ -98,7 +103,7 @@
   2. A visitor can navigate to `/team`, see all 15 team member cards with photos and roles, filter by category, and view individual profile pages
   3. A visitor can navigate to `/news`, see news articles ordered newest-first with image/date/title/excerpt, filter by category, paginate, and open individual article pages
   4. The homepage shell renders with a video poster image, the animated stat section, the newsletter strip, and the latest 3 news cards — all with real Alkemia data, no placeholder text
-  5. All content pages (Società, Governance, ESG, Investment Platforms, Contatti, Culture) are reachable via navigation, display real Alkemia content, and work in both Italian and English
+  5. All content pages (Societa, Governance, ESG, Investment Platforms, Contatti, Culture) are reachable via navigation, display real Alkemia content, and work in both Italian and English
   6. The Contact page has a working form with request type selector and reCAPTCHA validation
 **Plans**: TBD
 
@@ -193,4 +198,4 @@ These must be resolved before the indicated phase can close:
 ---
 
 *Created: 2026-03-14*
-*Last updated: 2026-03-14 after initial roadmap creation*
+*Last updated: 2026-03-14 after Phase 1 planning*
