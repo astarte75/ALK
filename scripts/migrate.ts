@@ -108,11 +108,15 @@ async function createOfficeEntries(
       continue
     }
 
-    if (await entryExistsBySlug(env, 'office', slug)) {
+    // Office has no slug field — check by city name instead
+    const existingOffices = await env.getEntries({
+      content_type: 'office',
+      'fields.city': office.city['it-IT'],
+      limit: 1,
+    })
+    if (existingOffices.items.length > 0) {
       console.log(`  Office "${office.city['it-IT']}" already exists, skipping.`)
-      // Fetch existing to get ID
-      const existing = await env.getEntries({ content_type: 'office', 'fields.city': office.city['it-IT'], limit: 1 })
-      if (existing.items[0]) officeMap.set(slug, existing.items[0].sys.id)
+      officeMap.set(slug, existingOffices.items[0].sys.id)
       continue
     }
 
