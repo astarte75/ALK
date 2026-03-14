@@ -57,6 +57,10 @@ const GlobalStyle = createGlobalStyle`
     font-weight: 700;
   }
 
+  p, li {
+    text-align: justify;
+  }
+
   main {
     padding-top: var(--header-height);
   }
