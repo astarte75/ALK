@@ -1,0 +1,34 @@
+import { getPageBySlug } from '@/lib/contentful/fetchers'
+import { renderRichText } from '@/lib/contentful/richText'
+import { notFound } from 'next/navigation'
+import type { Document } from '@contentful/rich-text-types'
+import type { Metadata } from 'next'
+import { LegalPageWrapper, LegalPageTitle, LegalPageContent } from '@/styles/legalPage'
+
+// Content must exist in Contentful as a `page` entry with slug "privacy"
+// in both it-IT and en-US locales. Returns 404 if not yet seeded.
+
+type Props = { params: Promise<{ locale: string }> }
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { locale } = await params
+  const page = await getPageBySlug('privacy', locale)
+  return {
+    title: page?.fields.title ?? 'Privacy Notice',
+  }
+}
+
+export default async function PrivacyPage({ params }: Props) {
+  const { locale } = await params
+  const page = await getPageBySlug('privacy', locale)
+  if (!page) notFound()
+
+  return (
+    <LegalPageWrapper>
+      <LegalPageTitle>{page.fields.title}</LegalPageTitle>
+      <LegalPageContent>
+        {renderRichText(page.fields.body as Document)}
+      </LegalPageContent>
+    </LegalPageWrapper>
+  )
+}
