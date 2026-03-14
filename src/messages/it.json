@@ -74,6 +74,17 @@
     "backToNews": "Torna alle news",
     "readOriginal": "Leggi l'articolo originale"
   },
+  "investmentPlatforms": {
+    "title": "Investment Platforms",
+    "overview": "Le nostre piattaforme di investimento",
+    "learnMore": "Scopri di più",
+    "funds": "Fondi",
+    "fundSize": "Dimensione fondo",
+    "status": "Stato",
+    "investmentPeriod": "Periodo di investimento",
+    "strategy": "Strategia",
+    "backToOverview": "Torna alle piattaforme"
+  },
   "cookie": {
     "title": "Informativa sui Cookie",
     "description": "Questo sito utilizza cookie tecnici necessari al funzionamento. Per maggiori informazioni, consulta la nostra {cookiePolicy}.",

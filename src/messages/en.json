@@ -74,6 +74,17 @@
     "backToNews": "Back to news",
     "readOriginal": "Read original article"
   },
+  "investmentPlatforms": {
+    "title": "Investment Platforms",
+    "overview": "Our investment platforms",
+    "learnMore": "Learn more",
+    "funds": "Funds",
+    "fundSize": "Fund size",
+    "status": "Status",
+    "investmentPeriod": "Investment period",
+    "strategy": "Strategy",
+    "backToOverview": "Back to platforms"
+  },
   "cookie": {
     "title": "Cookie Notice",
     "description": "This site uses technical cookies necessary for its operation. For more information, see our {cookiePolicy}.",
