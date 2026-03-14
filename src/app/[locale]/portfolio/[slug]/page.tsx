@@ -56,15 +56,21 @@ const Header = styled.div`
 `
 
 const LogoContainer = styled.div`
-  height: 120px;
+  width: 80px;
+  height: 80px;
   display: flex;
   align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 12px;
+  padding: 12px;
+  overflow: hidden;
 `
 
 const LogoFallback = styled.div`
   width: 80px;
   height: 80px;
-  border-radius: 50%;
+  border-radius: 12px;
   background: ${colors.accentTeal};
   display: flex;
   align-items: center;
@@ -247,9 +253,9 @@ export default async function PortfolioDetailPage({
             <Image
               src={logoUrl}
               alt={name}
-              width={200}
-              height={120}
-              style={{ objectFit: 'contain', maxHeight: '100%', width: 'auto' }}
+              width={56}
+              height={56}
+              style={{ objectFit: 'contain', width: '56px', height: '56px' }}
             />
           ) : (
             <LogoFallback>{name.charAt(0)}</LogoFallback>

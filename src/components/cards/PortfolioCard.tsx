@@ -22,6 +22,7 @@ const Card = styled.article`
   flex-direction: column;
   gap: ${spacing[3]};
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
 
   &:hover {
     transform: translateY(-4px);
@@ -30,27 +31,30 @@ const Card = styled.article`
 `
 
 const LogoContainer = styled.div`
-  height: 60px;
+  position: absolute;
+  top: ${spacing[3]};
+  right: ${spacing[3]};
+  width: 48px;
+  height: 48px;
   display: flex;
   align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 8px;
+  padding: 6px;
   overflow: hidden;
-  transition: transform 0.3s ease;
-
-  ${Card}:hover & {
-    transform: scale(1.03);
-  }
 `
 
 const LogoFallback = styled.div`
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
+  width: 48px;
+  height: 48px;
+  border-radius: 8px;
   background: ${colors.accentTeal};
   display: flex;
   align-items: center;
   justify-content: center;
   font-family: ${fonts.heading};
-  font-size: 1.5rem;
+  font-size: 1.25rem;
   font-weight: 700;
   color: ${colors.bg};
   flex-shrink: 0;
@@ -136,15 +140,15 @@ export default function PortfolioCard({ company }: PortfolioCardProps) {
             <Image
               src={logoUrl}
               alt={name}
-              width={140}
-              height={60}
-              style={{ objectFit: 'contain', maxHeight: '100%', width: 'auto' }}
+              width={36}
+              height={36}
+              style={{ objectFit: 'contain', width: '36px', height: '36px' }}
             />
           ) : (
             <LogoFallback>{name.charAt(0)}</LogoFallback>
           )}
         </LogoContainer>
-        <Name>{name}</Name>
+        <Name style={{ paddingRight: '60px' }}>{name}</Name>
         {sector && <Sector>{sector}</Sector>}
         {shortDescription && <Description>{shortDescription}</Description>}
         <BottomRow>
