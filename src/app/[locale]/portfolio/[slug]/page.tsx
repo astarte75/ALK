@@ -117,9 +117,8 @@ const Badge = styled.span<{ $type: string }>`
       ? colors.accentTeal
       : $type === 'Venture Capital'
         ? colors.accentGold
-        : colors.border};
-  color: ${({ $type }) =>
-    $type === 'PIPE' ? colors.textSecondary : colors.bg};
+        : '#8B5CF6'};
+  color: ${colors.bg};
 `
 
 const YearText = styled.span`
