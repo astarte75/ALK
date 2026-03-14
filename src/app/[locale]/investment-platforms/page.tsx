@@ -288,7 +288,7 @@ export default async function InvestmentPlatformsV2Page({
     <>
       {/* Hero */}
       <HeroBanner>
-        <Image src="/images/hero-poster.jpg" alt="Investment Platforms" fill style={{ objectFit: 'cover' }} priority />
+        <Image src="/images/hero-platforms.jpg" alt="Investment Platforms" fill style={{ objectFit: 'cover' }} priority />
         <HeroContent>
           <HeroTitle>{isIT ? 'Piattaforme di Investimento' : 'Investment Platforms'}</HeroTitle>
           <HeroSubtitle>
