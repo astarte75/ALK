@@ -107,6 +107,28 @@
     "strategy": "Strategia",
     "backToOverview": "Torna alle piattaforme"
   },
+  "contact": {
+    "title": "Contatti",
+    "subtitle": "Per informazioni o per fissare un incontro, compila il modulo o contattaci direttamente.",
+    "firstName": "Nome",
+    "lastName": "Cognome",
+    "email": "Email",
+    "phone": "Telefono",
+    "requestType": "Tipo richiesta",
+    "message": "Messaggio",
+    "submit": "Invia messaggio",
+    "submitting": "Invio in corso...",
+    "success": "Messaggio inviato con successo. Ti risponderemo al più presto.",
+    "error": "Si è verificato un errore. Riprova più tardi.",
+    "required": "Campo obbligatorio",
+    "invalidEmail": "Indirizzo email non valido",
+    "requestTypes": {
+      "investor": "Investitore",
+      "opportunity": "Opportunità di investimento",
+      "general": "Segreteria / Altro"
+    },
+    "headquarters": "Sede legale"
+  },
   "cookie": {
     "title": "Informativa sui Cookie",
     "description": "Questo sito utilizza cookie tecnici necessari al funzionamento. Per maggiori informazioni, consulta la nostra {cookiePolicy}.",

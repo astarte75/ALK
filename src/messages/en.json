@@ -107,6 +107,28 @@
     "strategy": "Strategy",
     "backToOverview": "Back to platforms"
   },
+  "contact": {
+    "title": "Contact",
+    "subtitle": "For information or to schedule a meeting, fill out the form or contact us directly.",
+    "firstName": "First name",
+    "lastName": "Last name",
+    "email": "Email",
+    "phone": "Phone",
+    "requestType": "Request type",
+    "message": "Message",
+    "submit": "Send message",
+    "submitting": "Sending...",
+    "success": "Message sent successfully. We will get back to you shortly.",
+    "error": "An error occurred. Please try again later.",
+    "required": "Required field",
+    "invalidEmail": "Invalid email address",
+    "requestTypes": {
+      "investor": "Investor",
+      "opportunity": "Investment opportunity",
+      "general": "General inquiry"
+    },
+    "headquarters": "Headquarters"
+  },
   "cookie": {
     "title": "Cookie Notice",
     "description": "This site uses technical cookies necessary for its operation. For more information, see our {cookiePolicy}.",
