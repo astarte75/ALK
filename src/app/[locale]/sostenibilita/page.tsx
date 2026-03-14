@@ -310,7 +310,7 @@ export default async function SostenibilitaPage({
   return (
     <>
       <HeroBanner>
-        <Image src="/images/hero-sustainability.jpg" alt={s.hero.title} fill style={{ objectFit: 'cover' }} priority />
+        <Image src="/images/hero-sustainability-3.jpg" alt={s.hero.title} fill style={{ objectFit: 'cover' }} priority />
         <HeroContent>
           <HeroTitle>{s.hero.title}</HeroTitle>
           <HeroSubtitle>{s.hero.subtitle}</HeroSubtitle>
