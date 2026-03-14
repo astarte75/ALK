@@ -5,6 +5,7 @@ import { routing } from '@/i18n/routing'
 import { getSiteConfig } from '@/lib/contentful/fetchers'
 import Header from '@/components/layout/Header'
 import Footer from '@/components/layout/Footer'
+import CustomCursor from '@/components/cursor/CustomCursor'
 
 export default async function LocaleLayout({
   children,
@@ -28,6 +29,7 @@ export default async function LocaleLayout({
 
   return (
     <NextIntlClientProvider messages={messages}>
+      <CustomCursor />
       <Header logoUrl={logoUrl} logoAlt="Alkemia Capital" />
       <main>{children}</main>
       <Footer />

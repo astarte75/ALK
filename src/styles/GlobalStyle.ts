@@ -61,9 +61,10 @@ const GlobalStyle = createGlobalStyle`
     padding-top: var(--header-height);
   }
 
-  /* Custom cursor styles -- activated by plan 03-03 */
-  .cursor-hover {
-    transform: scale(2.5) !important;
+  /* Hide default cursor on desktop when custom cursor is active */
+  @media (hover: hover) and (pointer: fine) {
+    body { cursor: none; }
+    a, button, input, textarea, select, [data-cursor-hover], [role="button"] { cursor: none; }
   }
 `
 
