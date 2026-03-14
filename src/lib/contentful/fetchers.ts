@@ -63,6 +63,7 @@ export const getTeamMembers = unstable_cache(
       content_type: 'teamMember',
       locale: toContentfulLocale(locale),
       order: ['fields.sortOrder'],
+      include: 2,
       limit: 100,
     })
     return res.items
