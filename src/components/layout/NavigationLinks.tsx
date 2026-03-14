@@ -130,6 +130,11 @@ export default function NavigationLinks({ navItems, onItemClick, vertical }: Nav
                 <ChevronDown />
               </NavButton>
               <Dropdown $isOpen={hoveredIndex === index}>
+                <DropdownItem>
+                  <Link href={item.href} onClick={onItemClick}>
+                    {item.label}
+                  </Link>
+                </DropdownItem>
                 {item.subItems.map((sub) => (
                   <DropdownItem key={sub.href}>
                     <Link href={sub.href} onClick={onItemClick}>
@@ -137,11 +142,6 @@ export default function NavigationLinks({ navItems, onItemClick, vertical }: Nav
                     </Link>
                   </DropdownItem>
                 ))}
-                <DropdownItem>
-                  <Link href={item.href} onClick={onItemClick}>
-                    {item.label}
-                  </Link>
-                </DropdownItem>
               </Dropdown>
             </NavItemWrapper>
           )
