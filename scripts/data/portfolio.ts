@@ -192,7 +192,7 @@ export const portfolioCompanies: PortfolioCompanyData[] = [
       'it-IT': 'Innovazione nell\'assistenza stradale con soluzioni digitali avanzate',
       'en-US': 'Digital innovation in roadside assistance with advanced solutions',
     },
-    sector: 'Automotive & Mobility',
+    sector: 'Mobility',
     investmentType: 'Venture Capital',
     year: 2022,
     logoUrl: 'https://www.alkemiacapital.com/wp-content/uploads/2024/10/hlpy-logo-1.png',
