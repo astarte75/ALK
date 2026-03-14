@@ -9,7 +9,7 @@
 
 ## Phases
 
-- [ ] **Phase 1: Foundation** — Project scaffolding, dark theme, i18n routing, Vercel CI/CD
+- [x] **Phase 1: Foundation** — Project scaffolding, dark theme, i18n routing, Vercel CI/CD (completed 2026-03-14)
 - [ ] **Phase 2: Content Infrastructure** — Contentful content models, TypeScript types, data layer
 - [ ] **Phase 3: Layout Shell & Legal** — Header, footer, cookie consent, GDPR pages
 - [ ] **Phase 4: Core Pages** — All site pages with static content, no animations
@@ -23,7 +23,7 @@
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Foundation | 2/3 | In progress | - |
+| 1. Foundation | 2/3 | Complete    | 2026-03-14 |
 | 2. Content Infrastructure | 0/? | Not started | - |
 | 3. Layout Shell & Legal | 0/? | Not started | - |
 | 4. Core Pages | 0/? | Not started | - |
@@ -45,7 +45,7 @@
   3. Navigating to `/` shows Italian content and `/en/` shows English content, both served as statically generated HTML
   4. The site is responsive and usable from 320px to 2560px viewport width (verified by resizing)
   5. A Vercel deployment URL is live and auto-deploys on push to main branch
-**Plans:** 3 plans
+**Plans:** 2/3 plans complete
 
 Plans:
 - [x] 01-01-PLAN.md — Scaffold Next.js 15 + styled-components SSR + dark theme + responsive breakpoints
