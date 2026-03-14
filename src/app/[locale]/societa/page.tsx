@@ -266,7 +266,7 @@ export default async function SocietaPage({
   return (
     <>
       <HeroBanner>
-        <Image src="/images/hero-poster.jpg" alt={s.hero.title} fill style={{ objectFit: 'cover' }} priority />
+        <Image src="/images/hero-about.jpg" alt={s.hero.title} fill style={{ objectFit: 'cover' }} priority />
         <HeroContent>
           <HeroTitle>{s.hero.title}</HeroTitle>
           <HeroSubtitle>{s.hero.subtitle}</HeroSubtitle>
