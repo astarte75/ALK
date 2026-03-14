@@ -23,7 +23,7 @@ Requirements for initial release. Each maps to roadmap phases.
 - [ ] **NAV-01**: Fixed header with Alkemia logo, navigation links, and hamburger menu on mobile
 - [ ] **NAV-02**: Footer with legal links (Privacy, Cookie, Legal, Governance, Accessibility)
 - [ ] **NAV-03**: Footer with social links (LinkedIn, X/Twitter)
-- [ ] **NAV-04**: Custom cursor element that scales on interactive elements
+- [x] **NAV-04**: Custom cursor element that scales on interactive elements
 
 ### Homepage
 
@@ -166,7 +166,7 @@ Which phases cover which requirements. Updated during roadmap creation.
 | NAV-01 | Phase 3 | Pending |
 | NAV-02 | Phase 3 | Pending |
 | NAV-03 | Phase 3 | Pending |
-| NAV-04 | Phase 3 | Pending |
+| NAV-04 | Phase 3 | Complete |
 | HOME-01 | Phase 4 | Pending |
 | HOME-02 | Phase 5 | Pending |
 | HOME-03 | Phase 5 | Pending |

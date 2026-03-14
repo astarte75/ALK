@@ -8,8 +8,8 @@ progress:
   total_phases: 7
   completed_phases: 0
   total_plans: 8
-  completed_plans: 6
-  percent: 22
+  completed_plans: 7
+  percent: 25
 ---
 
 # Project State: Alkemia Capital Website
@@ -29,16 +29,16 @@ progress:
 ## Current Position
 
 **Phase:** 3 — Layout Shell & Legal
-**Plan:** 2 (next: 03-02-PLAN.md)
+**Plan:** 3 (next: Phase 3 complete, proceed to Phase 4)
 **Status:** Executing
-**Last action:** Completed 03-01-PLAN.md (Header + Footer layout shell)
+**Last action:** Completed 03-03-PLAN.md (Custom cursor on desktop)
 
 ```
-Progress: [######░░░░░░░░░░░░░░░░░░░░░░] 22%
+Progress: [#######░░░░░░░░░░░░░░░░░░░░░] 25%
 
 Phase 1 [############░░░░░░░░] 2/3 plans complete
 Phase 2 [####################] 3/3 plans complete
-Phase 3 [#######░░░░░░░░░░░░░] 1/3 plans complete
+Phase 3 [##############░░░░░░] 2/3 plans complete
 Phase 4 [░░░░░░░░░░░░░░░░░░░░] Not started
 Phase 5 [░░░░░░░░░░░░░░░░░░░░] Not started
 Phase 6 [░░░░░░░░░░░░░░░░░░░░] Not started
@@ -77,6 +77,7 @@ Phase 7 [░░░░░░░░░░░░░░░░░░░░] Not start
 | interface extends EntrySkeletonType (not generic two-arg) | Contentful v11 SDK has Fields as first generic param, not contentTypeId | Locked |
 | next-intl createNavigation for locale-aware Links | v4 requires createNavigation() from routing config; used across all layout components | Locked |
 | IntersectionObserver sentinel for header scroll | More performant than scroll event listeners; zero-cost when idle | Locked |
+| Ref-based DOM + combined transform for custom cursor | Avoids 60 re-renders/sec; translate+scale in one property avoids CSS class conflicts | Locked |
 
 ### Open Decisions (Blocking)
 
@@ -130,6 +131,7 @@ Phase 7 [░░░░░░░░░░░░░░░░░░░░] Not start
 - [x] ~~Execute 02-02-PLAN.md~~ (done: 6653271, 957aa42)
 - [x] ~~Execute 02-03-PLAN.md~~ (done: 88c55c2)
 - [x] ~~Execute 03-01-PLAN.md~~ (done: a7948bb, 81787a6)
+- [x] ~~Execute 03-03-PLAN.md~~ (done: 01a1c49)
 
 ---
 
