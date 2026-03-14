@@ -25,6 +25,9 @@ const GlobalStyle = createGlobalStyle`
     --space-12: 3rem;
     --space-16: 4rem;
     --space-24: 6rem;
+
+    /* Layout */
+    --header-height: 80px;
   }
 
   /* Reset */
@@ -52,6 +55,15 @@ const GlobalStyle = createGlobalStyle`
     font-family: var(--font-heading);
     line-height: 1.2;
     font-weight: 700;
+  }
+
+  main {
+    padding-top: var(--header-height);
+  }
+
+  /* Custom cursor styles -- activated by plan 03-03 */
+  .cursor-hover {
+    transform: scale(2.5) !important;
   }
 `
 
