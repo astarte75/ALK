@@ -57,6 +57,13 @@
     "yearOfInvestment": "Year of investment",
     "fund": "Fund"
   },
+  "team": {
+    "title": "Team",
+    "all": "All",
+    "filterCategory": "Category",
+    "backToTeam": "Back to team",
+    "boardMember": "Board Member"
+  },
   "cookie": {
     "title": "Cookie Notice",
     "description": "This site uses technical cookies necessary for its operation. For more information, see our {cookiePolicy}.",

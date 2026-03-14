@@ -57,6 +57,13 @@
     "yearOfInvestment": "Anno di investimento",
     "fund": "Fondo"
   },
+  "team": {
+    "title": "Team",
+    "all": "Tutti",
+    "filterCategory": "Categoria",
+    "backToTeam": "Torna al team",
+    "boardMember": "Membro del CdA"
+  },
   "cookie": {
     "title": "Informativa sui Cookie",
     "description": "Questo sito utilizza cookie tecnici necessari al funzionamento. Per maggiori informazioni, consulta la nostra {cookiePolicy}.",
