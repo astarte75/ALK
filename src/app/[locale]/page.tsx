@@ -1,6 +1,7 @@
 'use client'
 
 import styled from 'styled-components'
+import { useTranslations } from 'next-intl'
 import { colors, fonts, spacing } from '@/styles/theme'
 import { mq } from '@/styles/breakpoints'
 
@@ -14,7 +15,7 @@ const Main = styled.main`
   gap: ${spacing[6]};
 `
 
-const Heading = styled.h1`
+const Title = styled.h1`
   font-family: ${fonts.heading};
   font-size: 2.5rem;
   font-weight: 800;
@@ -30,7 +31,20 @@ const Heading = styled.h1`
   }
 `
 
-const Subtitle = styled.p`
+const Subtitle = styled.h2`
+  font-family: ${fonts.heading};
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: ${colors.textPrimary};
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+
+  ${mq.md} {
+    font-size: 1.5rem;
+  }
+`
+
+const Description = styled.p`
   font-family: ${fonts.body};
   font-size: 1.125rem;
   color: ${colors.textSecondary};
@@ -51,15 +65,30 @@ const GoldAccent = styled.span`
   border-radius: 2px;
 `
 
-export default function Home() {
+const LocaleBadge = styled.span`
+  display: inline-block;
+  padding: ${spacing[1]} ${spacing[4]};
+  font-family: ${fonts.body};
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: ${colors.bg};
+  background-color: ${colors.accentGold};
+  border-radius: 9999px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+`
+
+export default function HomePage() {
+  const t = useTranslations('home')
+  const tc = useTranslations('common')
+
   return (
     <Main>
-      <Heading>Alkemia Capital</Heading>
+      <Title>{t('title')}</Title>
       <GoldAccent />
-      <Subtitle>
-        Private equity e venture capital. Investiamo nel potenziale trasformativo delle imprese
-        italiane ed europee.
-      </Subtitle>
+      <Subtitle>{t('subtitle')}</Subtitle>
+      <Description>{t('description')}</Description>
+      <LocaleBadge>{tc('language')}</LocaleBadge>
     </Main>
   )
 }

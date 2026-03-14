@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import { Plus_Jakarta_Sans, Inter } from 'next/font/google'
+import { getLocale } from 'next-intl/server'
 import StyledComponentsRegistry from '@/components/providers/StyledComponentsRegistry'
 import GlobalStyle from '@/styles/GlobalStyle'
 
@@ -22,13 +23,15 @@ export const metadata: Metadata = {
   description: 'Private equity and venture capital firm',
 }
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode
 }>) {
+  const locale = await getLocale()
+
   return (
-    <html lang="it" className={`${plusJakartaSans.variable} ${inter.variable}`}>
+    <html lang={locale} className={`${plusJakartaSans.variable} ${inter.variable}`}>
       <body>
         <StyledComponentsRegistry>
           <GlobalStyle />
