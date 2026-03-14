@@ -116,7 +116,7 @@ const Badge = styled.span<{ $type: string }>`
       ? colors.accentTeal
       : $type === 'Venture Capital'
         ? colors.accentGold
-        : '#8B5CF6'};
+        : colors.accentPurple};
   color: ${colors.bg};
 `
 

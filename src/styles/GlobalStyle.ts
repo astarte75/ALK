@@ -10,6 +10,7 @@ const GlobalStyle = createGlobalStyle`
     --color-text-secondary: rgba(249, 250, 251, 0.6);
     --color-accent-teal:    #2EC4B6;
     --color-accent-gold:    #D4A843;
+    --color-accent-purple:  #8B5CF6;
 
     /* Typography tokens */
     --font-heading: var(--font-plus-jakarta-sans), system-ui, sans-serif;

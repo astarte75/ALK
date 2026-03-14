@@ -6,6 +6,7 @@ export const colors = {
   textSecondary: 'var(--color-text-secondary)',
   accentTeal: 'var(--color-accent-teal)',
   accentGold: 'var(--color-accent-gold)',
+  accentPurple: 'var(--color-accent-purple)',
 } as const
 
 export const fonts = {

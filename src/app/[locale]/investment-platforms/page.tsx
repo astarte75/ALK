@@ -243,7 +243,7 @@ const ApproachLabel = styled.div`
 const PLATFORM_CONFIG: Record<string, { badge: string; color: string; order: number }> = {
   'Private Equity': { badge: 'PE', color: colors.accentTeal, order: 1 },
   'Venture Capital': { badge: 'VC', color: colors.accentGold, order: 2 },
-  'PIPE': { badge: 'PI', color: '#8B5CF6', order: 3 },
+  'PIPE': { badge: 'PI', color: colors.accentPurple, order: 3 },
 }
 
 export default async function InvestmentPlatformsV2Page({
