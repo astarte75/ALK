@@ -27,8 +27,8 @@ export const offices: OfficeData[] = [
       'en-US': 'Piazzetta Pattari, 7 - 20122 Milan, Italy',
     },
     phone: '+39 02 359 41052',
-    isHeadquarters: true,
-    sortOrder: 1,
+    isHeadquarters: false,
+    sortOrder: 2,
   },
   {
     city: { 'it-IT': 'Padova', 'en-US': 'Padua' },
@@ -37,8 +37,8 @@ export const offices: OfficeData[] = [
       'en-US': 'Piazza Cavour, 4 - 35122 Padua, Italy',
     },
     phone: '+39 049 735 4172',
-    isHeadquarters: false,
-    sortOrder: 2,
+    isHeadquarters: true,
+    sortOrder: 1,
   },
 ]
 
