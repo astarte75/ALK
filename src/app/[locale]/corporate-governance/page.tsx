@@ -164,9 +164,6 @@ interface GovernanceSections {
   sindaci?: SectionMember[]
   controlFunctions?: SectionMember[]
   shareholding?: string
-  boardDescription?: string
-  collegioDescription?: string
-  controlDescription?: string
 }
 
 export default async function CorporateGovernancePage({
@@ -239,9 +236,6 @@ export default async function CorporateGovernancePage({
       {sections.boardMembers && sections.boardMembers.length > 0 && (
         <Section>
           <SectionHeading>{t('boardTitle')}</SectionHeading>
-          {sections.boardDescription && (
-            <SectionDescription>{sections.boardDescription}</SectionDescription>
-          )}
           <BoardGrid>
             {sections.boardMembers.map((member) => {
               const photoUrl = member.isTeamMember && member.slug
@@ -289,9 +283,6 @@ export default async function CorporateGovernancePage({
       {sections.sindaci && sections.sindaci.length > 0 && (
         <Section>
           <SectionHeading>{t('collegioTitle')}</SectionHeading>
-          {sections.collegioDescription && (
-            <SectionDescription>{sections.collegioDescription}</SectionDescription>
-          )}
           <CompactList>
             {sections.sindaci.map((item, i) => (
               <CompactItem key={i}>
@@ -307,9 +298,6 @@ export default async function CorporateGovernancePage({
       {sections.controlFunctions && sections.controlFunctions.length > 0 && (
         <Section>
           <SectionHeading>{t('funzioniTitle')}</SectionHeading>
-          {sections.controlDescription && (
-            <SectionDescription>{sections.controlDescription}</SectionDescription>
-          )}
           <CompactList>
             {sections.controlFunctions.map((item, i) => (
               <CompactItem key={i}>
