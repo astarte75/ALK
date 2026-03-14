@@ -6,5 +6,33 @@
   },
   "common": {
     "language": "English"
+  },
+  "nav": {
+    "societa": "About Us",
+    "corporateGovernance": "Corporate Governance",
+    "investmentPlatforms": "Investment Platforms",
+    "portfolio": "Portfolio",
+    "team": "Team",
+    "news": "News",
+    "sostenibilita": "Sustainability",
+    "contatti": "Contact",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu"
+  },
+  "footer": {
+    "privacy": "Privacy Notice",
+    "cookiePolicy": "Cookie Policy",
+    "copyright": "Alkemia SGR S.p.A. All rights reserved.",
+    "headquarters": "Headquarters",
+    "offices": "Offices",
+    "legal": "Legal",
+    "social": "Social"
+  },
+  "cookie": {
+    "title": "Cookie Notice",
+    "description": "This site uses technical cookies necessary for its operation. For more information, see our {cookiePolicy}.",
+    "accept": "Accept",
+    "reject": "Reject",
+    "cookiePolicyLink": "Cookie Policy"
   }
 }
