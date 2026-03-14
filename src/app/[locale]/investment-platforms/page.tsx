@@ -107,12 +107,13 @@ const PlatformBadge = styled.span<{ $color: string }>`
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 48px;
+  min-width: 48px;
   height: 48px;
-  border-radius: 50%;
+  padding: 0 ${spacing[3]};
+  border-radius: 24px;
   border: 2px solid ${({ $color }) => $color};
   font-family: ${fonts.heading};
-  font-size: 1.125rem;
+  font-size: 1rem;
   font-weight: 800;
   color: ${({ $color }) => $color};
   flex-shrink: 0;
@@ -243,7 +244,7 @@ const ApproachLabel = styled.div`
 const PLATFORM_CONFIG: Record<string, { badge: string; color: string; order: number }> = {
   'Private Equity': { badge: 'PE', color: colors.accentTeal, order: 1 },
   'Venture Capital': { badge: 'VC', color: colors.accentGold, order: 2 },
-  'PIPE': { badge: 'PI', color: colors.accentPurple, order: 3 },
+  'PIPE': { badge: 'PIPE', color: colors.accentPurple, order: 3 },
 }
 
 export default async function InvestmentPlatformsV2Page({
