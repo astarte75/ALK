@@ -26,7 +26,7 @@
 | 1. Foundation | 2/3 | Complete    | 2026-03-14 |
 | 2. Content Infrastructure | 3/3 | Complete | 2026-03-14 |
 | 3. Layout Shell & Legal | 3/3 | Complete | 2026-03-14 |
-| 4. Core Pages | 0/? | Not started | - |
+| 4. Core Pages | 0/5 | Not started | - |
 | 5. Animation Layer | 0/? | Not started | - |
 | 6. SEO & Performance | 0/? | Not started | - |
 | 7. Production Hardening | 0/? | Not started | - |
@@ -117,7 +117,14 @@ Plans:
   4. The homepage shell renders with a video poster image, the animated stat section, the newsletter strip, and the latest 3 news cards — all with real Alkemia data, no placeholder text
   5. All content pages (Societa, Governance, ESG, Investment Platforms, Contatti, Culture) are reachable via navigation, display real Alkemia content, and work in both Italian and English
   6. The Contact page has a working form with request type selector and reCAPTCHA validation
-**Plans**: TBD
+**Plans:** 5 plans
+
+Plans:
+- [ ] 04-01-PLAN.md — Homepage: hero, stats, news preview, newsletter strip (wave 1)
+- [ ] 04-02-PLAN.md — Portfolio: grid with dual filters + company detail pages (wave 1)
+- [ ] 04-03-PLAN.md — Team grid with filters + detail pages, News grid with load-more + detail pages (wave 1)
+- [ ] 04-04-PLAN.md — Investment Platforms, Societa, Governance, ESG, Culture pages (wave 1)
+- [ ] 04-05-PLAN.md — Contact page with form, offices, and email API route (wave 2, depends on 04-01)
 
 **Pitfall gates:**
 - Every Contentful fetch receives `params.locale` from route params; never hard-coded
@@ -210,4 +217,4 @@ These must be resolved before the indicated phase can close:
 ---
 
 *Created: 2026-03-14*
-*Last updated: 2026-03-14 after planning Phase 3*
+*Last updated: 2026-03-14 after planning Phase 4*
