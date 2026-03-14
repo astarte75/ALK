@@ -39,7 +39,7 @@
     "privacy": "Privacy Notice",
     "cookiePolicy": "Cookie Policy",
     "copyright": "Alkemia SGR S.p.A. All rights reserved.",
-    "headquarters": "Headquarters",
+    "headquarters": "Registered Office",
     "offices": "Offices",
     "legal": "Legal",
     "social": "Social"
@@ -127,7 +127,7 @@
       "opportunity": "Investment opportunity",
       "general": "General inquiry"
     },
-    "headquarters": "Headquarters"
+    "headquarters": "Registered Office"
   },
   "cookie": {
     "title": "Cookie Notice",
