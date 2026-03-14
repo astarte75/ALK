@@ -2,14 +2,14 @@
 gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
-status: planning
-last_updated: "2026-03-14T15:36:01.052Z"
+status: executing
+last_updated: "2026-03-14T16:26:27Z"
 progress:
   total_phases: 7
   completed_phases: 0
-  total_plans: 3
-  completed_plans: 2
-  percent: 5
+  total_plans: 6
+  completed_plans: 3
+  percent: 10
 ---
 
 # Project State: Alkemia Capital Website
@@ -28,16 +28,16 @@ progress:
 
 ## Current Position
 
-**Phase:** 1 — Foundation
-**Plan:** 3 (next: 01-03-PLAN.md)
-**Status:** Ready to plan
-**Last action:** Completed 01-02-PLAN.md (i18n routing + bilingual placeholder)
+**Phase:** 2 — Content Infrastructure
+**Plan:** 2 (next: 02-02-PLAN.md)
+**Status:** Executing
+**Last action:** Completed 02-01-PLAN.md (Contentful SDK + types + client + fetchers + ISR webhook)
 
 ```
-Progress: [##░░░░░░░░░░░░░░░░░░░░░░░░░░] 5%
+Progress: [###░░░░░░░░░░░░░░░░░░░░░░░░░] 10%
 
 Phase 1 [############░░░░░░░░] 2/3 plans complete
-Phase 2 [░░░░░░░░░░░░░░░░░░░░] Not started
+Phase 2 [#######░░░░░░░░░░░░░] 1/3 plans complete
 Phase 3 [░░░░░░░░░░░░░░░░░░░░] Not started
 Phase 4 [░░░░░░░░░░░░░░░░░░░░] Not started
 Phase 5 [░░░░░░░░░░░░░░░░░░░░] Not started
@@ -74,6 +74,7 @@ Phase 7 [░░░░░░░░░░░░░░░░░░░░] Not start
 | SSG + on-demand ISR (not SSR) | All public pages pre-rendered; Contentful webhook triggers `revalidateTag` | Locked |
 | GSAP (not Framer Motion) for scroll animations | Framer Motion forces Client Components too high in tree; Safari compatibility | Locked |
 | Lenis v1.3 for smooth scroll | RAF synced to GSAP ticker; must validate exact sync pattern in Phase 5 | Locked |
+| interface extends EntrySkeletonType (not generic two-arg) | Contentful v11 SDK has Fields as first generic param, not contentTypeId | Locked |
 
 ### Open Decisions (Blocking)
 
@@ -123,6 +124,7 @@ Phase 7 [░░░░░░░░░░░░░░░░░░░░] Not start
 - [x] ~~Run `/gsd:plan-phase 1` to begin Phase 1 planning~~ (done)
 - [x] ~~Execute 01-01-PLAN.md~~ (done: a286a07, b7421f0)
 - [x] ~~Execute 01-02-PLAN.md~~ (done: 35c1cc9, 4193948)
+- [x] ~~Execute 02-01-PLAN.md~~ (done: 8dc6aaf, d426df0)
 
 ---
 
@@ -146,4 +148,4 @@ None currently.
 ---
 
 *State initialized: 2026-03-14*
-*Last updated: 2026-03-14 after completing 01-02-PLAN.md execution*
+*Last updated: 2026-03-14 after completing 02-01-PLAN.md execution*

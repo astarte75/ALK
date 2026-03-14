@@ -24,7 +24,7 @@
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 1. Foundation | 2/3 | Complete    | 2026-03-14 |
-| 2. Content Infrastructure | 0/? | Not started | - |
+| 2. Content Infrastructure | 1/3 | In progress | - |
 | 3. Layout Shell & Legal | 0/? | Not started | - |
 | 4. Core Pages | 0/? | Not started | - |
 | 5. Animation Layer | 0/? | Not started | - |
@@ -70,7 +70,12 @@ Plans:
   2. A TypeScript call to `getPortfolioCompanies('it')` returns typed `PortfolioCompany[]` objects without any TypeScript errors
   3. Alkemia's 18 portfolio companies, 15 team members, 5 funds, and news articles are queryable from Contentful via the typed client
   4. Contentful webhook hits `/api/revalidate` and triggers `revalidateTag` (verifiable in Vercel logs)
-**Plans**: TBD
+**Plans:** 3/3 plans complete
+
+Plans:
+- [x] 02-01-PLAN.md — Contentful SDK + TypeScript types + client + fetchers + ISR webhook (wave 1)
+- [ ] 02-02-PLAN.md — Migration script: content models + image upload + data seeding (wave 2, depends on 02-01)
+- [ ] 02-03-PLAN.md — Run migration + content validation + Vercel env setup (wave 3, depends on 02-01 + 02-02)
 
 **Pitfall gates:**
 - Contentful space created with `it-IT` and `en-US` locales before model definition
@@ -198,4 +203,4 @@ These must be resolved before the indicated phase can close:
 ---
 
 *Created: 2026-03-14*
-*Last updated: 2026-03-14 after completing 01-02-PLAN.md*
+*Last updated: 2026-03-14 after completing 02-01-PLAN.md*
