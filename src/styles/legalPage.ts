@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
 export const LegalPageWrapper = styled.div`
-  max-width: 800px;
+  max-width: 1200px;
   margin: 0 auto;
   padding: var(--space-16) var(--space-6);
 `

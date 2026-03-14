@@ -41,7 +41,6 @@ const SectionDescription = styled.p`
   color: ${colors.textSecondary};
   line-height: 1.7;
   margin: 0 0 ${spacing[6]};
-  max-width: 800px;
 `
 
 const BoardGrid = styled.div`

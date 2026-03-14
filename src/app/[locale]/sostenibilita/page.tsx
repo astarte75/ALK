@@ -27,8 +27,6 @@ const BodyContent = styled.div`
   color: ${colors.textPrimary};
   line-height: 1.7;
   margin-bottom: ${spacing[12]};
-  max-width: 800px;
-
   h2, h3, h4 {
     font-family: ${fonts.heading};
     color: ${colors.textPrimary};

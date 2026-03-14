@@ -64,7 +64,6 @@ const DescriptionContent = styled.div`
   color: ${colors.textPrimary};
   line-height: 1.7;
   margin-bottom: ${spacing[12]};
-  max-width: 800px;
 
   p {
     margin-bottom: ${spacing[4]};

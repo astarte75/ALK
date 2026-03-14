@@ -34,7 +34,7 @@ const Content = styled.div`
   align-items: center;
   text-align: center;
   padding: ${spacing[6]};
-  max-width: 800px;
+  max-width: 960px;
 `
 
 const Logo = styled.div`
