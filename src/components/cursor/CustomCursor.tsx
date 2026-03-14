@@ -22,8 +22,7 @@ const CursorDot = styled.div`
   z-index: ${zIndex.cursor};
   mix-blend-mode: difference;
   will-change: transform;
-  transition: transform 0.15s ease;
-  transform: translate(-100px, -100px);
+  /* No transition on transform — positioning must be instant */
 
   /* Hidden by default, shown on large screens with a mouse */
   display: none;
@@ -33,60 +32,63 @@ const CursorDot = styled.div`
   @media (hover: none) {
     display: none !important;
   }
+
+  &.hovering {
+    width: ${CURSOR_SIZE * 2.5}px;
+    height: ${CURSOR_SIZE * 2.5}px;
+    border-color: var(--color-accent-gold);
+    transition: width 0.15s ease, height 0.15s ease, border-color 0.15s ease;
+  }
 `
 
 export default function CustomCursor() {
   const cursorRef = useRef<HTMLDivElement>(null)
-  const pos = useRef({ x: -100, y: -100 })
-  const hovering = useRef(false)
+  const rafId = useRef<number>(0)
 
-  const applyTransform = useCallback(() => {
+  const applyPosition = useCallback((x: number, y: number) => {
     if (!cursorRef.current) return
-    const { x, y } = pos.current
-    const scale = hovering.current ? ' scale(2.5)' : ''
-    cursorRef.current.style.transform = `translate(${x - HALF}px, ${y - HALF}px)${scale}`
+    const el = cursorRef.current
+    const size = el.classList.contains('hovering') ? CURSOR_SIZE * 2.5 : CURSOR_SIZE
+    const half = size / 2
+    el.style.transform = `translate3d(${x - half}px, ${y - half}px, 0)`
   }, [])
-
-  const onMouseMove = useCallback(
-    (e: MouseEvent) => {
-      pos.current.x = e.clientX
-      pos.current.y = e.clientY
-      applyTransform()
-    },
-    [applyTransform],
-  )
 
   useEffect(() => {
     // Skip entirely on touch devices
     if (window.matchMedia('(hover: none)').matches) return
 
-    document.addEventListener('mousemove', onMouseMove, { passive: true })
+    let mouseX = -100
+    let mouseY = -100
+
+    const onMouseMove = (e: MouseEvent) => {
+      mouseX = e.clientX
+      mouseY = e.clientY
+      // Use rAF for smooth 60fps cursor tracking
+      cancelAnimationFrame(rafId.current)
+      rafId.current = requestAnimationFrame(() => applyPosition(mouseX, mouseY))
+    }
 
     const handleOver = (e: Event) => {
-      const target = e.target as HTMLElement
-      if (target.matches?.(INTERACTIVE_SELECTOR)) {
-        hovering.current = true
-        applyTransform()
-      }
+      const target = (e.target as HTMLElement).closest?.(INTERACTIVE_SELECTOR)
+      if (target) cursorRef.current?.classList.add('hovering')
     }
 
     const handleOut = (e: Event) => {
-      const target = e.target as HTMLElement
-      if (target.matches?.(INTERACTIVE_SELECTOR)) {
-        hovering.current = false
-        applyTransform()
-      }
+      const target = (e.target as HTMLElement).closest?.(INTERACTIVE_SELECTOR)
+      if (target) cursorRef.current?.classList.remove('hovering')
     }
 
+    document.addEventListener('mousemove', onMouseMove, { passive: true })
     document.addEventListener('mouseover', handleOver)
     document.addEventListener('mouseout', handleOut)
 
     return () => {
+      cancelAnimationFrame(rafId.current)
       document.removeEventListener('mousemove', onMouseMove)
       document.removeEventListener('mouseover', handleOver)
       document.removeEventListener('mouseout', handleOut)
     }
-  }, [onMouseMove, applyTransform])
+  }, [applyPosition])
 
   return <CursorDot ref={cursorRef} />
 }

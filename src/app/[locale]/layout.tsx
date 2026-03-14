@@ -23,10 +23,10 @@ export default async function LocaleLayout({
     getSiteConfig(locale),
   ])
 
-  // Extract logo URL from Contentful asset, fallback to static file
+  // Extract logo URL from Contentful asset, fallback to static white logo
   const logoUrl = config?.fields.logo
     ? `https:${(config.fields.logo as unknown as { fields: { file: { url: string } } }).fields.file.url}`
-    : '/logo.svg'
+    : '/images/alkemia-logo-white.png'
 
   return (
     <NextIntlClientProvider messages={messages}>
