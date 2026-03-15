@@ -50,6 +50,8 @@ const GlobalStyle = createGlobalStyle`
     font-family: var(--font-body);
     line-height: 1.6;
     min-height: 100vh;
+    overflow-wrap: break-word;
+    word-break: break-word;
   }
 
   h1, h2, h3, h4, h5, h6 {
