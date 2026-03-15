@@ -56,7 +56,7 @@ const Logo = styled.div`
 
 const Headline = styled.h1`
   font-family: ${fonts.heading};
-  font-size: 3rem;
+  font-size: clamp(1.75rem, 7vw, 5.5rem);
   font-weight: 700;
   color: ${colors.textPrimary};
   letter-spacing: -0.02em;
@@ -64,14 +64,6 @@ const Headline = styled.h1`
   margin: 0;
   overflow: hidden;
   white-space: nowrap;
-
-  ${mq.md} {
-    font-size: 4rem;
-  }
-
-  ${mq.lg} {
-    font-size: 5.5rem;
-  }
 `
 
 const Word = styled.span`
