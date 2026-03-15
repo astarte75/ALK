@@ -247,6 +247,7 @@
       "filterDateFrom": "From",
       "filterDateTo": "To",
       "allFunds": "All funds",
+      "allInvestors": "All investors",
       "allTypes": "All types",
       "resetFilters": "Reset filters",
       "operationsCount": "operations",

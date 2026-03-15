@@ -66,6 +66,7 @@ export default async function AdminOperationsPage({
     amount: c.amount,
     description: c.description,
     investorName: investorMap[c.investor_id] ?? '—',
+    investorId: c.investor_id,
     fundName: fundMap[c.fund_id] ?? '—',
     fundId: c.fund_id,
   }))
@@ -73,8 +74,9 @@ export default async function AdminOperationsPage({
   // Extract unique call types
   const callTypes = [...new Set(enrichedCalls.map(c => c.callType))].sort()
 
-  // Fund options for filter
+  // Filter options
   const fundOptions = (funds ?? []).map(f => ({ id: f.id, name: f.name }))
+  const investorOptions = (investors ?? []).map(i => ({ id: i.id, name: i.full_name }))
 
   return (
     <>
@@ -82,6 +84,7 @@ export default async function AdminOperationsPage({
       <AdminOperations
         calls={enrichedCalls}
         fundOptions={fundOptions}
+        investorOptions={investorOptions}
         callTypes={callTypes}
         locale={locale}
       />

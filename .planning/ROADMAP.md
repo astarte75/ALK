@@ -16,7 +16,7 @@
 - [x] **Phase 5: Animation Layer** — GSAP, Lenis, video hero, scroll-triggered reveals (completed 2026-03-15)
 - [x] **Phase 6: Site Review & Layout Polish** — Full site review, layout fixes, visual polish, UX improvements (completed 2026-03-15)
 - [x] **Phase 7: Investor Portal** — Authenticated area for investors to check fund positions (completed 2026-03-15)
-- [ ] **Phase 8: Data Import & Verification** — Real fund data import, admin dashboard, E2E verification with real investors
+- [x] **Phase 8: Data Import & Verification** — Real fund data import, admin dashboard (08-04 E2E deferred post-launch) (completed 2026-03-15)
 - [ ] **Phase 9: General Review & Refinements** — Cross-cutting improvements, edge cases, content fine-tuning
 - [ ] **Phase 10: SEO & Performance** — Metadata, structured data, sitemap, Lighthouse 90+
 - [ ] **Phase 11: Production Hardening** — Accessibility audit, ISR webhooks, error states, cross-browser
@@ -34,7 +34,7 @@
 | 5. Animation Layer | 2/2 | Complete | 2026-03-15 |
 | 6. Site Review & Layout Polish | 4/4 | Complete | 2026-03-15 |
 | 7. Investor Portal | 4/4 | Complete | 2026-03-15 |
-| 8. Data Import & Verification | 0/? | Not started | - |
+| 8. Data Import & Verification | 3/4 | Complete (08-04 deferred) | 2026-03-15 |
 | 9. General Review & Refinements | 0/? | Not started | - |
 | 10. SEO & Performance | 0/? | Not started | - |
 | 11. Production Hardening | 0/? | Not started | - |
@@ -235,10 +235,10 @@ Plans:
 **Plans**: TBD (4 plans estimated)
 
 Plans:
-- [ ] 08-01-PLAN.md — Excel template definition, user fills and validates data (wave 1, checkpoint: user provides Excel)
-- [ ] 08-02-PLAN.md — Import script: read Excel, create Auth users, insert fund data with FK resolution (wave 2)
-- [ ] 08-03-PLAN.md — Admin dashboard page: data summary, per-fund investor list, consistency checks (wave 3)
-- [ ] 08-04-PLAN.md — E2E verification: import real data, test with real investor login, fix anomalies (wave 4)
+- [x] 08-01-PLAN.md — Excel template definition, user fills and validates data (wave 1)
+- [x] 08-02-PLAN.md — Import script: read Excel, insert fund data with FK resolution (wave 2)
+- [x] 08-03-PLAN.md — Admin dashboard: summary, operations view, investor impersonation, consistency checks (wave 3)
+- [ ] 08-04-PLAN.md — E2E verification: test with real investor login, fix anomalies (deferred post-launch)
 
 **Pitfall gates:**
 - `is_admin` flag on investors table (add column if not present) — admin sees all data, investors see only their own

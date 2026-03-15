@@ -16,18 +16,20 @@ interface CallRow {
   amount: number
   description: string | null
   investorName: string
+  investorId: string
   fundName: string
   fundId: string
 }
 
-interface FundOption {
+interface FilterOption {
   id: string
   name: string
 }
 
 interface AdminOperationsProps {
   calls: CallRow[]
-  fundOptions: FundOption[]
+  fundOptions: FilterOption[]
+  investorOptions: FilterOption[]
   callTypes: string[]
   locale: string
 }
@@ -73,7 +75,7 @@ const FiltersBar = styled.div`
   gap: 1rem;
   flex-wrap: wrap;
   margin-bottom: 1.5rem;
-  align-items: flex-end;
+  align-items: end;
 `
 
 const FilterGroup = styled.div`
@@ -90,7 +92,7 @@ const FilterLabel = styled.label`
   font-weight: 600;
 `
 
-const Select = styled.select`
+const filterInputStyles = `
   background: var(--color-surface);
   color: var(--color-text-primary);
   border: 1px solid var(--color-border);
@@ -98,7 +100,8 @@ const Select = styled.select`
   padding: 0.5rem 0.75rem;
   font-family: var(--font-body);
   font-size: 0.85rem;
-  min-width: 180px;
+  height: 38px;
+  box-sizing: border-box;
 
   &:focus {
     outline: none;
@@ -106,19 +109,13 @@ const Select = styled.select`
   }
 `
 
-const DateInput = styled.input`
-  background: var(--color-surface);
-  color: var(--color-text-primary);
-  border: 1px solid var(--color-border);
-  border-radius: 6px;
-  padding: 0.5rem 0.75rem;
-  font-family: var(--font-body);
-  font-size: 0.85rem;
+const Select = styled.select`
+  ${filterInputStyles}
+  min-width: 180px;
+`
 
-  &:focus {
-    outline: none;
-    border-color: var(--color-accent-teal);
-  }
+const DateInput = styled.input`
+  ${filterInputStyles}
 
   &::-webkit-calendar-picker-indicator {
     filter: invert(0.7);
@@ -132,6 +129,8 @@ const ResetButton = styled.button`
   font-family: var(--font-body);
   font-size: 0.85rem;
   padding: 0.5rem 1rem;
+  height: 38px;
+  box-sizing: border-box;
   border-radius: 6px;
   cursor: pointer;
   transition: all 0.15s ease;
@@ -165,7 +164,7 @@ const Thead = styled.thead`
   background: var(--color-surface);
 `
 
-const Th = styled.th<{ $align?: string }>`
+const Th = styled.th<{ $align?: string; $fixedWidth?: string }>`
   padding: 0.65rem 1rem;
   text-align: ${({ $align }) => $align || 'left'};
   color: var(--color-text-secondary);
@@ -175,6 +174,7 @@ const Th = styled.th<{ $align?: string }>`
   letter-spacing: 0.05em;
   white-space: nowrap;
   border-bottom: 1px solid var(--color-border);
+  ${({ $fixedWidth }) => $fixedWidth ? `width: ${$fixedWidth}; min-width: ${$fixedWidth}; max-width: ${$fixedWidth};` : ''}
 `
 
 const Tr = styled.tr`
@@ -196,6 +196,12 @@ const Td = styled.td<{ $align?: string }>`
   text-align: ${({ $align }) => $align || 'left'};
   font-variant-numeric: tabular-nums;
   color: var(--color-text-primary);
+`
+
+const FixedTd = styled(Td)<{ $fixedWidth?: string }>`
+  ${({ $fixedWidth }) => $fixedWidth ? `width: ${$fixedWidth}; min-width: ${$fixedWidth}; max-width: ${$fixedWidth};` : ''}
+  overflow: hidden;
+  text-overflow: ellipsis;
 `
 
 const TypeBadge = styled.span<{ $type: string }>`
@@ -240,6 +246,7 @@ const TotalRow = styled.tr`
 export default function AdminOperations({
   calls,
   fundOptions,
+  investorOptions,
   callTypes,
   locale,
 }: AdminOperationsProps) {
@@ -247,6 +254,7 @@ export default function AdminOperations({
   const tCall = useTranslations('portal.fundDetail.callTypes')
 
   const [fundFilter, setFundFilter] = useState<string>('')
+  const [investorFilter, setInvestorFilter] = useState<string>('')
   const [typeFilter, setTypeFilter] = useState<string>('')
   const [dateFrom, setDateFrom] = useState<string>('')
   const [dateTo, setDateTo] = useState<string>('')
@@ -254,12 +262,13 @@ export default function AdminOperations({
   const filtered = useMemo(() => {
     return calls.filter(c => {
       if (fundFilter && c.fundId !== fundFilter) return false
+      if (investorFilter && c.investorId !== investorFilter) return false
       if (typeFilter && c.callType !== typeFilter) return false
       if (dateFrom && c.date < dateFrom) return false
       if (dateTo && c.date > dateTo) return false
       return true
     })
-  }, [calls, fundFilter, typeFilter, dateFrom, dateTo])
+  }, [calls, fundFilter, investorFilter, typeFilter, dateFrom, dateTo])
 
   const totalAmount = useMemo(
     () => filtered.reduce((sum, c) => sum + c.amount, 0),
@@ -268,12 +277,11 @@ export default function AdminOperations({
 
   const resetFilters = () => {
     setFundFilter('')
+    setInvestorFilter('')
     setTypeFilter('')
     setDateFrom('')
     setDateTo('')
   }
-
-  const hasActiveFilters = fundFilter || typeFilter || dateFrom || dateTo
 
   const fmtCurrency = (value: number) =>
     new Intl.NumberFormat(locale === 'en' ? 'en-US' : 'it-IT', {
@@ -289,6 +297,26 @@ export default function AdminOperations({
       month: 'short',
       year: 'numeric',
     }).format(new Date(dateStr))
+
+  // Fixed column widths based on max content across ALL data (not just filtered)
+  const colWidths = useMemo(() => {
+    const maxDate = Math.max(...calls.map(c => fmtDate(c.date).length), t('operationDate').length)
+    const maxFund = Math.max(...calls.map(c => c.fundName.length), t('operationFund').length)
+    const maxInvestor = Math.max(...calls.map(c => c.investorName.length), t('operationInvestor').length)
+    const maxType = Math.max(...calls.map(c => tCall(c.callType).length), t('operationType').length)
+    const maxAmount = Math.max(...calls.map(c => fmtCurrency(c.amount).length), t('operationAmount').length)
+
+    return {
+      date: `${maxDate + 3}ch`,
+      fund: `${maxFund + 3}ch`,
+      investor: `${maxInvestor + 3}ch`,
+      type: `${maxType + 3}ch`,
+      amount: `${maxAmount + 3}ch`,
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [calls, locale])
+
+  const hasActiveFilters = fundFilter || investorFilter || typeFilter || dateFrom || dateTo
 
   return (
     <Container>
@@ -306,6 +334,16 @@ export default function AdminOperations({
             <option value="">{t('allFunds')}</option>
             {fundOptions.map(f => (
               <option key={f.id} value={f.id}>{f.name}</option>
+            ))}
+          </Select>
+        </FilterGroup>
+
+        <FilterGroup>
+          <FilterLabel>{t('operationInvestor')}</FilterLabel>
+          <Select value={investorFilter} onChange={e => setInvestorFilter(e.target.value)}>
+            <option value="">{t('allInvestors')}</option>
+            {investorOptions.map(i => (
+              <option key={i.id} value={i.id}>{i.name}</option>
             ))}
           </Select>
         </FilterGroup>
@@ -343,24 +381,24 @@ export default function AdminOperations({
         <Table>
           <Thead>
             <tr>
-              <Th>{t('operationDate')}</Th>
-              <Th>{t('operationFund')}</Th>
-              <Th>{t('operationInvestor')}</Th>
-              <Th>{t('operationType')}</Th>
-              <Th $align="right">{t('operationAmount')}</Th>
+              <Th $fixedWidth={colWidths.date}>{t('operationDate')}</Th>
+              <Th $fixedWidth={colWidths.fund}>{t('operationFund')}</Th>
+              <Th $fixedWidth={colWidths.investor}>{t('operationInvestor')}</Th>
+              <Th $fixedWidth={colWidths.type}>{t('operationType')}</Th>
+              <Th $fixedWidth={colWidths.amount} $align="right">{t('operationAmount')}</Th>
               <Th>{t('operationDescription')}</Th>
             </tr>
           </Thead>
           <tbody>
             {filtered.map(c => (
               <Tr key={c.id}>
-                <Td>{fmtDate(c.date)}</Td>
-                <Td>{c.fundName}</Td>
-                <Td>{c.investorName}</Td>
-                <Td><TypeBadge $type={c.callType}>{tCall(c.callType)}</TypeBadge></Td>
-                <Td $align="right">
+                <FixedTd $fixedWidth={colWidths.date}>{fmtDate(c.date)}</FixedTd>
+                <FixedTd $fixedWidth={colWidths.fund}>{c.fundName}</FixedTd>
+                <FixedTd $fixedWidth={colWidths.investor}>{c.investorName}</FixedTd>
+                <FixedTd $fixedWidth={colWidths.type}><TypeBadge $type={c.callType}>{tCall(c.callType)}</TypeBadge></FixedTd>
+                <FixedTd $fixedWidth={colWidths.amount} $align="right">
                   <AmountCell $negative={c.amount < 0}>{fmtCurrency(c.amount)}</AmountCell>
-                </Td>
+                </FixedTd>
                 <Td>{c.description ?? '—'}</Td>
               </Tr>
             ))}

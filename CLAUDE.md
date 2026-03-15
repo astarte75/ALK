@@ -34,6 +34,10 @@ Premium PE/VC corporate site inspired by hgcapital.com, adapted for Alkemia Capi
 - `lenis.on('scroll', ScrollTrigger.update)` required for ScrollTrigger sync
 - Fullscreen sections use `height: 100vh; height: 100svh;` (fallback + iOS Safari)
 - No paid GSAP plugins (SplitText, ScrollSmoother) — manual alternatives only
+- Admin routes protected by `is_admin` flag on `investors` table + middleware check
+- Admin RLS policies via `is_admin()` SQL function — admin sees all investor data
+- Investor dashboard/fund-detail queries must filter by `investor_id` explicitly (admin RLS would expose all)
+- Admin impersonation routes mirror investor routes under `/admin/investitore/[investorId]/`
 
 ## Key Paths
 
@@ -57,6 +61,10 @@ src/app/[locale]/(portal)/     # Route group: investor portal (PortalHeader only
 src/app/[locale]/(portal)/investitori/          # Login page
 src/app/[locale]/(portal)/investitori/dashboard/ # Fund positions dashboard
 src/app/[locale]/(portal)/investitori/fondi/[slug]/ # Fund drill-down (calls, NAV chart, docs)
+src/app/[locale]/(portal)/investitori/admin/    # Admin dashboard (summary, consistency checks)
+src/app/[locale]/(portal)/investitori/admin/operazioni/ # Admin operations view (all capital calls, filters)
+src/app/[locale]/(portal)/investitori/admin/investitore/[investorId]/ # Impersonate investor dashboard
+src/app/[locale]/(portal)/investitori/admin/investitore/[investorId]/fondi/[slug]/ # Impersonate fund detail
 src/app/api/revalidate/        # Contentful webhook handler
 src/app/api/contact/           # Contact form email handler (nodemailer + SMTP)
 src/app/api/portal/documents/[id]/ # Authenticated document download (signed URLs)
@@ -72,10 +80,10 @@ src/components/filters/        # FilterPills (reusable pill filter)
 src/components/cookie/         # CookieConsent modal (GDPR Italy)
 src/components/cursor/         # CustomCursor (desktop only, ref-based)
 src/components/forms/          # ContactForm
-src/components/portal/         # PortalHeader, LoginForm, DashboardTable, NavChart, CapitalCallsTable, DocumentList
+src/components/portal/         # PortalHeader, LoginForm, DashboardTable, NavChart, CapitalCallsTable, DocumentList, AdminDashboard, AdminOperations
 src/components/content/        # PageSections, PdfDownloadList
 src/styles/                    # GlobalStyle, theme tokens, breakpoints, zIndex
-scripts/                       # Migration scripts (migrate.ts, add-fund-fields.ts, upload-news-images.js)
+scripts/                       # Migration scripts (migrate.ts, add-fund-fields.ts, upload-news-images.js, import-fund-data.ts)
 src/lib/gsap-init.ts           # GSAP + ScrollTrigger plugin registration (singleton)
 src/app/[locale]/HomepageClient.tsx # Animated homepage client wrapper (LenisProvider + all sections)
 src/app/[locale]/homepage-static/  # Backup of original static homepage (no animations)
@@ -144,6 +152,8 @@ npx tsc --noEmit         # Type check
 npx playwright test      # E2E tests
 npx tsx scripts/migrate.ts          # Seed Contentful (idempotent)
 npx tsx scripts/validate-content.ts # Validate content
+npx tsx --env-file=.env.local scripts/import-fund-data.ts  # Import fund data from Excel
+npx tsx --env-file=.env.local scripts/import-fund-data.ts --dry-run  # Preview import
 ```
 
 ## Footer Structure
@@ -165,6 +175,8 @@ npx tsx scripts/validate-content.ts # Validate content
 - Upload fund documents (prospetto CONSOB) to Contentful (Phase 8)
 - Populate fund targetSectors and teamMembers in Contentful (Phase 8)
 - Portfolio company images to source with user (Phase 8)
+- E2E verification: real investor login test (Plan 08-04, deferred post-launch)
+- Amarone management fees/setup costs not detailed per investor in Excel report
 - All 18 portfolio companies have descriptions and websites populated on Contentful
 - Hero/panel heights capped for 4K: narrative panels min(100svh, 800px), internal heroes min(50vh, 500px)
 - Homepage headline uses clamp(2.25rem, 7vw, 5.5rem) with white-space: nowrap for single-line display
