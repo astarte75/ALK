@@ -10,7 +10,7 @@ const handleI18nRouting = createMiddleware({
 })
 
 export async function middleware(request: NextRequest) {
-  // Run next-intl routing first
+  // Run next-intl routing
   const response = handleI18nRouting(request)
 
   // Supabase session refresh + portal route protection

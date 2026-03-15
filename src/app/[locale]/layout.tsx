@@ -2,11 +2,6 @@ import { NextIntlClientProvider } from 'next-intl'
 import { getMessages } from 'next-intl/server'
 import { notFound } from 'next/navigation'
 import { routing } from '@/i18n/routing'
-import { getSiteConfig } from '@/lib/contentful/fetchers'
-import Header from '@/components/layout/Header'
-import Footer from '@/components/layout/Footer'
-import CookieConsent from '@/components/cookie/CookieConsent'
-import CustomCursor from '@/components/cursor/CustomCursor'
 
 export default async function LocaleLayout({
   children,
@@ -18,23 +13,11 @@ export default async function LocaleLayout({
   const { locale } = await params
   if (!routing.locales.includes(locale as 'it' | 'en')) notFound()
 
-  const [messages, config] = await Promise.all([
-    getMessages(),
-    getSiteConfig(locale),
-  ])
-
-  // Extract logo URL from Contentful asset, fallback to static white logo
-  const logoUrl = config?.fields.logo
-    ? `https:${(config.fields.logo as unknown as { fields: { file: { url: string } } }).fields.file.url}`
-    : '/images/alkemia-logo-white.png'
+  const messages = await getMessages()
 
   return (
     <NextIntlClientProvider messages={messages}>
-      <CustomCursor />
-      <Header logoUrl={logoUrl} logoAlt="Alkemia Capital" />
-      <main>{children}</main>
-      <Footer />
-      <CookieConsent />
+      {children}
     </NextIntlClientProvider>
   )
 }

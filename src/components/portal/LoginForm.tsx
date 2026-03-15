@@ -5,7 +5,7 @@ import { useFormStatus } from 'react-dom'
 import { useTranslations } from 'next-intl'
 import Image from 'next/image'
 import styled, { keyframes } from 'styled-components'
-import { login } from '@/app/[locale]/investitori/actions'
+import { login } from '@/app/[locale]/(portal)/investitori/actions'
 
 // -- Styled Components --
 

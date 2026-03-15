@@ -4,7 +4,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import styled from 'styled-components'
 import { useTranslations } from 'next-intl'
-import { logout } from '@/app/[locale]/investitori/actions'
+import { logout } from '@/app/[locale]/(portal)/investitori/actions'
 
 const HeaderBar = styled.header`
   position: sticky;
