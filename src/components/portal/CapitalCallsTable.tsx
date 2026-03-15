@@ -63,12 +63,16 @@ const TypeBadge = styled.span<{ $callType: string }>`
   font-weight: 600;
   letter-spacing: 0.03em;
   color: #fff;
-  background: ${({ $callType }) =>
-    $callType === 'capital_call'
-      ? 'var(--color-accent-teal)'
-      : $callType === 'distribution'
-        ? 'var(--color-accent-gold)'
-        : '#9B59B6'};
+  background: ${({ $callType }) => {
+    switch ($callType) {
+      case 'capital_call': return 'var(--color-accent-teal)'
+      case 'distribution': return 'var(--color-accent-gold)'
+      case 'management_fee': return '#5B8DEF'
+      case 'expense': return '#8B95A5'
+      case 'setup_cost': return '#8B95A5'
+      default: return '#9B59B6'
+    }
+  }};
 `
 
 const EmptyState = styled.p`

@@ -7,7 +7,7 @@ import CapitalCallsTable from '@/components/portal/CapitalCallsTable'
 import NavChart from '@/components/portal/NavChartClient'
 import DocumentList from '@/components/portal/DocumentList'
 import { Link } from '@/i18n/navigation'
-import type { Fund, FundPosition, CapitalCall, NavHistory, InvestorDocument } from '@/lib/supabase/types'
+import type { Fund, FundPosition, CapitalCall, NavHistory, InvestorDocument, FundHolding } from '@/lib/supabase/types'
 
 export const dynamic = 'force-dynamic'
 
@@ -70,13 +70,69 @@ const VintageYear = styled.span`
 
 const StatsGrid = styled.div`
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 1rem;
-  margin: 2rem 0 3rem;
+  margin: 2rem 0 1rem;
 
   @media (max-width: 768px) {
     grid-template-columns: repeat(2, 1fr);
   }
+`
+
+const InfoLine = styled.p`
+  color: var(--color-text-secondary);
+  font-size: 0.85rem;
+  margin-bottom: 2.5rem;
+  font-variant-numeric: tabular-nums;
+`
+
+const HoldingsTable = styled.table`
+  width: 100%;
+  border-collapse: collapse;
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+`
+
+const HoldingsThead = styled.thead`
+  background: var(--color-surface);
+`
+
+const HoldingsTh = styled.th<{ $align?: string }>`
+  padding: 0.75rem 1rem;
+  text-align: ${({ $align }) => $align || 'left'};
+  color: var(--color-text-secondary);
+  font-weight: 600;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  white-space: nowrap;
+  border-bottom: 1px solid var(--color-border);
+`
+
+const HoldingsTr = styled.tr`
+  background: var(--color-bg);
+  transition: background 0.15s ease;
+
+  &:hover {
+    background: var(--color-surface);
+  }
+
+  &:not(:last-child) td {
+    border-bottom: 1px solid var(--color-border);
+  }
+`
+
+const HoldingsTd = styled.td<{ $align?: string }>`
+  padding: 0.75rem 1rem;
+  white-space: nowrap;
+  text-align: ${({ $align }) => $align || 'left'};
+  font-variant-numeric: tabular-nums;
+`
+
+const HoldingsEmpty = styled.p`
+  color: var(--color-text-secondary);
+  padding: 2rem;
+  text-align: center;
 `
 
 const StatCard = styled.div`
@@ -97,11 +153,16 @@ const StatLabel = styled.span`
   font-weight: 600;
 `
 
-const StatValue = styled.span<{ $accent?: boolean }>`
+const StatValue = styled.span<{ $accent?: 'teal' | 'gold' | boolean }>`
   font-family: var(--font-heading);
   font-size: 1.35rem;
   font-weight: 700;
-  color: ${({ $accent }) => ($accent ? 'var(--color-accent-teal)' : 'var(--color-text-primary)')};
+  color: ${({ $accent }) =>
+    $accent === 'teal' || $accent === true
+      ? 'var(--color-accent-teal)'
+      : $accent === 'gold'
+        ? 'var(--color-accent-gold)'
+        : 'var(--color-text-primary)'};
   font-variant-numeric: tabular-nums;
 `
 
@@ -149,17 +210,19 @@ export default async function FundDetailPage({
   const fund = fundData as Fund
 
   // Fetch related data in parallel
-  const [positionResult, callsResult, navResult, docsResult] = await Promise.all([
+  const [positionResult, callsResult, navResult, docsResult, holdingsResult] = await Promise.all([
     supabase.from('fund_positions').select('*').eq('fund_id', fund.id).single(),
     supabase.from('capital_calls').select('*').eq('fund_id', fund.id).order('call_date', { ascending: false }),
     supabase.from('nav_history').select('*').eq('fund_id', fund.id).order('report_date', { ascending: true }),
     supabase.from('investor_documents').select('*').eq('fund_id', fund.id).order('uploaded_at', { ascending: false }),
+    supabase.from('fund_holdings').select('*').eq('fund_id', fund.id).order('cost', { ascending: false }),
   ])
 
   const position = positionResult.data as FundPosition | null
   const calls = (callsResult.data ?? []) as CapitalCall[]
   const navHistory = (navResult.data ?? []) as NavHistory[]
   const documents = (docsResult.data ?? []) as InvestorDocument[]
+  const holdings = (holdingsResult.data ?? []) as FundHolding[]
 
   // Transform NAV data for chart
   const chartData = navHistory.map((n) => ({
@@ -190,24 +253,70 @@ export default async function FundDetailPage({
         </FundHeader>
 
         {position && (
-          <StatsGrid>
-            <StatCard>
-              <StatLabel>{t('dashboard.committedCapital')}</StatLabel>
-              <StatValue>{fmtCurrency(position.committed_capital)}</StatValue>
-            </StatCard>
-            <StatCard>
-              <StatLabel>{t('dashboard.investedCapital')}</StatLabel>
-              <StatValue>{fmtCurrency(position.invested_capital)}</StatValue>
-            </StatCard>
-            <StatCard>
-              <StatLabel>{t('dashboard.distributions')}</StatLabel>
-              <StatValue>{fmtCurrency(position.distributions)}</StatValue>
-            </StatCard>
-            <StatCard>
-              <StatLabel>{t('dashboard.currentNav')}</StatLabel>
-              <StatValue $accent>{fmtCurrency(position.current_nav)}</StatValue>
-            </StatCard>
-          </StatsGrid>
+          <>
+            <StatsGrid>
+              <StatCard>
+                <StatLabel>{t('dashboard.committedCapital')}</StatLabel>
+                <StatValue>{fmtCurrency(position.committed_capital)}</StatValue>
+              </StatCard>
+              <StatCard>
+                <StatLabel>{t('dashboard.investedCapital')}</StatLabel>
+                <StatValue>{fmtCurrency(position.invested_capital)}</StatValue>
+              </StatCard>
+              <StatCard>
+                <StatLabel>{t('fundDetail.residualCommitment')}</StatLabel>
+                <StatValue>{fmtCurrency(position.residual_commitment)}</StatValue>
+              </StatCard>
+              <StatCard>
+                <StatLabel>{t('dashboard.distributions')}</StatLabel>
+                <StatValue>{fmtCurrency(position.distributions)}</StatValue>
+              </StatCard>
+              <StatCard>
+                <StatLabel>{t('dashboard.currentNav')}</StatLabel>
+                <StatValue $accent="teal">{fmtCurrency(position.current_nav)}</StatValue>
+              </StatCard>
+              <StatCard>
+                <StatLabel>{t('fundDetail.tvpi')}</StatLabel>
+                <StatValue $accent="gold">
+                  {position.invested_capital > 0
+                    ? `${((position.current_nav + position.distributions) / position.invested_capital).toFixed(2)}x`
+                    : '—'}
+                </StatValue>
+              </StatCard>
+            </StatsGrid>
+            <InfoLine>
+              {position.quota_class && <>{t('dashboard.quotaClass')}: {position.quota_class} | </>}
+              {t('fundDetail.calledPercent')}:{' '}
+              {position.committed_capital > 0
+                ? `${Math.round((position.invested_capital / position.committed_capital) * 100)}%`
+                : '—'}
+              {fund.irr != null && <> | {t('fundDetail.irr')}: {fund.irr.toFixed(2)}%</>}
+            </InfoLine>
+          </>
+        )}
+
+        {holdings.length > 0 && (
+          <Section>
+            <SectionHeading>{t('fundDetail.portfolio')}</SectionHeading>
+            <HoldingsTable>
+              <HoldingsThead>
+                <tr>
+                  <HoldingsTh>{t('fundDetail.holding')}</HoldingsTh>
+                  <HoldingsTh $align="right">{t('fundDetail.cost')}</HoldingsTh>
+                  <HoldingsTh $align="right">{t('fundDetail.fairValue')}</HoldingsTh>
+                </tr>
+              </HoldingsThead>
+              <tbody>
+                {holdings.map((h) => (
+                  <HoldingsTr key={h.id}>
+                    <HoldingsTd>{h.name}</HoldingsTd>
+                    <HoldingsTd $align="right">{fmtCurrency(h.cost)}</HoldingsTd>
+                    <HoldingsTd $align="right">{h.fair_value != null ? fmtCurrency(h.fair_value) : '—'}</HoldingsTd>
+                  </HoldingsTr>
+                ))}
+              </tbody>
+            </HoldingsTable>
+          </Section>
         )}
 
         <Section>

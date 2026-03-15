@@ -172,7 +172,11 @@
       "currentNav": "Current NAV",
       "navDate": "NAV Date",
       "noPositions": "No positions found.",
-      "viewDetails": "Details"
+      "viewDetails": "Details",
+      "quotaClass": "Class",
+      "residualCommitment": "Uncalled",
+      "calledPercent": "% Called",
+      "tvpi": "TVPI"
     },
     "fundDetail": {
       "backToDashboard": "Back to Dashboard",
@@ -183,10 +187,22 @@
       "type": "Type",
       "amount": "Amount",
       "description": "Description",
+      "irr": "Fund IRR",
+      "residualCommitment": "Uncalled Capital",
+      "tvpi": "TVPI",
+      "calledPercent": "% Called",
+      "portfolio": "Portfolio",
+      "holding": "Investment",
+      "cost": "Cost",
+      "fairValue": "Fair Value",
+      "noHoldings": "No portfolio holdings.",
       "callTypes": {
         "capital_call": "Capital Call",
         "distribution": "Distribution",
-        "recallable": "Recallable"
+        "recallable": "Recallable",
+        "management_fee": "Management Fee",
+        "expense": "Other Expenses",
+        "setup_cost": "Setup Costs"
       },
       "download": "Download",
       "noDocuments": "No documents available.",

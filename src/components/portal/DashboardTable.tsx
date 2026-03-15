@@ -13,7 +13,7 @@ const ScrollWrapper = styled.div`
 
 const Table = styled.table`
   width: 100%;
-  min-width: 700px;
+  min-width: 1000px;
   border-collapse: collapse;
   font-family: var(--font-body);
   font-size: 0.9rem;
@@ -127,11 +127,15 @@ export default function DashboardTable({ positions, locale }: DashboardTableProp
           <tr>
             <Th>{t('fund')}</Th>
             <Th>{t('type')}</Th>
+            <Th>{t('quotaClass')}</Th>
             <Th $align="right">{t('committedCapital')}</Th>
             <Th $align="right">{t('investedCapital')}</Th>
             <Th $align="right">{t('distributions')}</Th>
+            <Th $align="right">{t('residualCommitment')}</Th>
             <Th $align="right">{t('currentNav')}</Th>
             <Th>{t('navDate')}</Th>
+            <Th $align="right">{t('calledPercent')}</Th>
+            <Th $align="right">{t('tvpi')}</Th>
           </tr>
         </Thead>
         <tbody>
@@ -145,11 +149,23 @@ export default function DashboardTable({ positions, locale }: DashboardTableProp
               <Td>
                 <TypeBadge $type={pos.fund.fund_type}>{pos.fund.fund_type}</TypeBadge>
               </Td>
+              <Td>{pos.quota_class ?? '—'}</Td>
               <Td $align="right">{fmtCurrency(pos.committed_capital)}</Td>
               <Td $align="right">{fmtCurrency(pos.invested_capital)}</Td>
               <Td $align="right">{fmtCurrency(pos.distributions)}</Td>
+              <Td $align="right">{fmtCurrency(pos.residual_commitment)}</Td>
               <Td $align="right">{fmtCurrency(pos.current_nav)}</Td>
               <Td>{fmtDate(pos.nav_date)}</Td>
+              <Td $align="right">
+                {pos.committed_capital > 0
+                  ? `${Math.round((pos.invested_capital / pos.committed_capital) * 100)}%`
+                  : '—'}
+              </Td>
+              <Td $align="right">
+                {pos.invested_capital > 0
+                  ? `${((pos.current_nav + pos.distributions) / pos.invested_capital).toFixed(2)}x`
+                  : '—'}
+              </Td>
             </Tr>
           ))}
         </tbody>

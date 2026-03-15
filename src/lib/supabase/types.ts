@@ -48,6 +48,7 @@ export type Database = {
           vintage_year: number | null
           currency: string
           status: 'active' | 'closed' | 'fundraising'
+          irr: number | null
           created_at: string
         }
         Insert: {
@@ -58,6 +59,7 @@ export type Database = {
           vintage_year?: number | null
           currency?: string
           status?: 'active' | 'closed' | 'fundraising'
+          irr?: number | null
           created_at?: string
         }
         Update: {
@@ -68,6 +70,7 @@ export type Database = {
           vintage_year?: number | null
           currency?: string
           status?: 'active' | 'closed' | 'fundraising'
+          irr?: number | null
           created_at?: string
         }
         Relationships: []
@@ -82,6 +85,8 @@ export type Database = {
           distributions: number
           current_nav: number
           nav_date: string | null
+          quota_class: string | null
+          residual_commitment: number
           updated_at: string
         }
         Insert: {
@@ -93,6 +98,8 @@ export type Database = {
           distributions?: number
           current_nav?: number
           nav_date?: string | null
+          quota_class?: string | null
+          residual_commitment?: number
           updated_at?: string
         }
         Update: {
@@ -104,6 +111,8 @@ export type Database = {
           distributions?: number
           current_nav?: number
           nav_date?: string | null
+          quota_class?: string | null
+          residual_commitment?: number
           updated_at?: string
         }
         Relationships: []
@@ -114,7 +123,7 @@ export type Database = {
           investor_id: string
           fund_id: string
           call_date: string
-          call_type: 'capital_call' | 'distribution' | 'recallable'
+          call_type: 'capital_call' | 'distribution' | 'recallable' | 'management_fee' | 'expense' | 'setup_cost'
           amount: number
           description: string | null
           created_at: string
@@ -124,7 +133,7 @@ export type Database = {
           investor_id: string
           fund_id: string
           call_date: string
-          call_type: 'capital_call' | 'distribution' | 'recallable'
+          call_type: 'capital_call' | 'distribution' | 'recallable' | 'management_fee' | 'expense' | 'setup_cost'
           amount: number
           description?: string | null
           created_at?: string
@@ -222,6 +231,36 @@ export type Database = {
         }
         Relationships: []
       }
+      fund_holdings: {
+        Row: {
+          id: string
+          fund_id: string
+          name: string
+          cost: number
+          fair_value: number | null
+          valuation_date: string | null
+          created_at: string
+        }
+        Insert: {
+          id?: string
+          fund_id: string
+          name: string
+          cost?: number
+          fair_value?: number | null
+          valuation_date?: string | null
+          created_at?: string
+        }
+        Update: {
+          id?: string
+          fund_id?: string
+          name?: string
+          cost?: number
+          fair_value?: number | null
+          valuation_date?: string | null
+          created_at?: string
+        }
+        Relationships: []
+      }
     }
     Views: Record<string, never>
     Functions: Record<string, never>
@@ -237,3 +276,4 @@ export type FundPosition = Database['public']['Tables']['fund_positions']['Row']
 export type CapitalCall = Database['public']['Tables']['capital_calls']['Row']
 export type NavHistory = Database['public']['Tables']['nav_history']['Row']
 export type InvestorDocument = Database['public']['Tables']['investor_documents']['Row']
+export type FundHolding = Database['public']['Tables']['fund_holdings']['Row']

@@ -172,7 +172,11 @@
       "currentNav": "NAV attuale",
       "navDate": "Data NAV",
       "noPositions": "Nessuna posizione trovata.",
-      "viewDetails": "Dettagli"
+      "viewDetails": "Dettagli",
+      "quotaClass": "Classe",
+      "residualCommitment": "Residuo",
+      "calledPercent": "% Richiamato",
+      "tvpi": "TVPI"
     },
     "fundDetail": {
       "backToDashboard": "Torna alla dashboard",
@@ -183,10 +187,22 @@
       "type": "Tipo",
       "amount": "Importo",
       "description": "Descrizione",
+      "irr": "IRR Fondo",
+      "residualCommitment": "Impegno residuo",
+      "tvpi": "TVPI",
+      "calledPercent": "% Richiamato",
+      "portfolio": "Portafoglio",
+      "holding": "Investimento",
+      "cost": "Costo",
+      "fairValue": "Fair Value",
+      "noHoldings": "Nessun investimento in portafoglio.",
       "callTypes": {
         "capital_call": "Richiamo capitale",
         "distribution": "Distribuzione",
-        "recallable": "Richiamabile"
+        "recallable": "Richiamabile",
+        "management_fee": "Commissione di gestione",
+        "expense": "Altre spese",
+        "setup_cost": "Spese di istituzione"
       },
       "download": "Scarica",
       "noDocuments": "Nessun documento disponibile.",
