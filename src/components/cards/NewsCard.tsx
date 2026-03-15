@@ -11,6 +11,9 @@ const Card = styled.article`
   border: 1px solid ${colors.border};
   border-radius: 8px;
   overflow: hidden;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
   transition: transform 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease;
 
   &:hover {
@@ -95,6 +98,7 @@ const StyledLink = styled(Link)`
   text-decoration: none;
   color: inherit;
   display: block;
+  height: 100%;
 `
 
 function truncateWords(text: string, maxWords: number): string {

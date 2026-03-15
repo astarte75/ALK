@@ -21,7 +21,7 @@ export const FooterMain = styled.div`
   }
 
   ${mq.lg} {
-    grid-template-columns: 1.8fr 1fr 0.8fr 1fr 0.6fr;
+    grid-template-columns: 1.8fr 1fr 0.8fr 1fr 1fr;
   }
 `
 
@@ -65,6 +65,7 @@ export const CompanyInfoLine = styled.span`
 export const FooterColumn = styled.div`
   display: flex;
   flex-direction: column;
+  align-items: flex-start;
   gap: var(--space-3);
 `
 
@@ -76,6 +77,8 @@ export const FooterHeading = styled.h4`
   text-transform: uppercase;
   letter-spacing: 0.1em;
   margin-bottom: var(--space-1);
+  text-align: left;
+  width: 100%;
 `
 
 export const FooterText = styled.p`
@@ -130,6 +133,11 @@ export const PartnersList = styled.div`
     height: 28px;
     width: auto;
     filter: brightness(0) invert(1);
+    transition: filter 0.3s ease;
+  }
+
+  a:hover img {
+    filter: brightness(0) saturate(100%) invert(68%) sepia(64%) saturate(416%) hue-rotate(127deg) brightness(92%) contrast(92%);
   }
 `
 
@@ -138,28 +146,20 @@ export const PartnersList = styled.div`
 export const SocialLinks = styled.div`
   display: flex;
   gap: var(--space-4);
-  align-items: center;
 `
 
 export const SocialLink = styled.a`
   display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  border: 1px solid var(--color-border);
   color: var(--color-text-secondary);
-  transition: color 0.2s ease, border-color 0.2s ease;
+  transition: color 0.2s ease;
 
   &:hover {
     color: var(--color-accent-teal);
-    border-color: var(--color-accent-teal);
   }
 
   svg {
-    width: 18px;
-    height: 18px;
+    width: 24px;
+    height: 24px;
   }
 `
 
