@@ -48,7 +48,7 @@ src/app/[locale]/societa/      # Chi Siamo (timeline, mission, values) — from 
 src/app/[locale]/corporate-governance/ # Board, sindaci, control functions — from Contentful sections JSON
 src/app/[locale]/sostenibilita/ # ESG pillars, SFDR, roadmap, PDFs — from Contentful sections JSON
 src/app/[locale]/contatti/     # Contact form + office locations
-src/app/[locale]/culture/      # Life at Alkemia
+src/app/[locale]/culture/      # Life at Alkemia (linked in header as "Life at Alkemia")
 src/app/[locale]/privacy/      # Privacy Notice (from Contentful rich text)
 src/app/[locale]/cookie-policy/ # Cookie Policy (from Contentful rich text)
 src/app/api/revalidate/        # Contentful webhook handler
@@ -101,7 +101,7 @@ All editorial content is managed via Contentful — editable without deploy.
 
 ### Navigation Structure
 - **Chi siamo** (dropdown) → Società, Corporate Governance
-- Investment Platforms, Portfolio, Team, News, Sostenibilità, Contatti
+- Investment Platforms, Portfolio, Team, News, Sostenibilità, Life at Alkemia, Contatti
 
 ### Portfolio Sectors
 ICT, Digital Services, Food, Agri-tech, Cybersecurity, Mobility, Industrial, Energy, Fintech, Other
