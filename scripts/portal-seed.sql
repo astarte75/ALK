@@ -21,7 +21,7 @@ INSERT INTO funds (id, name, slug, fund_type, vintage_year, currency, status) VA
 -- TODO: Replace this UUID with the actual auth.users UUID from Supabase Dashboard
 -- ============================================================
 INSERT INTO investors (id, auth_user_id, full_name, email, company, fiscal_code, language) VALUES
-  ('d4e5f6a7-b8c9-4d0e-1f2a-3b4c5d6e7f80', '00000000-0000-0000-0000-000000000000', 'Marco Rossi', 'marco.rossi@example.com', 'Rossi Investimenti S.r.l.', 'RSSMRC80A01H501Z', 'it');
+  ('d4e5f6a7-b8c9-4d0e-1f2a-3b4c5d6e7f80', '7647908d-cb17-44eb-909a-c863941d2897', 'Marco Rossi', 'marco.rossi@example.com', 'Rossi Investimenti S.r.l.', 'RSSMRC80A01H501Z', 'it');
 
 -- ============================================================
 -- FUND POSITIONS (1 per fund for the sample investor)
