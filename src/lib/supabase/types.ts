@@ -6,9 +6,9 @@ export type Database = {
       investors: {
         Row: {
           id: string
-          auth_user_id: string
+          auth_user_id: string | null
           full_name: string
-          email: string
+          email: string | null
           company: string | null
           fiscal_code: string | null
           language: string
@@ -17,9 +17,9 @@ export type Database = {
         }
         Insert: {
           id?: string
-          auth_user_id: string
+          auth_user_id?: string | null
           full_name: string
-          email: string
+          email?: string | null
           company?: string | null
           fiscal_code?: string | null
           language?: string
