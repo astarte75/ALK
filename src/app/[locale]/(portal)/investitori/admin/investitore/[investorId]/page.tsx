@@ -113,6 +113,7 @@ export default async function AdminInvestorViewPage({
         <DashboardTable
           positions={positions}
           locale={locale}
+          fundLinkPrefix={`/investitori/admin/investitore/${investorId}/fondi`}
         />
       </Container>
     </>

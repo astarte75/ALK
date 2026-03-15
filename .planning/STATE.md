@@ -28,10 +28,10 @@ progress:
 
 ## Current Position
 
-**Phase:** 7 — Investor Portal (COMPLETE)
-**Plan:** 4/4 complete
-**Status:** Complete — ready for Phase 8
-**Last action:** Completed Phase 7 (Supabase auth, login, dashboard, fund detail, NAV chart, documents, route groups)
+**Phase:** 8 — Data Import & Verification (3/4 — 08-04 deferred post-launch)
+**Plan:** 3/4 complete (08-04 deferred)
+**Status:** Phase 8 effectively complete — ready for Phase 9
+**Last action:** Admin dashboard with operations, investor impersonation, consistency checks (cd1a75f)
 
 ```
 Progress: [############░░░░░░░░] 64%
@@ -43,8 +43,8 @@ Phase 4  Core Pages          [##########] 5/5  ✓
 Phase 5  Animation Layer     [##########] 2/2  ✓
 Phase 6  Site Review & Polish[##########] 4/4  ✓
 Phase 7  Investor Portal     [##########] 4/4  ✓
-Phase 8  Data Import & Verify[░░░░░░░░░░] 0/4  ← next
-Phase 9  General Review      [░░░░░░░░░░] 0/?
+Phase 8  Data Import & Verify[########░░] 3/4  ✓ (08-04 deferred)
+Phase 9  General Review      [░░░░░░░░░░] 0/?  ← next
 Phase 10 SEO & Performance   [░░░░░░░░░░] 0/?
 Phase 11 Prod Hardening      [░░░░░░░░░░] 0/?
 ```
@@ -132,6 +132,7 @@ Phase 11 Prod Hardening      [░░░░░░░░░░] 0/?
 - [x] ~~Upload news featured images~~ (done: all 17 articles)
 - [ ] Upload fund documents (prospetto CONSOB, etc.) to Contentful and link to fund entries (Phase 8)
 - [ ] Populate fund `targetSectors` and `teamMembers` fields in Contentful (Phase 8)
+- [ ] E2E verification: associare investitore reale ad account Auth e verificare dati dashboard (Plan 08-04, post-launch)
 - [ ] Decide Alkemia brand accent color (blocking Phase 1 close)
 - [ ] Confirm font licensing (blocking Phase 1 close)
 - [ ] Create Contentful space with `it-IT` and `en-US` locales (blocking Phase 2 start)

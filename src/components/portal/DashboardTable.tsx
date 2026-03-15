@@ -94,9 +94,11 @@ type PositionWithFund = FundPosition & {
 interface DashboardTableProps {
   positions: PositionWithFund[]
   locale: string
+  fundLinkPrefix?: string
 }
 
-export default function DashboardTable({ positions, locale }: DashboardTableProps) {
+export default function DashboardTable({ positions, locale, fundLinkPrefix }: DashboardTableProps) {
+  const basePath = fundLinkPrefix ?? '/investitori/fondi'
   const t = useTranslations('portal.dashboard')
 
   if (positions.length === 0) {
@@ -142,7 +144,7 @@ export default function DashboardTable({ positions, locale }: DashboardTableProp
           {positions.map((pos) => (
             <Tr key={pos.id}>
               <Td>
-                <FundLink href={`/investitori/fondi/${pos.fund.slug}`}>
+                <FundLink href={`${basePath}/${pos.fund.slug}`}>
                   {pos.fund.name}
                 </FundLink>
               </Td>
