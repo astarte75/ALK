@@ -28,7 +28,7 @@ INSERT INTO investors (id, auth_user_id, full_name, email, company, fiscal_code,
 -- ============================================================
 INSERT INTO fund_positions (investor_id, fund_id, committed_capital, invested_capital, distributions, current_nav, nav_date) VALUES
   ('d4e5f6a7-b8c9-4d0e-1f2a-3b4c5d6e7f80', 'a1b2c3d4-e5f6-4a7b-8c9d-0e1f2a3b4c5d', 500000, 425000, 150000, 680000, '2025-12-31'),
-  ('d4e5f6a7-b8c9-4d0e-1f2a-3b4c5d6e7f80', 'b2c3d4e5-f6a7-4b8c-9d0e-1f2a3b4c5d6e', 250000, 175000, 25000, 210000, '2025-12-31'),
+  ('d4e5f6a7-b8c9-4d0e-1f2a-3b4c5d6e7f80', 'b2c3d4e5-f6a7-4b8c-9d0e-1f2a3b4c5d6e', 250000, 175000, 0, 210000, '2025-12-31'),
   ('d4e5f6a7-b8c9-4d0e-1f2a-3b4c5d6e7f80', 'c3d4e5f6-a7b8-4c9d-0e1f-2a3b4c5d6e7f', 300000, 75000, 0, 78000, '2025-12-31');
 
 -- ============================================================

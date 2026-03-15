@@ -5,6 +5,7 @@ import Link from 'next/link'
 import styled from 'styled-components'
 import { useTranslations } from 'next-intl'
 import { logout } from '@/app/[locale]/(portal)/investitori/actions'
+import LanguageSwitcher from '@/components/layout/LanguageSwitcher'
 
 const HeaderBar = styled.header`
   position: sticky;
@@ -23,6 +24,12 @@ const LogoLink = styled(Link)`
   display: flex;
   align-items: center;
   text-decoration: none;
+`
+
+const RightSection = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 1rem;
 `
 
 const LogoutButton = styled.button`
@@ -54,16 +61,20 @@ export default function PortalHeader({ showLogout = false }: PortalHeaderProps) 
         <Image
           src="/images/alkemia-logo-white.png"
           alt="Alkemia Capital"
-          width={140}
+          width={32}
           height={32}
           priority
+          style={{ height: 32, width: 'auto' }}
         />
       </LogoLink>
-      {showLogout && (
-        <form action={logout}>
-          <LogoutButton type="submit">{t('logout')}</LogoutButton>
-        </form>
-      )}
+      <RightSection>
+        <LanguageSwitcher />
+        {showLogout && (
+          <form action={logout}>
+            <LogoutButton type="submit">{t('logout')}</LogoutButton>
+          </form>
+        )}
+      </RightSection>
     </HeaderBar>
   )
 }

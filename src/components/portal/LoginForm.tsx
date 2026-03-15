@@ -165,9 +165,10 @@ export default function LoginForm({ locale }: LoginFormProps) {
           <Image
             src="/images/alkemia-logo-white.png"
             alt="Alkemia Capital"
-            width={160}
-            height={36}
+            width={72}
+            height={72}
             priority
+            style={{ height: 72, width: 'auto' }}
           />
         </LogoContainer>
         <Title>{t('title')}</Title>

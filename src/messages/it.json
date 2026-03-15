@@ -144,7 +144,7 @@
   },
   "cookie": {
     "title": "Informativa sui Cookie",
-    "description": "Questo sito utilizza cookie tecnici necessari al funzionamento. Per maggiori informazioni, consulta la nostra {cookiePolicy}.",
+    "description": "Questo sito utilizza cookie tecnici necessari al funzionamento. Per maggiori informazioni, consulta la nostra <cookiePolicy>Cookie Policy</cookiePolicy>.",
     "accept": "Accetta",
     "reject": "Rifiuta",
     "cookiePolicyLink": "Cookie Policy"

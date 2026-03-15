@@ -57,6 +57,9 @@ export default function CustomCursor() {
     // Skip entirely on touch devices
     if (window.matchMedia('(hover: none)').matches) return
 
+    // Signal to CSS that custom cursor is active
+    document.body.setAttribute('data-custom-cursor', '')
+
     let mouseX = -100
     let mouseY = -100
 
@@ -84,6 +87,7 @@ export default function CustomCursor() {
 
     return () => {
       cancelAnimationFrame(rafId.current)
+      document.body.removeAttribute('data-custom-cursor')
       document.removeEventListener('mousemove', onMouseMove)
       document.removeEventListener('mouseover', handleOver)
       document.removeEventListener('mouseout', handleOut)

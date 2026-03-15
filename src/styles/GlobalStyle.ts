@@ -68,10 +68,16 @@ const GlobalStyle = createGlobalStyle`
     padding-top: var(--header-height);
   }
 
-  /* Hide default cursor on desktop when custom cursor is active */
+  /* Hide default cursor on desktop only when custom cursor component is mounted */
   @media (hover: hover) and (pointer: fine) {
-    body { cursor: none; }
-    a, button, input, textarea, select, [data-cursor-hover], [role="button"] { cursor: none; }
+    body[data-custom-cursor] { cursor: none; }
+    body[data-custom-cursor] a,
+    body[data-custom-cursor] button,
+    body[data-custom-cursor] input,
+    body[data-custom-cursor] textarea,
+    body[data-custom-cursor] select,
+    body[data-custom-cursor] [data-cursor-hover],
+    body[data-custom-cursor] [role="button"] { cursor: none; }
   }
 `
 

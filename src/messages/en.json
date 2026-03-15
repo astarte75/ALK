@@ -144,7 +144,7 @@
   },
   "cookie": {
     "title": "Cookie Notice",
-    "description": "This site uses technical cookies necessary for its operation. For more information, see our {cookiePolicy}.",
+    "description": "This site uses technical cookies necessary for its operation. For more information, see our <cookiePolicy>Cookie Policy</cookiePolicy>.",
     "accept": "Accept",
     "reject": "Reject",
     "cookiePolicyLink": "Cookie Policy"
