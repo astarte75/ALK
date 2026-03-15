@@ -52,14 +52,14 @@ const LogoContainer = styled.div`
   position: absolute;
   top: ${spacing[3]};
   right: ${spacing[3]};
-  width: 48px;
-  height: 48px;
+  width: 72px;
+  height: 40px;
   display: flex;
   align-items: center;
   justify-content: center;
   background: rgba(255, 255, 255, 0.95);
-  border-radius: 8px;
-  padding: 6px;
+  border-radius: 6px;
+  padding: 4px 8px;
   overflow: hidden;
 `
 
@@ -157,15 +157,15 @@ export default function PortfolioCard({ company }: PortfolioCardProps) {
             <Image
               src={logoUrl}
               alt={name}
-              width={36}
-              height={36}
-              style={{ objectFit: 'contain', width: '36px', height: '36px' }}
+              width={56}
+              height={28}
+              style={{ objectFit: 'contain', width: '100%', height: '100%' }}
             />
           ) : (
             <LogoFallback>{name.charAt(0)}</LogoFallback>
           )}
         </LogoContainer>
-        <Name style={{ paddingRight: '60px' }}>{name}</Name>
+        <Name style={{ paddingRight: '84px' }}>{name}</Name>
         {sector && <Sector>{sector}</Sector>}
         {shortDescription && <Description>{shortDescription}</Description>}
         <BottomRow>
