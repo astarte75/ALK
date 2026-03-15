@@ -5,11 +5,11 @@ milestone_name: milestone
 status: executing
 last_updated: "2026-03-15T12:00:00Z"
 progress:
-  total_phases: 7
+  total_phases: 10
   completed_phases: 5
   total_plans: 15
   completed_plans: 15
-  percent: 71
+  percent: 50
 ---
 
 # Project State: Alkemia Capital Website
@@ -31,18 +31,21 @@ progress:
 **Phase:** 5 — Animation Layer (COMPLETE)
 **Plan:** 2/2 complete
 **Status:** Complete — ready for Phase 6
-**Last action:** Completed Phase 5 execution (animated homepage with GSAP + Lenis)
+**Last action:** Completed Phase 5 + roadmap restructure (added Phases 6-8, renumbered)
 
 ```
-Progress: [####################░░░░░░░░] 71%
+Progress: [##########░░░░░░░░░░] 50%
 
-Phase 1 [############░░░░░░░░] 2/3 plans complete
-Phase 2 [####################] 3/3 plans complete
-Phase 3 [####################] 3/3 plans complete
-Phase 4 [####################] 5/5 plans complete
-Phase 5 [####################] 2/2 plans complete
-Phase 6 [░░░░░░░░░░░░░░░░░░░░] Not started
-Phase 7 [░░░░░░░░░░░░░░░░░░░░] Not started
+Phase 1  Foundation          [########░░] 2/3  ✓
+Phase 2  Content Infra       [##########] 3/3  ✓
+Phase 3  Layout & Legal      [##########] 3/3  ✓
+Phase 4  Core Pages          [##########] 5/5  ✓
+Phase 5  Animation Layer     [##########] 2/2  ✓
+Phase 6  Site Review & Polish[░░░░░░░░░░] 0/?  ← next
+Phase 7  Investor Portal     [░░░░░░░░░░] 0/?
+Phase 8  General Review      [░░░░░░░░░░] 0/?
+Phase 9  SEO & Performance   [░░░░░░░░░░] 0/?
+Phase 10 Prod Hardening      [░░░░░░░░░░] 0/?
 ```
 
 ---
@@ -157,11 +160,11 @@ None currently.
 2. Read `.planning/STATE.md` (this file) for decisions, pitfalls, and todos
 3. Run `/gsd:plan-phase [N]` to get the execution plan for the next phase
 
-**Phase sequence:** 1 → 2 → 3 → 4 → 5 → 6 → 7
+**Phase sequence:** 1 → 2 → 3 → 4 → 5 → 6 → 7 → 8 → 9 → 10
 
 **Current milestone:** v1 (initial launch at alkemiacapital.com)
 
 ---
 
 *State initialized: 2026-03-14*
-*Last updated: 2026-03-15 after completing Phase 5 (Animation Layer)*
+*Last updated: 2026-03-15 after roadmap restructure (Phases 6-8 added, SEO→9, Hardening→10)*

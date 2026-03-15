@@ -2,8 +2,8 @@
 
 **Project:** Alkemia Capital — premium PE/VC corporate website (replica of hgcapital.com)
 **Created:** 2026-03-14
-**Granularity:** Standard (5-8 phases)
-**Coverage:** 68/68 requirements mapped
+**Granularity:** Standard (10 phases)
+**Coverage:** 68/68 v1 requirements mapped + new Phase 7 (Investor Portal) and Phase 6/8 (review phases)
 
 ---
 
@@ -14,8 +14,11 @@
 - [x] **Phase 3: Layout Shell & Legal** — Header, footer, cookie consent, GDPR pages (completed 2026-03-14)
 - [x] **Phase 4: Core Pages** — All site pages with static content, no animations (completed 2026-03-14)
 - [x] **Phase 5: Animation Layer** — GSAP, Lenis, video hero, scroll-triggered reveals (completed 2026-03-15)
-- [ ] **Phase 6: SEO & Performance** — Metadata, structured data, sitemap, Lighthouse 90+
-- [ ] **Phase 7: Production Hardening** — Accessibility audit, ISR webhooks, error states, cross-browser
+- [ ] **Phase 6: Site Review & Layout Polish** — Full site review, layout fixes, visual polish, UX improvements
+- [ ] **Phase 7: Investor Portal** — Authenticated area for investors to check fund positions
+- [ ] **Phase 8: General Review & Refinements** — Cross-cutting improvements, edge cases, content fine-tuning
+- [ ] **Phase 9: SEO & Performance** — Metadata, structured data, sitemap, Lighthouse 90+
+- [ ] **Phase 10: Production Hardening** — Accessibility audit, ISR webhooks, error states, cross-browser
 
 ---
 
@@ -28,8 +31,11 @@
 | 3. Layout Shell & Legal | 3/3 | Complete | 2026-03-14 |
 | 4. Core Pages | 5/5 | Complete | 2026-03-14 |
 | 5. Animation Layer | 2/2 | Complete | 2026-03-15 |
-| 6. SEO & Performance | 0/? | Not started | - |
-| 7. Production Hardening | 0/? | Not started | - |
+| 6. Site Review & Layout Polish | 0/? | Not started | - |
+| 7. Investor Portal | 0/? | Not started | - |
+| 8. General Review & Refinements | 0/? | Not started | - |
+| 9. SEO & Performance | 0/? | Not started | - |
+| 10. Production Hardening | 0/? | Not started | - |
 
 ---
 
@@ -102,7 +108,7 @@ Plans:
 - [ ] 03-02-PLAN.md — Cookie consent modal (GDPR Italy) + Privacy/Cookie Policy pages (wave 2, depends on 03-01)
 - [x] 03-03-PLAN.md — Custom cursor on desktop (wave 1, parallel with 03-01)
 
-**Note:** LEGAL-04 (Accessibility Statement) is deferred to Phase 7.
+**Note:** LEGAL-04 (Accessibility Statement) is deferred to Phase 10.
 
 ---
 
@@ -159,9 +165,62 @@ Plans:
 
 ---
 
-### Phase 6: SEO & Performance
+### Phase 6: Site Review & Layout Polish
+**Goal**: Every page of the site is reviewed for layout consistency, spacing, typography, responsive behavior, and visual polish. Issues are fixed, and the overall UX is refined.
+**Depends on**: Phase 5 (all pages and animations must be live)
+**Requirements**: REVIEW-01, REVIEW-02, REVIEW-03, REVIEW-04
+**Success Criteria** (what must be TRUE):
+  1. Every page renders correctly at 320px, 768px, 1024px, 1440px, and 2560px without layout breaks, overflow, or misaligned elements
+  2. Typography hierarchy is consistent across all pages (heading sizes, body spacing, accent usage)
+  3. Navigation flows work end-to-end: a user can reach every page from the header/footer and return to the homepage
+  4. Visual consistency: card styles, section spacing, color usage, and dark theme contrast are uniform across all pages
+  5. No orphaned pages, broken links, or empty content sections exist
+**Plans**: TBD
+
+---
+
+### Phase 7: Investor Portal
+**Goal**: Authenticated investors can log in to a dedicated area and view their fund positions at Alkemia Capital. The portal is secure, GDPR-compliant, and matches the site's premium aesthetic.
+**Depends on**: Phase 6 (site layout must be polished before adding a new section)
+**Requirements**: PORTAL-01, PORTAL-02, PORTAL-03, PORTAL-04, PORTAL-05, PORTAL-06
+**Success Criteria** (what must be TRUE):
+  1. An investor can navigate to `/investitori` (or `/en/investors`), see a login page, and authenticate with credentials
+  2. After login, the investor sees a personalized dashboard showing their fund positions (fund name, committed capital, invested, distributions, NAV)
+  3. The portal is protected: unauthenticated users are redirected to the login page; no fund data is exposed in client-side JS or API responses without valid session
+  4. The portal UI matches the dark premium aesthetic of the rest of the site
+  5. Session management is secure (httpOnly cookies, CSRF protection, session expiry)
+  6. The portal works in both Italian and English
+**Plans**: TBD
+
+**Pitfall gates:**
+- Authentication must NOT use client-side-only auth (no localStorage tokens)
+- Fund position data source must be defined (API? Contentful? Database?)
+- GDPR: investor personal data handling must comply with Italian privacy regulations
+- Portal must be excluded from SSG/ISR — always server-rendered or client-fetched behind auth
+
+**External dependencies:**
+- Fund position data source and format (blocking)
+- Authentication provider decision (NextAuth.js, Authentik, custom?)
+- Investor credentials provisioning workflow
+
+---
+
+### Phase 8: General Review & Refinements
+**Goal**: Cross-cutting review of the entire site including the investor portal. Fix edge cases, improve interactions, fine-tune content, and address any accumulated issues.
+**Depends on**: Phase 7 (investor portal must be live)
+**Requirements**: REFINE-01, REFINE-02, REFINE-03
+**Success Criteria** (what must be TRUE):
+  1. All accumulated issues from Phase 6-7 reviews are resolved
+  2. Content is accurate and up-to-date in both languages (verified against Contentful)
+  3. User flows (homepage → portfolio → detail, homepage → investor portal → dashboard) work smoothly end-to-end
+  4. No console errors or warnings in production build
+**Plans**: TBD
+
+---
+
+### Phase 9: SEO & Performance
 **Goal**: Every page is discoverable by search engines with proper metadata, structured data, and hreflang; the site scores 90+ on all Lighthouse metrics.
-**Depends on**: Phase 4 (pages must exist to add metadata), Phase 5 (performance score measured after animations)
+**Depends on**: Phase 8 (all content and features finalized before measuring performance)
 **Requirements**: SEO-01, SEO-02, SEO-03, SEO-04, SEO-05
 **Success Criteria** (what must be TRUE):
   1. Every page has a unique `<title>`, `<meta description>`, Open Graph tags, and a canonical URL visible in page source
@@ -173,16 +232,16 @@ Plans:
 
 ---
 
-### Phase 7: Production Hardening
+### Phase 10: Production Hardening
 **Goal**: The site is production-ready: WCAG 2.1 AA compliant, error states handled, on-demand ISR working, and cross-browser tested — ready for the alkemiacapital.com domain.
-**Depends on**: Phase 6 (Lighthouse and SEO baseline established)
+**Depends on**: Phase 9 (Lighthouse and SEO baseline established)
 **Requirements**: A11Y-01, A11Y-02, A11Y-03, A11Y-04
 **Success Criteria** (what must be TRUE):
   1. All text on the dark theme passes WCAG 2.1 AA contrast ratio (4.5:1 for body text, 3:1 for large text) — verified with an automated contrast checker
   2. A user navigating the entire site using only the keyboard (Tab, Shift+Tab, Enter, Escape) can access every interactive element with visible focus indicators
   3. A screen reader (VoiceOver on Safari or NVDA on Chrome) can navigate portfolio, team, and news grids and announce card content meaningfully
   4. Publishing a content change in Contentful triggers a page revalidation within 60 seconds without a full rebuild; the updated content is visible on the live site
-  5. All animated pages render correctly on Safari (latest), Chrome (latest), and Firefox (latest), including the Vimeo hero and ScrollTrigger sections
+  5. All animated pages render correctly on Safari (latest), Chrome (latest), and Firefox (latest), including the video hero and ScrollTrigger sections
 **Plans**: TBD
 
 ---
@@ -194,13 +253,16 @@ Plans:
 | 1 - Foundation | FOUND-01, FOUND-02, FOUND-03, FOUND-05, FOUND-06, FOUND-07 | 6 |
 | 2 - Content Infrastructure | FOUND-04, FOUND-08 | 2 |
 | 3 - Layout Shell & Legal | NAV-01, NAV-02, NAV-03, NAV-04, LEGAL-01, LEGAL-02, LEGAL-03, LEGAL-04 | 8 |
-| 4 - Core Pages | HOME-01, HOME-05, HOME-06, HOME-07, PORT-01, PORT-02, PORT-03, PORT-04, PORT-05, PORT-06, TEAM-01, TEAM-02, TEAM-03, NEWS-01, NEWS-02, NEWS-03, NEWS-04, NEWS-05, INVP-01, INVP-02, INVP-03, INVP-04, ABOUT-01, ABOUT-02, ABOUT-03, ABOUT-04, GOV-01, GOV-02, GOV-03, GOV-04, ESG-01, ESG-02, ESG-03, ESG-04, CONT-01, CONT-02, CONT-03, CULT-01, CULT-02 | 39 |
+| 4 - Core Pages | HOME-01, HOME-05, HOME-06, HOME-07, PORT-01–06, TEAM-01–03, NEWS-01–05, INVP-01–04, ABOUT-01–04, GOV-01–04, ESG-01–04, CONT-01–03, CULT-01–02 | 39 |
 | 5 - Animation Layer | HOME-01, HOME-02, HOME-03, HOME-04, HOME-05, HOME-06, HOME-07, HOME-08 | 8 |
-| 6 - SEO & Performance | SEO-01, SEO-02, SEO-03, SEO-04, SEO-05 | 5 |
-| 7 - Production Hardening | A11Y-01, A11Y-02, A11Y-03, A11Y-04 | 4 |
-| **Total** | | **68** |
+| 6 - Site Review & Layout Polish | REVIEW-01, REVIEW-02, REVIEW-03, REVIEW-04 | 4 |
+| 7 - Investor Portal | PORTAL-01, PORTAL-02, PORTAL-03, PORTAL-04, PORTAL-05, PORTAL-06 | 6 |
+| 8 - General Review & Refinements | REFINE-01, REFINE-02, REFINE-03 | 3 |
+| 9 - SEO & Performance | SEO-01, SEO-02, SEO-03, SEO-04, SEO-05 | 5 |
+| 10 - Production Hardening | A11Y-01, A11Y-02, A11Y-03, A11Y-04 | 4 |
+| **Total** | | **85** |
 
-**Coverage: 68/68 v1 requirements mapped. No orphans.**
+**Coverage: 68/68 v1 requirements + 17 new requirements mapped. No orphans.**
 
 ---
 
@@ -213,9 +275,11 @@ These must be resolved before the indicated phase can close:
 | Alkemia brand accent color decision | Phase 1 close | User |
 | Font licensing decision (Inter or custom) | Phase 1 close | User |
 | Contentful space created with IT/EN locales | Phase 2 start | User |
-| Alkemia Vimeo account and hero video URL | Phase 5 close | User |
+| Fund position data source and format | Phase 7 start | User |
+| Authentication provider decision | Phase 7 start | User |
+| Investor credentials provisioning workflow | Phase 7 close | User |
 
 ---
 
 *Created: 2026-03-14*
-*Last updated: 2026-03-15 after completing Phase 5*
+*Last updated: 2026-03-15 after roadmap restructure (added Phases 6-8, renumbered SEO→9, Hardening→10)*

@@ -105,6 +105,28 @@ Requirements for initial release. Each maps to roadmap phases.
 - [x] **LEGAL-03**: Cookie Notice page with cookie categories
 - [ ] **LEGAL-04**: Accessibility statement page
 
+### Site Review & Layout Polish
+
+- [ ] **REVIEW-01**: All pages render correctly at 320px, 768px, 1024px, 1440px, 2560px without layout breaks
+- [ ] **REVIEW-02**: Typography hierarchy is consistent across all pages
+- [ ] **REVIEW-03**: Navigation flows work end-to-end (every page reachable, no broken links)
+- [ ] **REVIEW-04**: Visual consistency (card styles, section spacing, color usage, dark theme contrast)
+
+### Investor Portal
+
+- [ ] **PORTAL-01**: Login page at `/investitori` (IT) / `/en/investors` (EN) with authentication
+- [ ] **PORTAL-02**: Personalized investor dashboard showing fund positions (fund name, committed capital, invested, distributions, NAV)
+- [ ] **PORTAL-03**: Protected routes — unauthenticated users redirected to login, no fund data exposed without valid session
+- [ ] **PORTAL-04**: Portal UI matches dark premium aesthetic of the rest of the site
+- [ ] **PORTAL-05**: Secure session management (httpOnly cookies, CSRF protection, session expiry)
+- [ ] **PORTAL-06**: Portal works in both Italian and English
+
+### General Review & Refinements
+
+- [ ] **REFINE-01**: All accumulated issues from Phase 6-7 reviews resolved
+- [ ] **REFINE-02**: Content accurate and up-to-date in both languages
+- [ ] **REFINE-03**: User flows work smoothly end-to-end (homepage → portfolio → detail, homepage → portal → dashboard)
+
 ### SEO & Performance
 
 - [ ] **SEO-01**: Meta tags, Open Graph, and canonical URLs on all pages
@@ -131,7 +153,7 @@ Deferred to future release. Tracked but not in current roadmap.
 - **V2-03**: Global site search with autocomplete
 - **V2-04**: Masonry/variable-size card layout for insights
 - **V2-05**: Glassmorphism/noise texture overlays for visual depth
-- **V2-06**: Gated investor portal (external system integration)
+- ~~**V2-06**: Gated investor portal~~ — **Moved to v1 Phase 7**
 - **V2-07**: Multi-office map integration (Google Maps embed)
 - **V2-08**: Diversity & Inclusion sub-page
 
@@ -143,7 +165,7 @@ Deferred to future release. Tracked but not in current roadmap.
 | Blog commenting | Not a media company; zero PE value, moderation burden |
 | Real-time chat widget | Devalues institutional positioning |
 | E-commerce / payments | Not applicable to PE fundraising |
-| User accounts / login | Security burden disproportionate; investor portal is external |
+| ~~User accounts / login~~ | ~~Security burden~~ — **Now in scope for Investor Portal (Phase 7)** |
 | AI chatbot | Unpredictable brand risk for financial firm |
 | Social media feed embeds | Break easily, slow, undermine editorial control |
 | Interactive financial calculators | Not a retail product; confuses positioning |
@@ -214,21 +236,34 @@ Which phases cover which requirements. Updated during roadmap creation.
 | LEGAL-02 | Phase 3 | Complete |
 | LEGAL-03 | Phase 3 | Complete |
 | LEGAL-04 | Phase 3 | Pending |
-| SEO-01 | Phase 6 | Pending |
-| SEO-02 | Phase 6 | Pending |
-| SEO-03 | Phase 6 | Pending |
-| SEO-04 | Phase 6 | Pending |
-| SEO-05 | Phase 6 | Pending |
-| A11Y-01 | Phase 7 | Pending |
-| A11Y-02 | Phase 7 | Pending |
-| A11Y-03 | Phase 7 | Pending |
-| A11Y-04 | Phase 7 | Pending |
+| REVIEW-01 | Phase 6 | Pending |
+| REVIEW-02 | Phase 6 | Pending |
+| REVIEW-03 | Phase 6 | Pending |
+| REVIEW-04 | Phase 6 | Pending |
+| PORTAL-01 | Phase 7 | Pending |
+| PORTAL-02 | Phase 7 | Pending |
+| PORTAL-03 | Phase 7 | Pending |
+| PORTAL-04 | Phase 7 | Pending |
+| PORTAL-05 | Phase 7 | Pending |
+| PORTAL-06 | Phase 7 | Pending |
+| REFINE-01 | Phase 8 | Pending |
+| REFINE-02 | Phase 8 | Pending |
+| REFINE-03 | Phase 8 | Pending |
+| SEO-01 | Phase 9 | Pending |
+| SEO-02 | Phase 9 | Pending |
+| SEO-03 | Phase 9 | Pending |
+| SEO-04 | Phase 9 | Pending |
+| SEO-05 | Phase 9 | Pending |
+| A11Y-01 | Phase 10 | Pending |
+| A11Y-02 | Phase 10 | Pending |
+| A11Y-03 | Phase 10 | Pending |
+| A11Y-04 | Phase 10 | Pending |
 
 **Coverage:**
-- v1 requirements: 68 total
-- Mapped to phases: 68
+- v1 requirements: 85 total (68 original + 17 new)
+- Mapped to phases: 85
 - Unmapped: 0
 
 ---
 *Requirements defined: 2026-03-14*
-*Last updated: 2026-03-14 after roadmap creation — traceability complete*
+*Last updated: 2026-03-15 after roadmap restructure — added REVIEW, PORTAL, REFINE requirements; renumbered SEO→Phase 9, A11Y→Phase 10*
