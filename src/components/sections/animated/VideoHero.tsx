@@ -63,6 +63,7 @@ const Headline = styled.h1`
   line-height: 1.1;
   margin: 0;
   overflow: hidden;
+  white-space: nowrap;
 
   ${mq.md} {
     font-size: 4rem;
