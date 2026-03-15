@@ -15,7 +15,7 @@
 - [x] **Phase 4: Core Pages** — All site pages with static content, no animations (completed 2026-03-14)
 - [x] **Phase 5: Animation Layer** — GSAP, Lenis, video hero, scroll-triggered reveals (completed 2026-03-15)
 - [x] **Phase 6: Site Review & Layout Polish** — Full site review, layout fixes, visual polish, UX improvements (completed 2026-03-15)
-- [ ] **Phase 7: Investor Portal** — Authenticated area for investors to check fund positions
+- [x] **Phase 7: Investor Portal** — Authenticated area for investors to check fund positions (completed 2026-03-15)
 - [ ] **Phase 8: General Review & Refinements** — Cross-cutting improvements, edge cases, content fine-tuning
 - [ ] **Phase 9: SEO & Performance** — Metadata, structured data, sitemap, Lighthouse 90+
 - [ ] **Phase 10: Production Hardening** — Accessibility audit, ISR webhooks, error states, cross-browser
@@ -32,7 +32,7 @@
 | 4. Core Pages | 5/5 | Complete | 2026-03-14 |
 | 5. Animation Layer | 2/2 | Complete | 2026-03-15 |
 | 6. Site Review & Layout Polish | 4/4 | Complete | 2026-03-15 |
-| 7. Investor Portal | 0/4 | Planned | - |
+| 7. Investor Portal | 4/4 | Complete | 2026-03-15 |
 | 8. General Review & Refinements | 0/? | Not started | - |
 | 9. SEO & Performance | 0/? | Not started | - |
 | 10. Production Hardening | 0/? | Not started | - |
@@ -297,4 +297,4 @@ These must be resolved before the indicated phase can close:
 ---
 
 *Created: 2026-03-14*
-*Last updated: 2026-03-15 after Phase 7 planning*
+*Last updated: 2026-03-15 after Phase 7 completion*

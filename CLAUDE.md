@@ -38,22 +38,30 @@ Premium PE/VC corporate site inspired by hgcapital.com, adapted for Alkemia Capi
 ## Key Paths
 
 ```
-src/app/[locale]/              # All page routes under locale segment
-src/app/[locale]/portfolio/    # Portfolio grid + [slug] detail pages
-src/app/[locale]/team/         # Team grid + [slug] detail pages
-src/app/[locale]/news/         # News list + [slug] detail pages
-src/app/[locale]/investment-platforms/  # Unified platforms page (PE, VC, PIPE + funds)
-src/app/[locale]/investment-platforms/fondi/[slug]/ # Fund detail pages
-src/app/[locale]/societa/      # Chi Siamo (timeline, mission, values) — from Contentful sections JSON
-src/app/[locale]/corporate-governance/ # Board, sindaci, control functions — from Contentful sections JSON
-src/app/[locale]/sostenibilita/ # ESG pillars, SFDR, roadmap, PDFs — from Contentful sections JSON
-src/app/[locale]/contatti/     # Contact form + office locations
-src/app/[locale]/culture/      # Life at Alkemia (linked in header as "Life at Alkemia")
-src/app/[locale]/privacy/      # Privacy Notice (from Contentful rich text)
-src/app/[locale]/cookie-policy/ # Cookie Policy (from Contentful rich text)
+src/app/[locale]/              # Locale root layout (NextIntlClientProvider only)
+src/app/[locale]/(site)/       # Route group: public site pages (Header + Footer)
+src/app/[locale]/(site)/layout.tsx # Site layout with Header, Footer, CookieConsent, CustomCursor
+src/app/[locale]/(site)/portfolio/    # Portfolio grid + [slug] detail pages
+src/app/[locale]/(site)/team/         # Team grid + [slug] detail pages
+src/app/[locale]/(site)/news/         # News list + [slug] detail pages
+src/app/[locale]/(site)/investment-platforms/  # Unified platforms page (PE, VC, PIPE + funds)
+src/app/[locale]/(site)/investment-platforms/fondi/[slug]/ # Fund detail pages
+src/app/[locale]/(site)/societa/      # Chi Siamo (timeline, mission, values)
+src/app/[locale]/(site)/corporate-governance/ # Board, sindaci, control functions
+src/app/[locale]/(site)/sostenibilita/ # ESG pillars, SFDR, roadmap, PDFs
+src/app/[locale]/(site)/contatti/     # Contact form + office locations
+src/app/[locale]/(site)/culture/      # Life at Alkemia
+src/app/[locale]/(site)/privacy/      # Privacy Notice
+src/app/[locale]/(site)/cookie-policy/ # Cookie Policy
+src/app/[locale]/(portal)/     # Route group: investor portal (PortalHeader only, no site chrome)
+src/app/[locale]/(portal)/investitori/          # Login page
+src/app/[locale]/(portal)/investitori/dashboard/ # Fund positions dashboard
+src/app/[locale]/(portal)/investitori/fondi/[slug]/ # Fund drill-down (calls, NAV chart, docs)
 src/app/api/revalidate/        # Contentful webhook handler
 src/app/api/contact/           # Contact form email handler (nodemailer + SMTP)
+src/app/api/portal/documents/[id]/ # Authenticated document download (signed URLs)
 src/lib/contentful/            # CMS client, types, fetchers, rich text renderer
+src/lib/supabase/              # Supabase client (server, browser), middleware, DB types
 src/components/layout/         # Header, Footer, MobileMenu, NavigationLinks, LanguageSwitcher
 src/components/sections/       # HeroSection, StatsSection, NewsPreview, NewsletterStrip (static originals)
 src/components/sections/animated/ # VideoHero, ScrollNarrative, AnimatedStats, AnimatedNewsPreview, AnimatedNewsletterStrip
@@ -64,6 +72,7 @@ src/components/filters/        # FilterPills (reusable pill filter)
 src/components/cookie/         # CookieConsent modal (GDPR Italy)
 src/components/cursor/         # CustomCursor (desktop only, ref-based)
 src/components/forms/          # ContactForm
+src/components/portal/         # PortalHeader, LoginForm, DashboardTable, NavChart, CapitalCallsTable, DocumentList
 src/components/content/        # PageSections, PdfDownloadList
 src/styles/                    # GlobalStyle, theme tokens, breakpoints, zIndex
 scripts/                       # Migration scripts (migrate.ts, add-fund-fields.ts, upload-news-images.js)
