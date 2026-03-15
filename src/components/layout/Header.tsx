@@ -39,6 +39,7 @@ export default function Header({ logoUrl, logoAlt }: HeaderProps) {
     { label: t('team'), href: '/team' },
     { label: t('news'), href: '/news' },
     { label: t('sostenibilita'), href: '/sostenibilita' },
+    { label: t('culture'), href: '/culture' },
     { label: t('contatti'), href: '/contatti' },
   ]
 
