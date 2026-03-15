@@ -12,7 +12,7 @@ import ScrollReveal from '@/components/animations/ScrollReveal'
 /* ── Intro ──────────────────────────────────────── */
 const IntroSection = styled.section`
   padding: ${spacing[16]} ${spacing[4]};
-  max-width: 900px;
+  max-width: 1200px;
   margin: 0 auto;
 `
 

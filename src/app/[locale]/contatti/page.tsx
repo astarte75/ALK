@@ -26,7 +26,6 @@ const Subtitle = styled.p`
   color: ${colors.textSecondary};
   line-height: 1.6;
   margin: 0 0 ${spacing[12]};
-  max-width: 640px;
 `
 
 const TwoCol = styled.div`
