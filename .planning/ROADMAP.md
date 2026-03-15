@@ -31,7 +31,7 @@
 | 3. Layout Shell & Legal | 3/3 | Complete | 2026-03-14 |
 | 4. Core Pages | 5/5 | Complete | 2026-03-14 |
 | 5. Animation Layer | 2/2 | Complete | 2026-03-15 |
-| 6. Site Review & Layout Polish | 0/? | Not started | - |
+| 6. Site Review & Layout Polish | 0/4 | Planning complete | - |
 | 7. Investor Portal | 0/? | Not started | - |
 | 8. General Review & Refinements | 0/? | Not started | - |
 | 9. SEO & Performance | 0/? | Not started | - |
@@ -166,7 +166,7 @@ Plans:
 ---
 
 ### Phase 6: Site Review & Layout Polish
-**Goal**: Every page of the site is reviewed for layout consistency, spacing, typography, responsive behavior, and visual polish. Issues are fixed, and the overall UX is refined.
+**Goal**: Every page of the site is reviewed for layout consistency, spacing, typography, responsive behavior, and visual polish. GSAP scroll reveals on all internal pages, premium card hovers, internal page hero animations, GSAP mobile menu.
 **Depends on**: Phase 5 (all pages and animations must be live)
 **Requirements**: REVIEW-01, REVIEW-02, REVIEW-03, REVIEW-04
 **Success Criteria** (what must be TRUE):
@@ -175,7 +175,13 @@ Plans:
   3. Navigation flows work end-to-end: a user can reach every page from the header/footer and return to the homepage
   4. Visual consistency: card styles, section spacing, color usage, and dark theme contrast are uniform across all pages
   5. No orphaned pages, broken links, or empty content sections exist
-**Plans**: TBD
+**Plans:** 4 plans
+
+Plans:
+- [ ] 06-01-PLAN.md — Animation building blocks: ScrollReveal wrapper, AnimatedPageHero, card hover upgrades, GSAP mobile menu (wave 1)
+- [ ] 06-02-PLAN.md — Portfolio, Team, News pages (listing + detail) — scroll reveals, hero animations, responsive polish (wave 2, depends on 06-01)
+- [ ] 06-03-PLAN.md — Content pages (Platforms, Societa, Governance, ESG, Contatti, Culture, Privacy, Cookie) — scroll reveals, typography polish (wave 2, parallel with 06-02)
+- [ ] 06-04-PLAN.md — Final cross-site audit: navigation flows, responsive sweep, typography/visual consistency, production build (wave 3, depends on 06-02 + 06-03)
 
 ---
 
@@ -282,4 +288,4 @@ These must be resolved before the indicated phase can close:
 ---
 
 *Created: 2026-03-14*
-*Last updated: 2026-03-15 after roadmap restructure (added Phases 6-8, renumbered SEO→9, Hardening→10)*
+*Last updated: 2026-03-15 after Phase 6 planning (4 plans created)*
