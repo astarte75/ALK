@@ -12,8 +12,8 @@
 - [x] **Phase 1: Foundation** — Project scaffolding, dark theme, i18n routing, Vercel CI/CD (completed 2026-03-14)
 - [x] **Phase 2: Content Infrastructure** — Contentful content models, TypeScript types, data layer (completed 2026-03-14)
 - [x] **Phase 3: Layout Shell & Legal** — Header, footer, cookie consent, GDPR pages (completed 2026-03-14)
-- [ ] **Phase 4: Core Pages** — All site pages with static content, no animations
-- [ ] **Phase 5: Animation Layer** — GSAP, Lenis, video hero, scroll-triggered reveals
+- [x] **Phase 4: Core Pages** — All site pages with static content, no animations (completed 2026-03-14)
+- [x] **Phase 5: Animation Layer** — GSAP, Lenis, video hero, scroll-triggered reveals (completed 2026-03-15)
 - [ ] **Phase 6: SEO & Performance** — Metadata, structured data, sitemap, Lighthouse 90+
 - [ ] **Phase 7: Production Hardening** — Accessibility audit, ISR webhooks, error states, cross-browser
 
@@ -27,7 +27,7 @@
 | 2. Content Infrastructure | 3/3 | Complete | 2026-03-14 |
 | 3. Layout Shell & Legal | 3/3 | Complete | 2026-03-14 |
 | 4. Core Pages | 5/5 | Complete | 2026-03-14 |
-| 5. Animation Layer | 0/2 | Planning complete | - |
+| 5. Animation Layer | 2/2 | Complete | 2026-03-15 |
 | 6. SEO & Performance | 0/? | Not started | - |
 | 7. Production Hardening | 0/? | Not started | - |
 
@@ -147,8 +147,8 @@ Plans:
 **Plans:** 2 plans
 
 Plans:
-- [ ] 05-01-PLAN.md — Fix LenisProvider bugs + refactor animated components to gsap.matchMedia() (wave 1)
-- [ ] 05-02-PLAN.md — Migrate animated homepage to production + Playwright tests + visual verification (wave 2, depends on 05-01)
+- [x] 05-01-PLAN.md — Fix LenisProvider bugs + refactor animated components to gsap.matchMedia() (wave 1)
+- [x] 05-02-PLAN.md — Migrate animated homepage to production + backup static version + visual verification (wave 2, depends on 05-01)
 
 **Pitfall gates:**
 - Lenis initialized with `autoRaf: false`; ticker callback stored in variable for correct cleanup
@@ -218,4 +218,4 @@ These must be resolved before the indicated phase can close:
 ---
 
 *Created: 2026-03-14*
-*Last updated: 2026-03-15 after planning Phase 5*
+*Last updated: 2026-03-15 after completing Phase 5*

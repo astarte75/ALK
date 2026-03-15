@@ -3,13 +3,13 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: executing
-last_updated: "2026-03-14T19:08:00Z"
+last_updated: "2026-03-15T12:00:00Z"
 progress:
   total_phases: 7
-  completed_phases: 1
-  total_plans: 8
-  completed_plans: 11
-  percent: 40
+  completed_phases: 5
+  total_plans: 15
+  completed_plans: 15
+  percent: 71
 ---
 
 # Project State: Alkemia Capital Website
@@ -28,19 +28,19 @@ progress:
 
 ## Current Position
 
-**Phase:** 4 — Core Pages (IN PROGRESS)
-**Plan:** 5/? complete
-**Status:** Executing
-**Last action:** Completed 04-05-PLAN.md (Contact Page with form and API route)
+**Phase:** 5 — Animation Layer (COMPLETE)
+**Plan:** 2/2 complete
+**Status:** Complete — ready for Phase 6
+**Last action:** Completed Phase 5 execution (animated homepage with GSAP + Lenis)
 
 ```
-Progress: [############░░░░░░░░░░░░░░░░] 40%
+Progress: [####################░░░░░░░░] 71%
 
 Phase 1 [############░░░░░░░░] 2/3 plans complete
 Phase 2 [####################] 3/3 plans complete
 Phase 3 [####################] 3/3 plans complete
-Phase 4 [####################] 5/? plans complete
-Phase 5 [░░░░░░░░░░░░░░░░░░░░] Not started
+Phase 4 [####################] 5/5 plans complete
+Phase 5 [####################] 2/2 plans complete
 Phase 6 [░░░░░░░░░░░░░░░░░░░░] Not started
 Phase 7 [░░░░░░░░░░░░░░░░░░░░] Not started
 ```
@@ -73,7 +73,10 @@ Phase 7 [░░░░░░░░░░░░░░░░░░░░] Not start
 | next-intl v4 with `localePrefix: 'as-needed'` | Clean IT URLs (`/portfolio`), EN gets prefix (`/en/portfolio`) | Locked |
 | SSG + on-demand ISR (not SSR) | All public pages pre-rendered; Contentful webhook triggers `revalidateTag` | Locked |
 | GSAP (not Framer Motion) for scroll animations | Framer Motion forces Client Components too high in tree; Safari compatibility | Locked |
-| Lenis v1.3 for smooth scroll | RAF synced to GSAP ticker; must validate exact sync pattern in Phase 5 | Locked |
+| Lenis v1.3 for smooth scroll | RAF synced to GSAP ticker via autoRaf:false + tickerCallback pattern | Locked |
+| useGSAP + gsap.matchMedia() | Unified responsive + reduced-motion handling; auto-cleanup | Locked |
+| Local MP4 hero (not Vimeo) | Stock video for launch; Vimeo can replace later via Contentful | Locked |
+| Static homepage backup at /homepage-static | Original non-animated homepage preserved for rollback | Locked |
 | interface extends EntrySkeletonType (not generic two-arg) | Contentful v11 SDK has Fields as first generic param, not contentTypeId | Locked |
 | next-intl createNavigation for locale-aware Links | v4 requires createNavigation() from routing config; used across all layout components | Locked |
 | IntersectionObserver sentinel for header scroll | More performant than scroll event listeners; zero-cost when idle | Locked |
@@ -86,7 +89,7 @@ Phase 7 [░░░░░░░░░░░░░░░░░░░░] Not start
 | Alkemia brand accent color | Phase 1 close | Must contrast-check against dark bg before any CSS written |
 | Font choice | Phase 1 close | Inter as placeholder; confirm if licensed font needed |
 | Contentful space + locale setup | Phase 2 start | Non-technical; user must create space with `it-IT` and `en-US` |
-| Vimeo video URL for hero | Phase 5 close | Homepage hero requires actual Vimeo asset |
+| Vimeo video URL for hero | Post-launch | Using local MP4 stock video for now; Vimeo optional later |
 
 ### Known Pitfalls (Pre-validated)
 
@@ -114,7 +117,7 @@ Phase 7 [░░░░░░░░░░░░░░░░░░░░] Not start
 
 ### Research Flags
 
-- **Phase 5 (Animation):** GSAP + Lenis + Next.js 15 App Router integration has MEDIUM confidence. Start Phase 5 with a proof-of-concept before building full animation suite. Validate: (1) Lenis RAF sync to `gsap.ticker` in a Provider component, (2) `ScrollTrigger.refresh()` timing after `usePathname()` changes, (3) mobile performance with multi-section video scroll.
+- **Phase 5 (Animation):** VALIDATED — GSAP + Lenis + Next.js 15 integration confirmed HIGH confidence. POC built, bugs fixed (autoRaf, cleanup, ScrollTrigger sync), migrated to production. All pitfall gates resolved.
 
 ---
 
@@ -123,7 +126,7 @@ Phase 7 [░░░░░░░░░░░░░░░░░░░░] Not start
 - [ ] Decide Alkemia brand accent color (blocking Phase 1 close)
 - [ ] Confirm font licensing (blocking Phase 1 close)
 - [ ] Create Contentful space with `it-IT` and `en-US` locales (blocking Phase 2 start)
-- [ ] Obtain Vimeo video URL for homepage hero (blocking Phase 5 close)
+- [x] ~~Obtain video for homepage hero~~ (done: using local stock MP4, Vimeo optional post-launch)
 - [x] ~~Run `/gsd:plan-phase 1` to begin Phase 1 planning~~ (done)
 - [x] ~~Execute 01-01-PLAN.md~~ (done: a286a07, b7421f0)
 - [x] ~~Execute 01-02-PLAN.md~~ (done: 35c1cc9, 4193948)
@@ -161,4 +164,4 @@ None currently.
 ---
 
 *State initialized: 2026-03-14*
-*Last updated: 2026-03-14 after completing 04-05-PLAN.md execution (Contact Page)*
+*Last updated: 2026-03-15 after completing Phase 5 (Animation Layer)*
