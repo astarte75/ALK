@@ -1,9 +1,7 @@
 import { setRequestLocale } from 'next-intl/server'
-import { getPageBySlug } from '@/lib/contentful/fetchers'
-import HeroSection from '@/components/sections/HeroSection'
-import StatsSection from '@/components/sections/StatsSection'
-import NewsPreview from '@/components/sections/NewsPreview'
-import NewsletterStrip from '@/components/sections/NewsletterStrip'
+import { getPageBySlug, getNewsArticles } from '@/lib/contentful/fetchers'
+import NewsCard from '@/components/cards/NewsCard'
+import HomepageClient from './HomepageClient'
 
 interface HomepageSections {
   hero: { headline: string; subtitle: string; ctaText: string; ctaLink: string }
@@ -20,23 +18,24 @@ export default async function HomePage({
   const { locale } = await params
   setRequestLocale(locale)
 
-  const page = await getPageBySlug('homepage', locale)
+  const [page, articles] = await Promise.all([
+    getPageBySlug('homepage', locale),
+    getNewsArticles(locale, 3),
+  ])
+
   const s = (page?.fields.sections ?? null) as HomepageSections | null
 
+  const newsCards = articles?.map((article) => (
+    <div key={article.sys.id} data-news-card>
+      <NewsCard article={article} locale={locale} />
+    </div>
+  ))
+
   return (
-    <>
-      <HeroSection
-        headline={s?.hero.headline}
-        subtitle={s?.hero.subtitle}
-      />
-      <StatsSection stats={s?.stats} />
-      <NewsPreview locale={locale} title={s?.newsPreview?.title} ctaText={s?.newsPreview?.ctaText} />
-      <NewsletterStrip
-        title={s?.newsletter?.title}
-        description={s?.newsletter?.description}
-        placeholder={s?.newsletter?.placeholder}
-        buttonText={s?.newsletter?.buttonText}
-      />
-    </>
+    <HomepageClient
+      locale={locale}
+      sections={s}
+      newsCards={newsCards}
+    />
   )
 }
