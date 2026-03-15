@@ -271,7 +271,7 @@ export default async function NewsDetailPage({
               alt={title}
               fill
               sizes="100vw"
-              style={{ objectFit: 'cover' }}
+              style={{ objectFit: 'cover', objectPosition: 'top' }}
               priority
             />
           </HeroImageContainer>
