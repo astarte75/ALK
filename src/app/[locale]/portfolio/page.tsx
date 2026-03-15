@@ -3,7 +3,7 @@ import { getTranslations } from 'next-intl/server'
 import styled from 'styled-components'
 import { getPortfolioCompanies } from '@/lib/contentful/fetchers'
 import { spacing } from '@/styles/theme'
-import PageHero from '@/components/sections/PageHero'
+import AnimatedPageHero from '@/components/animations/AnimatedPageHero'
 import PortfolioGrid from './PortfolioGrid'
 
 const Section = styled.section`
@@ -27,7 +27,7 @@ export default async function PortfolioPage({
 
   return (
     <>
-      <PageHero
+      <AnimatedPageHero
         imageSrc="/images/hero-portfolio.jpg"
         title={t('title')}
       />

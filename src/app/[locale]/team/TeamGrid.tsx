@@ -3,6 +3,7 @@
 import { useState, useMemo } from 'react'
 import styled from 'styled-components'
 import { useTranslations } from 'next-intl'
+import ScrollReveal from '@/components/animations/ScrollReveal'
 import FilterPills from '@/components/filters/FilterPills'
 import TeamCard from '@/components/cards/TeamCard'
 import { spacing } from '@/styles/theme'
@@ -82,23 +83,27 @@ export default function TeamGrid({ members, locale }: TeamGridProps) {
 
   return (
     <>
-      <FilterPills
-        label={t('filterCategory')}
-        options={categoryOptions}
-        value={category}
-        onChange={setCategory}
-      />
-      <FilterPills
-        label={t('filterOffice')}
-        options={officeOptions}
-        value={office}
-        onChange={setOffice}
-      />
-      <Grid>
-        {filtered.map((member) => (
-          <TeamCard key={member.sys.id} member={member} locale={locale} />
-        ))}
-      </Grid>
+      <ScrollReveal>
+        <FilterPills
+          label={t('filterCategory')}
+          options={categoryOptions}
+          value={category}
+          onChange={setCategory}
+        />
+        <FilterPills
+          label={t('filterOffice')}
+          options={officeOptions}
+          value={office}
+          onChange={setOffice}
+        />
+      </ScrollReveal>
+      <ScrollReveal delay={0.15}>
+        <Grid>
+          {filtered.map((member) => (
+            <TeamCard key={member.sys.id} member={member} locale={locale} />
+          ))}
+        </Grid>
+      </ScrollReveal>
     </>
   )
 }

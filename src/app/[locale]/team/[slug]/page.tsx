@@ -8,6 +8,7 @@ import { getTeamMembers, getTeamMemberBySlug } from '@/lib/contentful/fetchers'
 import { renderRichText } from '@/lib/contentful/richText'
 import { colors, fonts, spacing } from '@/styles/theme'
 import { mq } from '@/styles/breakpoints'
+import ScrollReveal from '@/components/animations/ScrollReveal'
 import type { Document } from '@contentful/rich-text-types'
 
 export async function generateStaticParams() {
@@ -222,40 +223,44 @@ export default async function TeamDetailPage({
     <Page>
       <BackLink href="/team">{t('backToTeam')}</BackLink>
 
-      <ProfileLayout>
-        <PhotoColumn>
-          <PhotoContainer>
-            {photoUrl ? (
-              <Image
-                src={photoUrl}
-                alt={name}
-                fill
-                sizes="(max-width: 1024px) 100vw, 400px"
-                style={{ objectFit: 'cover', objectPosition: 'top' }}
-              />
-            ) : (
-              <Initials>{initials}</Initials>
-            )}
-          </PhotoContainer>
-        </PhotoColumn>
+      <ScrollReveal>
+        <ProfileLayout>
+          <PhotoColumn>
+            <PhotoContainer>
+              {photoUrl ? (
+                <Image
+                  src={photoUrl}
+                  alt={name}
+                  fill
+                  sizes="(max-width: 1024px) 100vw, 400px"
+                  style={{ objectFit: 'cover', objectPosition: 'top' }}
+                />
+              ) : (
+                <Initials>{initials}</Initials>
+              )}
+            </PhotoContainer>
+          </PhotoColumn>
 
-        <InfoColumn>
-          <MemberName>{name}</MemberName>
-          <RoleText>{role}</RoleText>
-          <BadgeRow>
-            {isBoard && <BoardBadge>{t('boardMember')}</BoardBadge>}
-            {office && <OfficeLabel>{office}</OfficeLabel>}
-            {linkedIn && (
-              <LinkedInLink href={linkedIn} target="_blank" rel="noopener noreferrer">
-                LinkedIn
-              </LinkedInLink>
-            )}
-          </BadgeRow>
-          <BioContent>
-            {bio && renderRichText(bio as unknown as Document)}
-          </BioContent>
-        </InfoColumn>
-      </ProfileLayout>
+          <InfoColumn>
+            <MemberName>{name}</MemberName>
+            <RoleText>{role}</RoleText>
+            <BadgeRow>
+              {isBoard && <BoardBadge>{t('boardMember')}</BoardBadge>}
+              {office && <OfficeLabel>{office}</OfficeLabel>}
+              {linkedIn && (
+                <LinkedInLink href={linkedIn} target="_blank" rel="noopener noreferrer">
+                  LinkedIn
+                </LinkedInLink>
+              )}
+            </BadgeRow>
+            <ScrollReveal delay={0.2}>
+              <BioContent>
+                {bio && renderRichText(bio as unknown as Document)}
+              </BioContent>
+            </ScrollReveal>
+          </InfoColumn>
+        </ProfileLayout>
+      </ScrollReveal>
     </Page>
   )
 }

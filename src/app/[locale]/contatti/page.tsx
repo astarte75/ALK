@@ -4,6 +4,7 @@ import { getOffices } from '@/lib/contentful/fetchers'
 import { colors, fonts, spacing } from '@/styles/theme'
 import { mq } from '@/styles/breakpoints'
 import ContactForm from '@/components/forms/ContactForm'
+import ScrollReveal from '@/components/animations/ScrollReveal'
 
 const Page = styled.div`
   max-width: 1200px;
@@ -128,10 +129,13 @@ export default async function ContattiPage({
 
   return (
     <Page>
-      <Title>{t('title')}</Title>
-      <Subtitle>{t('subtitle')}</Subtitle>
+      <ScrollReveal>
+        <Title>{t('title')}</Title>
+        <Subtitle>{t('subtitle')}</Subtitle>
+      </ScrollReveal>
 
       <TwoCol>
+        <ScrollReveal delay={0.1}>
         <OfficesColumn>
           {offices.map((office) => {
             const isMilano = office.fields.city?.toLowerCase().includes('milan')
@@ -164,8 +168,11 @@ export default async function ContattiPage({
             )
           })}
         </OfficesColumn>
+        </ScrollReveal>
 
-        <ContactForm />
+        <ScrollReveal delay={0.2}>
+          <ContactForm />
+        </ScrollReveal>
       </TwoCol>
     </Page>
   )

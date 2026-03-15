@@ -3,6 +3,7 @@
 import { useState, useMemo } from 'react'
 import styled from 'styled-components'
 import { useTranslations } from 'next-intl'
+import ScrollReveal from '@/components/animations/ScrollReveal'
 import FilterPills from '@/components/filters/FilterPills'
 import NewsCard from '@/components/cards/NewsCard'
 import { colors, fonts, spacing } from '@/styles/theme'
@@ -101,28 +102,34 @@ export default function NewsList({ articles, locale }: NewsListProps) {
 
   return (
     <>
-      <FilterPills
-        label={t('filterCategory')}
-        options={categoryOptions}
-        value={category}
-        onChange={handleCategoryChange}
-      />
-      <Grid>
-        {visible.map((article) => (
-          <NewsCard key={article.sys.id} article={article} locale={locale} />
-        ))}
-      </Grid>
+      <ScrollReveal>
+        <FilterPills
+          label={t('filterCategory')}
+          options={categoryOptions}
+          value={category}
+          onChange={handleCategoryChange}
+        />
+      </ScrollReveal>
+      <ScrollReveal delay={0.15}>
+        <Grid>
+          {visible.map((article) => (
+            <NewsCard key={article.sys.id} article={article} locale={locale} />
+          ))}
+        </Grid>
+      </ScrollReveal>
       {(hasMore || filtered.length > 0) && (
-        <LoadMoreWrapper>
-          <CountText>
-            {visible.length} {t('showing')} {filtered.length} {t('articles')}
-          </CountText>
-          {hasMore && (
-            <LoadMoreButton onClick={() => setVisibleCount((c) => c + BATCH_SIZE)}>
-              {t('loadMore')}
-            </LoadMoreButton>
-          )}
-        </LoadMoreWrapper>
+        <ScrollReveal delay={0.25}>
+          <LoadMoreWrapper>
+            <CountText>
+              {visible.length} {t('showing')} {filtered.length} {t('articles')}
+            </CountText>
+            {hasMore && (
+              <LoadMoreButton onClick={() => setVisibleCount((c) => c + BATCH_SIZE)}>
+                {t('loadMore')}
+              </LoadMoreButton>
+            )}
+          </LoadMoreWrapper>
+        </ScrollReveal>
       )}
     </>
   )

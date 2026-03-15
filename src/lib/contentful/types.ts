@@ -14,6 +14,9 @@ export interface FundSkeleton extends EntrySkeletonType {
     fundSize: EntryFieldTypes.Text
     investmentPeriod: EntryFieldTypes.Text
     platformRef: EntryFieldTypes.EntryLink<InvestmentPlatformSkeleton>
+    targetSectors: EntryFieldTypes.Text
+    documents: EntryFieldTypes.Array<EntryFieldTypes.AssetLink>
+    teamMembers: EntryFieldTypes.Array<EntryFieldTypes.EntryLink<TeamMemberSkeleton>>
   }
 }
 

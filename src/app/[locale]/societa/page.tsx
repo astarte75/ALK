@@ -1,35 +1,13 @@
 import { setRequestLocale } from 'next-intl/server'
 import styled from 'styled-components'
-import Image from 'next/image'
 import { getPageBySlug } from '@/lib/contentful/fetchers'
 import { colors, fonts, spacing } from '@/styles/theme'
 import { mq } from '@/styles/breakpoints'
 import StatsSection from '@/components/sections/StatsSection'
+import AnimatedPageHero from '@/components/animations/AnimatedPageHero'
+import ScrollReveal from '@/components/animations/ScrollReveal'
 
-/* ── Hero Banner ────────────────────────────────── */
-const HeroBanner = styled.section`
-  position: relative;
-  height: 50vh;
-  min-height: 360px;
-  display: flex;
-  align-items: flex-end;
-  overflow: hidden;
-  &::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(to top, var(--color-bg) 0%, transparent 60%);
-    z-index: 1;
-  }
-`
-const HeroContent = styled.div`
-  position: relative;
-  z-index: 2;
-  max-width: 1200px;
-  margin: 0 auto;
-  width: 100%;
-  padding: ${spacing[12]} ${spacing[4]};
-`
+/* ── Fallback Title ─────────────────────────────── */
 const HeroTitle = styled.h1`
   font-family: ${fonts.heading};
   font-size: 3rem;
@@ -37,13 +15,6 @@ const HeroTitle = styled.h1`
   color: ${colors.textPrimary};
   margin: 0 0 ${spacing[3]};
   ${mq.lg} { font-size: 3.75rem; }
-`
-const HeroSubtitle = styled.p`
-  font-family: ${fonts.body};
-  font-size: 1.25rem;
-  color: ${colors.textSecondary};
-  margin: 0;
-  line-height: 1.6;
 `
 
 /* ── Sections ───────────────────────────────────── */
@@ -265,87 +236,97 @@ export default async function SocietaPage({
 
   return (
     <>
-      <HeroBanner>
-        <Image src="/images/hero-about.jpg" alt={s.hero.title} fill style={{ objectFit: 'cover' }} priority />
-        <HeroContent>
-          <HeroTitle>{s.hero.title}</HeroTitle>
-          <HeroSubtitle>{s.hero.subtitle}</HeroSubtitle>
-        </HeroContent>
-      </HeroBanner>
+      <AnimatedPageHero
+        imageSrc="/images/hero-about.jpg"
+        title={s.hero.title}
+        subtitle={s.hero.subtitle}
+      />
 
-      <SectionLight>
-        <TwoColumn>
-          <div>
-            <SectionLabel>{s.intro.label}</SectionLabel>
-            <SectionTitle>{s.intro.title}</SectionTitle>
-            {s.intro.paragraphs.map((p, i) => <SectionText key={i}>{p}</SectionText>)}
-          </div>
-          <QuoteBlock>
-            <QuoteText>{s.intro.quote.text}</QuoteText>
-            <QuoteAuthor>— {s.intro.quote.author}</QuoteAuthor>
-          </QuoteBlock>
-        </TwoColumn>
-      </SectionLight>
-
-      <StatsSection />
-
-      <SectionDark>
-        <SectionDarkInner>
+      <ScrollReveal>
+        <SectionLight>
           <TwoColumn>
             <div>
-              <SectionLabel>{s.timeline.label}</SectionLabel>
-              <SectionTitle>{s.timeline.title}</SectionTitle>
-              <SectionText>{s.timeline.description}</SectionText>
+              <SectionLabel>{s.intro.label}</SectionLabel>
+              <SectionTitle>{s.intro.title}</SectionTitle>
+              {s.intro.paragraphs.map((p, i) => <SectionText key={i}>{p}</SectionText>)}
             </div>
-            <Timeline>
-              {s.timeline.items.map((item, i) => (
-                <TimelineItem key={i}>
-                  <TimelineYear>{item.year}</TimelineYear>
-                  <TimelineTitle>{item.title}</TimelineTitle>
-                  <TimelineText>{item.text}</TimelineText>
-                </TimelineItem>
-              ))}
-            </Timeline>
+            <QuoteBlock>
+              <QuoteText>{s.intro.quote.text}</QuoteText>
+              <QuoteAuthor>— {s.intro.quote.author}</QuoteAuthor>
+            </QuoteBlock>
           </TwoColumn>
-        </SectionDarkInner>
-      </SectionDark>
+        </SectionLight>
+      </ScrollReveal>
 
-      <SectionLight>
-        <TwoColumn>
-          <div>
-            <SectionLabel>{s.mission.label}</SectionLabel>
-            <SectionTitle>{s.mission.title}</SectionTitle>
-            {s.mission.paragraphs.map((p, i) => <SectionText key={i}>{p}</SectionText>)}
-          </div>
-          <div>
-            <SectionLabel>{s.approach.label}</SectionLabel>
-            <SectionTitle>{s.approach.title}</SectionTitle>
-            {s.approach.paragraphs.map((p, i) => <SectionText key={i}>{p}</SectionText>)}
-          </div>
-        </TwoColumn>
-      </SectionLight>
+      <ScrollReveal>
+        <StatsSection />
+      </ScrollReveal>
 
-      <SectionDark>
-        <SectionDarkInner>
-          <SectionLabel>{s.values.label}</SectionLabel>
-          <SectionTitle>{s.values.title}</SectionTitle>
-          <ValuesGrid>
-            {s.values.items.map((v, i) => (
-              <ValueCard key={i}>
-                <ValueIcon>{v.icon}</ValueIcon>
-                <ValueTitle>{v.title}</ValueTitle>
-                <ValueText>{v.text}</ValueText>
-              </ValueCard>
-            ))}
-          </ValuesGrid>
-          <CTABanner>
-            <CTAText>{s.linkedin.text}</CTAText>
-            <CTALink href={s.linkedin.url} target="_blank" rel="noopener noreferrer">
-              LinkedIn →
-            </CTALink>
-          </CTABanner>
-        </SectionDarkInner>
-      </SectionDark>
+      <ScrollReveal>
+        <SectionDark>
+          <SectionDarkInner>
+            <TwoColumn>
+              <div>
+                <SectionLabel>{s.timeline.label}</SectionLabel>
+                <SectionTitle>{s.timeline.title}</SectionTitle>
+                <SectionText>{s.timeline.description}</SectionText>
+              </div>
+              <Timeline>
+                {s.timeline.items.map((item, i) => (
+                  <ScrollReveal key={i} delay={i * 0.1}>
+                    <TimelineItem>
+                      <TimelineYear>{item.year}</TimelineYear>
+                      <TimelineTitle>{item.title}</TimelineTitle>
+                      <TimelineText>{item.text}</TimelineText>
+                    </TimelineItem>
+                  </ScrollReveal>
+                ))}
+              </Timeline>
+            </TwoColumn>
+          </SectionDarkInner>
+        </SectionDark>
+      </ScrollReveal>
+
+      <ScrollReveal>
+        <SectionLight>
+          <TwoColumn>
+            <div>
+              <SectionLabel>{s.mission.label}</SectionLabel>
+              <SectionTitle>{s.mission.title}</SectionTitle>
+              {s.mission.paragraphs.map((p, i) => <SectionText key={i}>{p}</SectionText>)}
+            </div>
+            <div>
+              <SectionLabel>{s.approach.label}</SectionLabel>
+              <SectionTitle>{s.approach.title}</SectionTitle>
+              {s.approach.paragraphs.map((p, i) => <SectionText key={i}>{p}</SectionText>)}
+            </div>
+          </TwoColumn>
+        </SectionLight>
+      </ScrollReveal>
+
+      <ScrollReveal>
+        <SectionDark>
+          <SectionDarkInner>
+            <SectionLabel>{s.values.label}</SectionLabel>
+            <SectionTitle>{s.values.title}</SectionTitle>
+            <ValuesGrid>
+              {s.values.items.map((v, i) => (
+                <ValueCard key={i}>
+                  <ValueIcon>{v.icon}</ValueIcon>
+                  <ValueTitle>{v.title}</ValueTitle>
+                  <ValueText>{v.text}</ValueText>
+                </ValueCard>
+              ))}
+            </ValuesGrid>
+            <CTABanner>
+              <CTAText>{s.linkedin.text}</CTAText>
+              <CTALink href={s.linkedin.url} target="_blank" rel="noopener noreferrer">
+                LinkedIn →
+              </CTALink>
+            </CTABanner>
+          </SectionDarkInner>
+        </SectionDark>
+      </ScrollReveal>
     </>
   )
 }

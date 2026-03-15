@@ -104,6 +104,22 @@ export const getFunds = unstable_cache(
   { tags: ['fund'] }
 )
 
+export const getFundBySlug = unstable_cache(
+  async (slug: string, locale: string): Promise<Fund | null> => {
+    const client = getClient()
+    const res = await client.getEntries<FundSkeleton>({
+      content_type: 'fund',
+      'fields.slug': slug,
+      locale: toContentfulLocale(locale),
+      include: 2,
+      limit: 1,
+    })
+    return res.items[0] ?? null
+  },
+  ['fundBySlug'],
+  { tags: ['fund'] }
+)
+
 // --- News Articles ---
 
 export const getNewsArticles = unstable_cache(

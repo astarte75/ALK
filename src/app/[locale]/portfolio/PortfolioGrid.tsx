@@ -3,6 +3,7 @@
 import { useState, useMemo } from 'react'
 import styled from 'styled-components'
 import { useTranslations } from 'next-intl'
+import ScrollReveal from '@/components/animations/ScrollReveal'
 import FilterPills from '@/components/filters/FilterPills'
 import PortfolioCard from '@/components/cards/PortfolioCard'
 import { colors, fonts, spacing } from '@/styles/theme'
@@ -96,26 +97,30 @@ export default function PortfolioGrid({ companies, locale }: PortfolioGridProps)
 
   return (
     <>
-      <FilterPills
-        label={t('filterArea')}
-        options={areaOptions}
-        value={area}
-        onChange={handleAreaChange}
-      />
-      <FilterPills
-        label={t('filterSector')}
-        options={sectorOptions}
-        value={sector}
-        onChange={setSector}
-      />
-      <Count>
-        {filtered.length} {t('companiesCount')}
-      </Count>
-      <Grid>
-        {filtered.map((company) => (
-          <PortfolioCard key={company.sys.id} company={company} locale={locale} />
-        ))}
-      </Grid>
+      <ScrollReveal>
+        <FilterPills
+          label={t('filterArea')}
+          options={areaOptions}
+          value={area}
+          onChange={handleAreaChange}
+        />
+        <FilterPills
+          label={t('filterSector')}
+          options={sectorOptions}
+          value={sector}
+          onChange={setSector}
+        />
+        <Count>
+          {filtered.length} {t('companiesCount')}
+        </Count>
+      </ScrollReveal>
+      <ScrollReveal delay={0.15}>
+        <Grid>
+          {filtered.map((company) => (
+            <PortfolioCard key={company.sys.id} company={company} locale={locale} />
+          ))}
+        </Grid>
+      </ScrollReveal>
     </>
   )
 }

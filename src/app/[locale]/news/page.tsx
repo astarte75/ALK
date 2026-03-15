@@ -3,7 +3,7 @@ import { getTranslations } from 'next-intl/server'
 import styled from 'styled-components'
 import { getNewsArticles } from '@/lib/contentful/fetchers'
 import { spacing } from '@/styles/theme'
-import PageHero from '@/components/sections/PageHero'
+import AnimatedPageHero from '@/components/animations/AnimatedPageHero'
 import NewsList from './NewsList'
 
 const Section = styled.section`
@@ -27,7 +27,7 @@ export default async function NewsPage({
 
   return (
     <>
-      <PageHero
+      <AnimatedPageHero
         imageSrc="/images/hero-news.jpg"
         title={t('title')}
         imagePosition="top"

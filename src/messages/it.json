@@ -109,6 +109,14 @@
     "strategy": "Strategia",
     "backToOverview": "Torna alle piattaforme"
   },
+  "funds": {
+    "targetSectors": "Settori Target",
+    "documents": "Documenti",
+    "teamMembers": "Team Dedicato",
+    "portfolioCompanies": "Societ\u00e0 in Portafoglio",
+    "backToPlatforms": "Torna alle Piattaforme",
+    "downloadDocument": "Scarica"
+  },
   "contact": {
     "title": "Contatti",
     "subtitle": "Per informazioni o per fissare un incontro, compila il modulo o contattaci direttamente.",

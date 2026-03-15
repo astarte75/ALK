@@ -1,35 +1,13 @@
 import { setRequestLocale } from 'next-intl/server'
 import styled from 'styled-components'
-import Image from 'next/image'
 import { getPageBySlug } from '@/lib/contentful/fetchers'
 import { getClient } from '@/lib/contentful/client'
 import { colors, fonts, spacing } from '@/styles/theme'
 import { mq } from '@/styles/breakpoints'
+import AnimatedPageHero from '@/components/animations/AnimatedPageHero'
+import ScrollReveal from '@/components/animations/ScrollReveal'
 
-/* ── Hero Banner ────────────────────────────────── */
-const HeroBanner = styled.section`
-  position: relative;
-  height: 50vh;
-  min-height: 360px;
-  display: flex;
-  align-items: flex-end;
-  overflow: hidden;
-  &::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(to top, var(--color-bg) 0%, transparent 60%);
-    z-index: 1;
-  }
-`
-const HeroContent = styled.div`
-  position: relative;
-  z-index: 2;
-  max-width: 1200px;
-  margin: 0 auto;
-  width: 100%;
-  padding: ${spacing[12]} ${spacing[4]};
-`
+/* ── Fallback Title ─────────────────────────────── */
 const HeroTitle = styled.h1`
   font-family: ${fonts.heading};
   font-size: 3rem;
@@ -37,13 +15,6 @@ const HeroTitle = styled.h1`
   color: ${colors.textPrimary};
   margin: 0 0 ${spacing[3]};
   ${mq.lg} { font-size: 3.75rem; }
-`
-const HeroSubtitle = styled.p`
-  font-family: ${fonts.body};
-  font-size: 1.25rem;
-  color: ${colors.textSecondary};
-  margin: 0;
-  line-height: 1.6;
 `
 
 /* ── Sections ───────────────────────────────────── */
@@ -309,95 +280,105 @@ export default async function SostenibilitaPage({
 
   return (
     <>
-      <HeroBanner>
-        <Image src="/images/hero-sustainability-3.jpg" alt={s.hero.title} fill style={{ objectFit: 'cover' }} priority />
-        <HeroContent>
-          <HeroTitle>{s.hero.title}</HeroTitle>
-          <HeroSubtitle>{s.hero.subtitle}</HeroSubtitle>
-        </HeroContent>
-      </HeroBanner>
+      <AnimatedPageHero
+        imageSrc="/images/hero-sustainability-3.jpg"
+        title={s.hero.title}
+        subtitle={s.hero.subtitle}
+      />
 
-      <SectionLight>
-        <TwoColumn>
-          <div>
-            <SectionLabel>{s.intro.label}</SectionLabel>
-            <SectionTitle>{s.intro.title}</SectionTitle>
-            {s.intro.paragraphs.map((p, i) => <SectionText key={i}>{p}</SectionText>)}
-          </div>
-          <QuoteBlock>
-            <QuoteText>{s.intro.quote}</QuoteText>
-          </QuoteBlock>
-        </TwoColumn>
-      </SectionLight>
+      <ScrollReveal>
+        <SectionLight>
+          <TwoColumn>
+            <div>
+              <SectionLabel>{s.intro.label}</SectionLabel>
+              <SectionTitle>{s.intro.title}</SectionTitle>
+              {s.intro.paragraphs.map((p, i) => <SectionText key={i}>{p}</SectionText>)}
+            </div>
+            <QuoteBlock>
+              <QuoteText>{s.intro.quote}</QuoteText>
+            </QuoteBlock>
+          </TwoColumn>
+        </SectionLight>
+      </ScrollReveal>
 
-      <SectionDark>
-        <SectionDarkInner>
-          <SectionLabel>{s.pillars.label}</SectionLabel>
-          <SectionTitle>{s.pillars.title}</SectionTitle>
-          <PillarGrid>
-            {s.pillars.items.map((p, i) => (
-              <PillarCard key={i} $accent={PILLAR_ACCENTS[i] || colors.accentTeal}>
-                <PillarIcon $accent={PILLAR_ACCENTS[i] || colors.accentTeal}>{p.icon}</PillarIcon>
-                <PillarTitle>{p.title}</PillarTitle>
-                <PillarText>{p.text}</PillarText>
-              </PillarCard>
+      <ScrollReveal>
+        <SectionDark>
+          <SectionDarkInner>
+            <SectionLabel>{s.pillars.label}</SectionLabel>
+            <SectionTitle>{s.pillars.title}</SectionTitle>
+            <PillarGrid>
+              {s.pillars.items.map((p, i) => (
+                <ScrollReveal key={i} delay={i * 0.1}>
+                  <PillarCard $accent={PILLAR_ACCENTS[i] || colors.accentTeal}>
+                    <PillarIcon $accent={PILLAR_ACCENTS[i] || colors.accentTeal}>{p.icon}</PillarIcon>
+                    <PillarTitle>{p.title}</PillarTitle>
+                    <PillarText>{p.text}</PillarText>
+                  </PillarCard>
+                </ScrollReveal>
+              ))}
+            </PillarGrid>
+          </SectionDarkInner>
+        </SectionDark>
+      </ScrollReveal>
+
+      <ScrollReveal>
+        <SectionLight>
+          <SectionLabel>{s.sfdr.label}</SectionLabel>
+          <SectionTitle>{s.sfdr.title}</SectionTitle>
+          <SectionText>{s.sfdr.description}</SectionText>
+          <DisclosureGrid>
+            {s.sfdr.items.map((d, i) => (
+              <DisclosureCard key={i}>
+                <DisclosureArticle>{d.article}</DisclosureArticle>
+                <DisclosureTitle>{d.title}</DisclosureTitle>
+                <DisclosureText>{d.text}</DisclosureText>
+              </DisclosureCard>
             ))}
-          </PillarGrid>
-        </SectionDarkInner>
-      </SectionDark>
+          </DisclosureGrid>
+        </SectionLight>
+      </ScrollReveal>
 
-      <SectionLight>
-        <SectionLabel>{s.sfdr.label}</SectionLabel>
-        <SectionTitle>{s.sfdr.title}</SectionTitle>
-        <SectionText>{s.sfdr.description}</SectionText>
-        <DisclosureGrid>
-          {s.sfdr.items.map((d, i) => (
-            <DisclosureCard key={i}>
-              <DisclosureArticle>{d.article}</DisclosureArticle>
-              <DisclosureTitle>{d.title}</DisclosureTitle>
-              <DisclosureText>{d.text}</DisclosureText>
-            </DisclosureCard>
-          ))}
-        </DisclosureGrid>
-      </SectionLight>
-
-      <SectionDark>
-        <SectionDarkInner>
-          <SectionLabel>{s.roadmap.label}</SectionLabel>
-          <SectionTitle>{s.roadmap.title}</SectionTitle>
-          <SectionText>{s.roadmap.description}</SectionText>
-          <RoadmapList>
-            {s.roadmap.items.map((r, i) => (
-              <RoadmapItem key={i}>
-                <RoadmapDot $done={r.status === 'done'} />
-                <div>
-                  <RoadmapLabel>{r.label}</RoadmapLabel>
-                  <RoadmapText>{r.text}</RoadmapText>
-                </div>
-              </RoadmapItem>
-            ))}
-          </RoadmapList>
-        </SectionDarkInner>
-      </SectionDark>
+      <ScrollReveal>
+        <SectionDark>
+          <SectionDarkInner>
+            <SectionLabel>{s.roadmap.label}</SectionLabel>
+            <SectionTitle>{s.roadmap.title}</SectionTitle>
+            <SectionText>{s.roadmap.description}</SectionText>
+            <RoadmapList>
+              {s.roadmap.items.map((r, i) => (
+                <RoadmapItem key={i}>
+                  <RoadmapDot $done={r.status === 'done'} />
+                  <div>
+                    <RoadmapLabel>{r.label}</RoadmapLabel>
+                    <RoadmapText>{r.text}</RoadmapText>
+                  </div>
+                </RoadmapItem>
+              ))}
+            </RoadmapList>
+          </SectionDarkInner>
+        </SectionDark>
+      </ScrollReveal>
 
       {s.documents && s.documents.items.length > 0 && (
-        <SectionLight>
-          <SectionLabel>{s.documents.label}</SectionLabel>
-          <SectionTitle>{s.documents.title}</SectionTitle>
-          <DocList>
-            {s.documents.items.map((doc, i) => {
-              const url = docUrls.get(doc.assetId)
-              if (!url) return null
-              return (
-                <DocLink key={i} href={url} target="_blank" rel="noopener noreferrer" download>
-                  <DocIcon>📄</DocIcon>
-                  <DocTitle>{doc.title}</DocTitle>
-                  <DocAction>Download ↓</DocAction>
-                </DocLink>
-              )
-            })}
-          </DocList>
-        </SectionLight>
+        <ScrollReveal>
+          <SectionLight>
+            <SectionLabel>{s.documents.label}</SectionLabel>
+            <SectionTitle>{s.documents.title}</SectionTitle>
+            <DocList>
+              {s.documents.items.map((doc, i) => {
+                const url = docUrls.get(doc.assetId)
+                if (!url) return null
+                return (
+                  <DocLink key={i} href={url} target="_blank" rel="noopener noreferrer" download>
+                    <DocIcon>📄</DocIcon>
+                    <DocTitle>{doc.title}</DocTitle>
+                    <DocAction>Download ↓</DocAction>
+                  </DocLink>
+                )
+              })}
+            </DocList>
+          </SectionLight>
+        </ScrollReveal>
       )}
     </>
   )

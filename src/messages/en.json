@@ -109,6 +109,14 @@
     "strategy": "Strategy",
     "backToOverview": "Back to platforms"
   },
+  "funds": {
+    "targetSectors": "Target Sectors",
+    "documents": "Documents",
+    "teamMembers": "Dedicated Team",
+    "portfolioCompanies": "Portfolio Companies",
+    "backToPlatforms": "Back to Platforms",
+    "downloadDocument": "Download"
+  },
   "contact": {
     "title": "Contact",
     "subtitle": "For information or to schedule a meeting, fill out the form or contact us directly.",

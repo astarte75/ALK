@@ -6,6 +6,7 @@ import { getPageBySlug, getTeamMembers } from '@/lib/contentful/fetchers'
 import { getClient } from '@/lib/contentful/client'
 import { colors, fonts, spacing } from '@/styles/theme'
 import { mq } from '@/styles/breakpoints'
+import ScrollReveal from '@/components/animations/ScrollReveal'
 
 const Page = styled.div`
   max-width: 1200px;
@@ -226,17 +227,20 @@ export default async function CorporateGovernancePage({
 
       {/* Shareholding */}
       {sections.shareholding && (
-        <Section>
-          <SectionHeading>{t('shareholderTitle')}</SectionHeading>
-          <SectionDescription>{sections.shareholding}</SectionDescription>
-        </Section>
+        <ScrollReveal>
+          <Section>
+            <SectionHeading>{t('shareholderTitle')}</SectionHeading>
+            <SectionDescription>{sections.shareholding}</SectionDescription>
+          </Section>
+        </ScrollReveal>
       )}
 
       {/* Board of Directors */}
       {sections.boardMembers && sections.boardMembers.length > 0 && (
-        <Section>
-          <SectionHeading>{t('boardTitle')}</SectionHeading>
-          <BoardGrid>
+        <ScrollReveal delay={0.1}>
+          <Section>
+            <SectionHeading>{t('boardTitle')}</SectionHeading>
+            <BoardGrid>
             {sections.boardMembers.map((member) => {
               const photoUrl = member.isTeamMember && member.slug
                 ? teamPhotoMap.get(member.slug) || null
@@ -276,13 +280,15 @@ export default async function CorporateGovernancePage({
               return card
             })}
           </BoardGrid>
-        </Section>
+          </Section>
+        </ScrollReveal>
       )}
 
       {/* Collegio Sindacale */}
       {sections.sindaci && sections.sindaci.length > 0 && (
-        <Section>
-          <SectionHeading>{t('collegioTitle')}</SectionHeading>
+        <ScrollReveal delay={0.2}>
+          <Section>
+            <SectionHeading>{t('collegioTitle')}</SectionHeading>
           <CompactList>
             {sections.sindaci.map((item, i) => (
               <CompactItem key={i}>
@@ -291,22 +297,25 @@ export default async function CorporateGovernancePage({
               </CompactItem>
             ))}
           </CompactList>
-        </Section>
+          </Section>
+        </ScrollReveal>
       )}
 
       {/* Control Functions */}
       {sections.controlFunctions && sections.controlFunctions.length > 0 && (
-        <Section>
-          <SectionHeading>{t('funzioniTitle')}</SectionHeading>
-          <CompactList>
-            {sections.controlFunctions.map((item, i) => (
-              <CompactItem key={i}>
-                <CompactName>{item.name}</CompactName>
-                {item.role && <CompactRole>{item.role}</CompactRole>}
-              </CompactItem>
-            ))}
-          </CompactList>
-        </Section>
+        <ScrollReveal delay={0.3}>
+          <Section>
+            <SectionHeading>{t('funzioniTitle')}</SectionHeading>
+            <CompactList>
+              {sections.controlFunctions.map((item, i) => (
+                <CompactItem key={i}>
+                  <CompactName>{item.name}</CompactName>
+                  {item.role && <CompactRole>{item.role}</CompactRole>}
+                </CompactItem>
+              ))}
+            </CompactList>
+          </Section>
+        </ScrollReveal>
       )}
     </Page>
   )

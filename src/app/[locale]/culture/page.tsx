@@ -7,6 +7,7 @@ import { renderRichText } from '@/lib/contentful/richText'
 import { colors, fonts, spacing } from '@/styles/theme'
 import { mq } from '@/styles/breakpoints'
 import type { Document } from '@contentful/rich-text-types'
+import ScrollReveal from '@/components/animations/ScrollReveal'
 
 const Page = styled.div`
   max-width: 1200px;
@@ -162,41 +163,49 @@ export default async function CulturePage({
 
   return (
     <Page>
-      <Title>{page.fields.title}</Title>
+      <ScrollReveal>
+        <Title>{page.fields.title}</Title>
+      </ScrollReveal>
 
       {page.fields.body && (
-        <BodyContent>
-          {renderRichText(page.fields.body as unknown as Document)}
-        </BodyContent>
+        <ScrollReveal delay={0.1}>
+          <BodyContent>
+            {renderRichText(page.fields.body as unknown as Document)}
+          </BodyContent>
+        </ScrollReveal>
       )}
 
       {values.length > 0 && (
-        <ValuesGrid>
-          {values.map((value, i) => (
-            <ValueCard key={i}>
-              <ValueTitle>{value.title}</ValueTitle>
-              {value.description && (
-                <ValueDescription>{value.description}</ValueDescription>
-              )}
-            </ValueCard>
-          ))}
-        </ValuesGrid>
+        <ScrollReveal delay={0.2}>
+          <ValuesGrid>
+            {values.map((value, i) => (
+              <ValueCard key={i}>
+                <ValueTitle>{value.title}</ValueTitle>
+                {value.description && (
+                  <ValueDescription>{value.description}</ValueDescription>
+                )}
+              </ValueCard>
+            ))}
+          </ValuesGrid>
+        </ScrollReveal>
       )}
 
       {photos.length > 0 && (
-        <PhotoGrid>
-          {photos.map((photo, i) => (
-            <PhotoItem key={i}>
-              <Image
-                src={photo.url.startsWith('//') ? `https:${photo.url}` : photo.url}
-                alt={photo.title ?? ''}
-                width={photo.width ?? 600}
-                height={photo.height ?? 400}
-                style={{ width: '100%', height: 'auto', display: 'block' }}
-              />
-            </PhotoItem>
-          ))}
-        </PhotoGrid>
+        <ScrollReveal delay={0.3}>
+          <PhotoGrid>
+            {photos.map((photo, i) => (
+              <PhotoItem key={i}>
+                <Image
+                  src={photo.url.startsWith('//') ? `https:${photo.url}` : photo.url}
+                  alt={photo.title ?? ''}
+                  width={photo.width ?? 600}
+                  height={photo.height ?? 400}
+                  style={{ width: '100%', height: 'auto', display: 'block' }}
+                />
+              </PhotoItem>
+            ))}
+          </PhotoGrid>
+        </ScrollReveal>
       )}
     </Page>
   )

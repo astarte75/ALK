@@ -8,6 +8,7 @@ import { getPortfolioCompanies, getPortfolioCompanyBySlug } from '@/lib/contentf
 import { renderRichText } from '@/lib/contentful/richText'
 import { colors, fonts, spacing } from '@/styles/theme'
 import { mq } from '@/styles/breakpoints'
+import ScrollReveal from '@/components/animations/ScrollReveal'
 import type { Document } from '@contentful/rich-text-types'
 
 // Generate static paths for all companies in both locales
@@ -246,35 +247,38 @@ export default async function PortfolioDetailPage({
     <Page>
       <BackLink href="/portfolio">{t('backToPortfolio')}</BackLink>
 
-      <Header>
-        <LogoContainer>
-          {logoUrl ? (
-            <Image
-              src={logoUrl}
-              alt={name}
-              width={56}
-              height={56}
-              style={{ objectFit: 'contain', width: '56px', height: '56px' }}
-            />
-          ) : (
-            <LogoFallback>{name.charAt(0)}</LogoFallback>
-          )}
-        </LogoContainer>
-        <CompanyName>{name}</CompanyName>
-        <MetaRow>
-          {sector && <SectorLabel>{sector}</SectorLabel>}
-          {year && <YearText>{year}</YearText>}
-          {investmentType && <Badge $type={investmentType}>{investmentType}</Badge>}
-        </MetaRow>
-      </Header>
+      <ScrollReveal>
+        <Header>
+          <LogoContainer>
+            {logoUrl ? (
+              <Image
+                src={logoUrl}
+                alt={name}
+                width={56}
+                height={56}
+                style={{ objectFit: 'contain', width: '56px', height: '56px' }}
+              />
+            ) : (
+              <LogoFallback>{name.charAt(0)}</LogoFallback>
+            )}
+          </LogoContainer>
+          <CompanyName>{name}</CompanyName>
+          <MetaRow>
+            {sector && <SectorLabel>{sector}</SectorLabel>}
+            {year && <YearText>{year}</YearText>}
+            {investmentType && <Badge $type={investmentType}>{investmentType}</Badge>}
+          </MetaRow>
+        </Header>
+      </ScrollReveal>
 
-      <ContentGrid>
-        <DescriptionContent>
-          {description && renderRichText(description as unknown as Document)}
-        </DescriptionContent>
+      <ScrollReveal delay={0.15}>
+        <ContentGrid>
+          <DescriptionContent>
+            {description && renderRichText(description as unknown as Document)}
+          </DescriptionContent>
 
-        <Sidebar>
-          <InfoCard>
+          <Sidebar>
+            <InfoCard>
             {website && (
               <InfoItem>
                 <InfoLabel>{t('website')}</InfoLabel>
@@ -307,9 +311,10 @@ export default async function PortfolioDetailPage({
                 <InfoValue>{fundName}</InfoValue>
               </InfoItem>
             )}
-          </InfoCard>
-        </Sidebar>
-      </ContentGrid>
+            </InfoCard>
+          </Sidebar>
+        </ContentGrid>
+      </ScrollReveal>
     </Page>
   )
 }

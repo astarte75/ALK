@@ -120,6 +120,28 @@ export async function createContentTypes(env: Environment, dryRun = false): Prom
         localized: false,
         validations: [{ linkContentType: ['investmentPlatform'] }],
       },
+      { id: 'targetSectors', name: 'Target Sectors', type: 'Symbol', localized: true },
+      {
+        id: 'documents',
+        name: 'Documents',
+        type: 'Array',
+        localized: false,
+        items: {
+          type: 'Link',
+          linkType: 'Asset',
+        },
+      },
+      {
+        id: 'teamMembers',
+        name: 'Team Members',
+        type: 'Array',
+        localized: false,
+        items: {
+          type: 'Link',
+          linkType: 'Entry',
+          validations: [{ linkContentType: ['teamMember'] }],
+        },
+      },
     ],
   }, dryRun)
   await delay(DELAY_BETWEEN_TYPES_MS)

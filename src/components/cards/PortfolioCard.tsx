@@ -10,6 +10,7 @@ const StyledLink = styled(Link)`
   text-decoration: none;
   color: inherit;
   display: block;
+  height: 100%;
 `
 
 const Card = styled.article`
@@ -21,6 +22,7 @@ const Card = styled.article`
   display: flex;
   flex-direction: column;
   gap: ${spacing[3]};
+  height: 100%;
   transition: transform 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease;
   position: relative;
 

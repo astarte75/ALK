@@ -8,6 +8,7 @@ import { getNewsArticles, getNewsArticleBySlug } from '@/lib/contentful/fetchers
 import { renderRichText } from '@/lib/contentful/richText'
 import { colors, fonts, spacing } from '@/styles/theme'
 import { mq } from '@/styles/breakpoints'
+import ScrollReveal from '@/components/animations/ScrollReveal'
 import type { Document } from '@contentful/rich-text-types'
 
 export async function generateStaticParams() {
@@ -208,36 +209,42 @@ export default async function NewsDetailPage({
     <Page>
       <BackLink href="/news">{t('backToNews')}</BackLink>
 
-      {imageUrl && (
-        <FeaturedImageContainer>
-          <Image
-            src={imageUrl}
-            alt={title}
-            fill
-            sizes="(max-width: 1200px) 100vw, 1200px"
-            style={{ objectFit: 'cover' }}
-            priority
-          />
-        </FeaturedImageContainer>
-      )}
+      <ScrollReveal>
+        {imageUrl && (
+          <FeaturedImageContainer>
+            <Image
+              src={imageUrl}
+              alt={title}
+              fill
+              sizes="(max-width: 1200px) 100vw, 1200px"
+              style={{ objectFit: 'cover' }}
+              priority
+            />
+          </FeaturedImageContainer>
+        )}
 
-      <MetaRow>
-        {category && <CategoryBadge>{category}</CategoryBadge>}
-        <DateText dateTime={date}>{formattedDate}</DateText>
-      </MetaRow>
+        <MetaRow>
+          {category && <CategoryBadge>{category}</CategoryBadge>}
+          <DateText dateTime={date}>{formattedDate}</DateText>
+        </MetaRow>
 
-      <ArticleTitle>{title}</ArticleTitle>
+        <ArticleTitle>{title}</ArticleTitle>
+      </ScrollReveal>
 
-      <ArticleBody>
-        {body && renderRichText(body as unknown as Document)}
-      </ArticleBody>
+      <ScrollReveal delay={0.15}>
+        <ArticleBody>
+          {body && renderRichText(body as unknown as Document)}
+        </ArticleBody>
+      </ScrollReveal>
 
       {externalUrl && (
-        <ArticleBody>
-          <ExternalLink href={externalUrl} target="_blank" rel="noopener noreferrer">
-            {t('readOriginal')}
-          </ExternalLink>
-        </ArticleBody>
+        <ScrollReveal delay={0.25}>
+          <ArticleBody>
+            <ExternalLink href={externalUrl} target="_blank" rel="noopener noreferrer">
+              {t('readOriginal')}
+            </ExternalLink>
+          </ArticleBody>
+        </ScrollReveal>
       )}
     </Page>
   )

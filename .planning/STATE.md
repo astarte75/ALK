@@ -126,6 +126,8 @@ Phase 10 Prod Hardening      [░░░░░░░░░░] 0/?
 
 ## Todos
 
+- [ ] Upload fund documents (prospetto CONSOB, etc.) to Contentful and link to fund entries (Phase 8)
+- [ ] Populate fund `targetSectors` and `teamMembers` fields in Contentful (Phase 8)
 - [ ] Decide Alkemia brand accent color (blocking Phase 1 close)
 - [ ] Confirm font licensing (blocking Phase 1 close)
 - [ ] Create Contentful space with `it-IT` and `en-US` locales (blocking Phase 2 start)
