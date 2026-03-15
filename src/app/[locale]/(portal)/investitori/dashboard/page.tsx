@@ -47,23 +47,25 @@ export default async function DashboardPage({
     redirect(locale === 'en' ? '/en/investitori' : '/investitori')
   }
 
-  // Fetch investor name
+  // Fetch investor record
   const { data: investorData } = await supabase
     .from('investors')
-    .select('full_name')
+    .select('id, full_name, is_admin')
+    .eq('auth_user_id', user.id)
     .single()
-  const investor = investorData as { full_name: string } | null
+  const investor = investorData as { id: string; full_name: string; is_admin: boolean } | null
 
-  // Fetch positions with fund data
+  // Fetch only this investor's positions (not all — admin RLS would return everything)
   const { data: positionsData } = await supabase
     .from('fund_positions')
     .select('*, fund:funds(name, slug, fund_type)')
+    .eq('investor_id', investor?.id ?? '')
     .order('fund_id')
   const positions = (positionsData ?? []) as PositionWithFund[]
 
   return (
     <>
-      <PortalHeader showLogout />
+      <PortalHeader showLogout isAdmin={investor?.is_admin ?? false} />
       <Container>
         <WelcomeHeading>
           {t('welcome', { name: investor?.full_name ?? '' })}

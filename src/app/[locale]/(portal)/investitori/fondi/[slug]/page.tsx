@@ -199,6 +199,15 @@ export default async function FundDetailPage({
     redirect(locale === 'en' ? '/en/investitori' : '/investitori')
   }
 
+  // Fetch investor record for scoped queries
+  const { data: investorData } = await supabase
+    .from('investors')
+    .select('id, is_admin')
+    .eq('auth_user_id', user.id)
+    .single()
+  const investorId = investorData?.id ?? ''
+  const isAdmin = investorData?.is_admin ?? false
+
   // Fetch fund
   const { data: fundData } = await supabase
     .from('funds')
@@ -209,12 +218,12 @@ export default async function FundDetailPage({
   if (!fundData) notFound()
   const fund = fundData as Fund
 
-  // Fetch related data in parallel
+  // Fetch related data in parallel — scoped to this investor
   const [positionResult, callsResult, navResult, docsResult, holdingsResult] = await Promise.all([
-    supabase.from('fund_positions').select('*').eq('fund_id', fund.id).single(),
-    supabase.from('capital_calls').select('*').eq('fund_id', fund.id).order('call_date', { ascending: false }),
-    supabase.from('nav_history').select('*').eq('fund_id', fund.id).order('report_date', { ascending: true }),
-    supabase.from('investor_documents').select('*').eq('fund_id', fund.id).order('uploaded_at', { ascending: false }),
+    supabase.from('fund_positions').select('*').eq('fund_id', fund.id).eq('investor_id', investorId).single(),
+    supabase.from('capital_calls').select('*').eq('fund_id', fund.id).eq('investor_id', investorId).order('call_date', { ascending: false }),
+    supabase.from('nav_history').select('*').eq('fund_id', fund.id).eq('investor_id', investorId).order('report_date', { ascending: true }),
+    supabase.from('investor_documents').select('*').eq('fund_id', fund.id).eq('investor_id', investorId).order('uploaded_at', { ascending: false }),
     supabase.from('fund_holdings').select('*').eq('fund_id', fund.id).order('cost', { ascending: false }),
   ])
 
@@ -240,7 +249,7 @@ export default async function FundDetailPage({
 
   return (
     <>
-      <PortalHeader showLogout />
+      <PortalHeader showLogout isAdmin={isAdmin} />
       <Container>
         <BackLink href="/investitori/dashboard">
           &larr; {t('fundDetail.backToDashboard')}

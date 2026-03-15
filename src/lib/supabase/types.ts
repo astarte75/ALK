@@ -12,6 +12,7 @@ export type Database = {
           company: string | null
           fiscal_code: string | null
           language: string
+          is_admin: boolean
           created_at: string
           updated_at: string
         }
@@ -23,6 +24,7 @@ export type Database = {
           company?: string | null
           fiscal_code?: string | null
           language?: string
+          is_admin?: boolean
           created_at?: string
           updated_at?: string
         }
@@ -34,6 +36,7 @@ export type Database = {
           company?: string | null
           fiscal_code?: string | null
           language?: string
+          is_admin?: boolean
           created_at?: string
           updated_at?: string
         }

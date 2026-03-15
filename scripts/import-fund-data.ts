@@ -142,9 +142,9 @@ function extractFundData(filePath: string, fundConfig: typeof FUND_CONFIGS[0]) {
   const dashData = XLSX.utils.sheet_to_json<Record<string, unknown>>(dashSheet, { header: 1 })
 
   // Row 3 (index 2) = quarter headers, Row 4 (index 3) = NAV values
-  const headers = dashData[2] as unknown[]
-  const navRow = dashData[3] as unknown[]
-  const calledRow = dashData[11] as unknown[] // Richiami Cumulati
+  const headers = dashData[2] as unknown as unknown[]
+  const navRow = dashData[3] as unknown as unknown[]
+  const calledRow = dashData[11] as unknown as unknown[] // Richiami Cumulati
 
   const navHistory: NavQuarter[] = []
   for (let i = 1; i < headers.length; i++) {
@@ -162,7 +162,7 @@ function extractFundData(filePath: string, fundConfig: typeof FUND_CONFIGS[0]) {
   // --- IRR from Cash Flows & IRR sheet ---
   const irrSheet = wb.Sheets['Cash Flows & IRR']
   const irrData = XLSX.utils.sheet_to_json<Record<string, unknown>>(irrSheet, { header: 1 })
-  const irr = toNumber((irrData[2] as unknown[])?.[1])
+  const irr = toNumber((irrData[2] as unknown as unknown[])?.[1])
 
   // --- Investors ---
   const invSheet = wb.Sheets['Investitori']
@@ -170,7 +170,7 @@ function extractFundData(filePath: string, fundConfig: typeof FUND_CONFIGS[0]) {
 
   const investors: InvestorRow[] = []
   for (let i = 3; i < invData.length; i++) {
-    const row = invData[i] as unknown[]
+    const row = invData[i] as unknown as unknown[]
     const name = row?.[1]
     if (!name || String(name) === 'TOTALE') continue
     investors.push({
@@ -195,7 +195,7 @@ function extractFundData(filePath: string, fundConfig: typeof FUND_CONFIGS[0]) {
 
   const cashFlows: CashFlowRow[] = []
   for (let i = 7; i < cfData.length; i++) {
-    const row = cfData[i] as unknown[]
+    const row = cfData[i] as unknown as unknown[]
     const date = row?.[0]
     const investor = row?.[1]
     const amount = toNumber(row?.[2])
@@ -218,8 +218,8 @@ function extractFundData(filePath: string, fundConfig: typeof FUND_CONFIGS[0]) {
 
   const holdings: HoldingRow[] = []
   // Last quarter columns (rightmost data)
-  const pfHeaders = pfData[2] as unknown[]
-  const pfSubheaders = pfData[3] as unknown[]
+  const pfHeaders = pfData[2] as unknown as unknown[]
+  const pfSubheaders = pfData[3] as unknown as unknown[]
 
   // Find the last quarter's cost/fair value columns
   let lastCostCol = -1
@@ -238,7 +238,7 @@ function extractFundData(filePath: string, fundConfig: typeof FUND_CONFIGS[0]) {
   }
 
   for (let i = 4; i < pfData.length; i++) {
-    const row = pfData[i] as unknown[]
+    const row = pfData[i] as unknown as unknown[]
     const name = row?.[0]
     if (!name || String(name).toLowerCase().includes('inserire')) continue
     const cost = toNumber(row?.[lastCostCol])

@@ -5,12 +5,17 @@ import { NextResponse, type NextRequest } from 'next/server'
 import type { Database } from './types'
 
 // Portal routes that require authentication
-const PROTECTED_SEGMENTS = ['/dashboard', '/fondi/', '/documenti']
+const PROTECTED_SEGMENTS = ['/dashboard', '/fondi/', '/documenti', '/admin']
 
 function isProtectedRoute(pathname: string): boolean {
   // Strip locale prefix for matching
   const path = pathname.replace(/^\/(it|en)/, '')
   return PROTECTED_SEGMENTS.some((segment) => path.includes(segment))
+}
+
+function isAdminRoute(pathname: string): boolean {
+  const path = pathname.replace(/^\/(it|en)/, '')
+  return path.includes('/investitori/admin')
 }
 
 function getLoginUrl(request: NextRequest): string {
@@ -52,6 +57,22 @@ export async function updateSession(
   // Redirect unauthenticated users away from protected portal routes
   if (!user && isProtectedRoute(request.nextUrl.pathname)) {
     return NextResponse.redirect(getLoginUrl(request))
+  }
+
+  // Admin route: check is_admin flag on investor record
+  if (user && isAdminRoute(request.nextUrl.pathname)) {
+    const { data: investor } = await supabase
+      .from('investors')
+      .select('is_admin')
+      .eq('auth_user_id', user.id)
+      .single()
+
+    if (!investor?.is_admin) {
+      // Non-admin users get redirected to their dashboard
+      const isEnglish = request.nextUrl.pathname.startsWith('/en')
+      const dashPath = isEnglish ? '/en/investitori/dashboard' : '/investitori/dashboard'
+      return NextResponse.redirect(new URL(dashPath, request.url))
+    }
   }
 
   return response

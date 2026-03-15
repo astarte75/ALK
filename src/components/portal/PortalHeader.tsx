@@ -32,6 +32,22 @@ const RightSection = styled.div`
   gap: 1rem;
 `
 
+const AdminLink = styled(Link)`
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  border: 1px solid var(--color-accent-gold);
+  color: var(--color-accent-gold);
+  text-decoration: none;
+  transition: all 0.2s ease;
+
+  &:hover {
+    background: var(--color-accent-gold);
+    color: var(--color-bg);
+  }
+`
+
 const LogoutButton = styled.button`
   background: transparent;
   border: 1px solid var(--color-border);
@@ -50,9 +66,10 @@ const LogoutButton = styled.button`
 
 interface PortalHeaderProps {
   showLogout?: boolean
+  isAdmin?: boolean
 }
 
-export default function PortalHeader({ showLogout = false }: PortalHeaderProps) {
+export default function PortalHeader({ showLogout = false, isAdmin = false }: PortalHeaderProps) {
   const t = useTranslations('portal')
 
   return (
@@ -68,6 +85,9 @@ export default function PortalHeader({ showLogout = false }: PortalHeaderProps) 
         />
       </LogoLink>
       <RightSection>
+        {isAdmin && (
+          <AdminLink href="/investitori/admin">Admin</AdminLink>
+        )}
         <LanguageSwitcher />
         {showLogout && (
           <form action={logout}>
