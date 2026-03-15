@@ -24,6 +24,7 @@ const Grid = styled.div`
 `
 
 const CATEGORIES = ['Partners', 'Investment Team', 'Operations'] as const
+const OFFICES = ['Milano', 'Padova'] as const
 
 interface TeamGridProps {
   members: TeamMember[]
@@ -32,6 +33,7 @@ interface TeamGridProps {
 
 export default function TeamGrid({ members, locale }: TeamGridProps) {
   const [category, setCategory] = useState('all')
+  const [office, setOffice] = useState('all')
   const t = useTranslations('team')
 
   const categoryOptions = useMemo(() => {
@@ -51,9 +53,31 @@ export default function TeamGrid({ members, locale }: TeamGridProps) {
     ]
   }, [members, t])
 
+  const officeOptions = useMemo(() => {
+    const counts = new Map<string, number>()
+    for (const m of members) {
+      const off = m.fields.office
+      if (off) counts.set(off, (counts.get(off) || 0) + 1)
+    }
+
+    return [
+      { value: 'all', label: t('all'), count: members.length },
+      ...OFFICES.map((off) => ({
+        value: off,
+        label: off,
+        count: counts.get(off) || 0,
+      })),
+    ]
+  }, [members, t])
+
   const filtered = useMemo(
-    () => (category === 'all' ? members : members.filter((m) => m.fields.category === category)),
-    [members, category]
+    () =>
+      members.filter((m) => {
+        if (category !== 'all' && m.fields.category !== category) return false
+        if (office !== 'all' && m.fields.office !== office) return false
+        return true
+      }),
+    [members, category, office]
   )
 
   return (
@@ -63,6 +87,12 @@ export default function TeamGrid({ members, locale }: TeamGridProps) {
         options={categoryOptions}
         value={category}
         onChange={setCategory}
+      />
+      <FilterPills
+        label={t('filterOffice')}
+        options={officeOptions}
+        value={office}
+        onChange={setOffice}
       />
       <Grid>
         {filtered.map((member) => (

@@ -11,6 +11,31 @@ const Card = styled.div`
   border: 1px solid ${colors.border};
   border-radius: 8px;
   padding: ${spacing[6]};
+  position: relative;
+  overflow: hidden;
+  transition: border-color 0.4s ease, background 0.4s ease;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 3px;
+    height: 100%;
+    background: ${colors.accentTeal};
+    transform: scaleY(0);
+    transform-origin: top;
+    transition: transform 0.4s ease;
+  }
+
+  &:hover {
+    border-color: rgba(46, 196, 182, 0.3);
+    background: rgba(42, 50, 58, 1);
+
+    &::before {
+      transform: scaleY(1);
+    }
+  }
 `
 
 const FundName = styled.h4`
@@ -23,12 +48,8 @@ const FundName = styled.h4`
 
 const MetricsGrid = styled.div`
   display: grid;
-  grid-template-columns: 1fr;
+  grid-template-columns: 1fr 1fr;
   gap: ${spacing[4]};
-
-  ${mq.sm} {
-    grid-template-columns: 1fr 1fr;
-  }
 `
 
 const Metric = styled.div`
@@ -52,9 +73,7 @@ const MetricValue = styled.span`
   color: ${colors.textPrimary};
 `
 
-const StatusValue = styled.span<{ $active: boolean }>`
-  font-family: ${fonts.body};
-  font-size: 1rem;
+const StatusValue = styled(MetricValue)<{ $active: boolean }>`
   color: ${({ $active }) => ($active ? colors.accentTeal : colors.textSecondary)};
   font-weight: ${({ $active }) => ($active ? 600 : 400)};
 `

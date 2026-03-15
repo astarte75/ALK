@@ -57,6 +57,7 @@ export interface TeamMemberSkeleton extends EntrySkeletonType {
     photo: EntryFieldTypes.AssetLink
     linkedIn: EntryFieldTypes.Text
     isBoard: EntryFieldTypes.Boolean
+    office: EntryFieldTypes.Text
     sortOrder: EntryFieldTypes.Integer
   }
 }

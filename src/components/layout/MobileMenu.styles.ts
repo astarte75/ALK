@@ -1,16 +1,15 @@
 import styled from 'styled-components'
 import { zIndex } from '@/styles/zIndex'
 
-export const MobileOverlay = styled.div<{ $isOpen: boolean }>`
+export const MobileOverlay = styled.div`
   position: fixed;
   inset: 0;
   z-index: ${zIndex.mobileMenu};
   background: var(--color-bg);
   display: flex;
   flex-direction: column;
-  opacity: ${({ $isOpen }) => ($isOpen ? 1 : 0)};
-  visibility: ${({ $isOpen }) => ($isOpen ? 'visible' : 'hidden')};
-  transition: opacity 0.4s ease, visibility 0.4s ease;
+  visibility: hidden;
+  opacity: 0;
   overflow-y: auto;
 `
 
@@ -77,12 +76,9 @@ export const MobileMenuList = styled.ul`
   gap: var(--space-6);
 `
 
-export const MobileMenuItem = styled.li<{ $isOpen: boolean; $index: number }>`
-  opacity: ${({ $isOpen }) => ($isOpen ? 1 : 0)};
-  transform: translateY(${({ $isOpen }) => ($isOpen ? '0' : '20px')});
-  transition: opacity 0.4s ease, transform 0.4s ease;
-  transition-delay: ${({ $isOpen, $index }) =>
-    $isOpen ? `${0.1 + $index * 0.08}s` : '0s'};
+export const MobileMenuItem = styled.li`
+  opacity: 0;
+  transform: translateY(30px);
 
   a {
     font-family: var(--font-heading);
@@ -98,11 +94,9 @@ export const MobileMenuItem = styled.li<{ $isOpen: boolean; $index: number }>`
   }
 `
 
-export const MobileMenuFooter = styled.div<{ $isOpen: boolean }>`
+export const MobileMenuFooter = styled.div`
   display: flex;
   justify-content: center;
   padding: var(--space-8) var(--space-6);
-  opacity: ${({ $isOpen }) => ($isOpen ? 1 : 0)};
-  transition: opacity 0.4s ease;
-  transition-delay: ${({ $isOpen }) => ($isOpen ? '0.8s' : '0s')};
+  opacity: 0;
 `

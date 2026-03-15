@@ -11,10 +11,12 @@ const Card = styled.article`
   border: 1px solid ${colors.border};
   border-radius: 8px;
   overflow: hidden;
-  transition: transform 0.3s ease;
+  transition: transform 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease;
 
   &:hover {
-    transform: translateY(-4px);
+    transform: translateY(-6px);
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.4);
+    border-color: rgba(46, 196, 182, 0.2);
   }
 `
 
@@ -24,11 +26,11 @@ const ImageWrapper = styled.div`
   overflow: hidden;
 
   img {
-    transition: transform 0.3s ease;
+    transition: transform 0.4s ease;
   }
 
   ${Card}:hover & img {
-    transform: scale(1.03);
+    transform: scale(1.06);
   }
 `
 
@@ -74,6 +76,11 @@ const Title = styled.h3`
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
+  transition: color 0.3s ease;
+
+  ${Card}:hover & {
+    color: ${colors.accentTeal};
+  }
 `
 
 const Excerpt = styled.p`

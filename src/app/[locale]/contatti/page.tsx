@@ -98,6 +98,21 @@ const PhoneLink = styled.a`
   }
 `
 
+const MapWrapper = styled.div`
+  margin-top: ${spacing[4]};
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid ${colors.border};
+  aspect-ratio: 16 / 9;
+
+  iframe {
+    width: 100%;
+    height: 100%;
+    border: 0;
+    filter: grayscale(1) invert(1) contrast(1.1) hue-rotate(180deg);
+  }
+`
+
 export default async function ContattiPage({
   params,
 }: {
@@ -118,22 +133,36 @@ export default async function ContattiPage({
 
       <TwoCol>
         <OfficesColumn>
-          {offices.map((office) => (
-            <OfficeCard key={office.sys.id}>
-              <OfficeHeader>
-                <CityName>{office.fields.city}</CityName>
-                {office.fields.isHeadquarters && (
-                  <HqBadge>{t('headquarters')}</HqBadge>
+          {offices.map((office) => {
+            const isMilano = office.fields.city?.toLowerCase().includes('milan')
+            return (
+              <OfficeCard key={office.sys.id}>
+                <OfficeHeader>
+                  <CityName>{office.fields.city}</CityName>
+                  {office.fields.isHeadquarters && (
+                    <HqBadge>{t('headquarters')}</HqBadge>
+                  )}
+                </OfficeHeader>
+                <Address>{office.fields.address}</Address>
+                {office.fields.phone && (
+                  <PhoneLink href={`tel:${office.fields.phone.replace(/\s/g, '')}`}>
+                    {office.fields.phone}
+                  </PhoneLink>
                 )}
-              </OfficeHeader>
-              <Address>{office.fields.address}</Address>
-              {office.fields.phone && (
-                <PhoneLink href={`tel:${office.fields.phone.replace(/\s/g, '')}`}>
-                  {office.fields.phone}
-                </PhoneLink>
-              )}
-            </OfficeCard>
-          ))}
+                {isMilano && (
+                  <MapWrapper>
+                    <iframe
+                      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2798.4!2d9.1889625!3d45.4647668!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4786c7ec416b73d5%3A0x152ee4b280455332!2sAlkemia%20SGR%20S.p.A.!5e0!3m2!1sit!2sit!4v1710000000000!5m2!1sit!2sit"
+                      allowFullScreen
+                      loading="lazy"
+                      referrerPolicy="no-referrer-when-downgrade"
+                      title="Alkemia Capital - Milano"
+                    />
+                  </MapWrapper>
+                )}
+              </OfficeCard>
+            )
+          })}
         </OfficesColumn>
 
         <ContactForm />

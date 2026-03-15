@@ -183,6 +183,13 @@ export async function createContentTypes(env: Environment, dryRun = false): Prom
       { id: 'photo', name: 'Photo', type: 'Link', linkType: 'Asset', localized: false },
       { id: 'linkedIn', name: 'LinkedIn', type: 'Symbol', localized: false },
       { id: 'isBoard', name: 'Is Board Member', type: 'Boolean', localized: false },
+      {
+        id: 'office',
+        name: 'Office',
+        type: 'Symbol',
+        localized: false,
+        validations: [{ in: ['Milano', 'Padova'] }],
+      },
       { id: 'sortOrder', name: 'Sort Order', type: 'Integer', localized: false },
     ],
   }, dryRun)

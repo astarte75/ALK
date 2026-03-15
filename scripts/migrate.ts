@@ -90,6 +90,40 @@ function collectImageUrls(): Array<{ url: string; title: string }> {
   return images
 }
 
+/**
+ * Ensure the teamMember content type has the 'office' field.
+ * If the field already exists, skip. Otherwise add and publish.
+ */
+async function ensureTeamMemberOfficeField(env: Environment, dryRun: boolean): Promise<void> {
+  console.log('\n--- Ensuring teamMember has office field ---')
+
+  if (dryRun) {
+    console.log('  [DRY RUN] Would add office field to teamMember content type')
+    return
+  }
+
+  const ct = await env.getContentType('teamMember')
+  const hasOffice = ct.fields.some((f: { id: string }) => f.id === 'office')
+
+  if (hasOffice) {
+    console.log('  Field "office" already exists on teamMember, skipping.')
+    return
+  }
+
+  ct.fields.push({
+    id: 'office',
+    name: 'Office',
+    type: 'Symbol',
+    required: false,
+    localized: false,
+    validations: [{ in: ['Milano', 'Padova'] }],
+  } as any)
+
+  const updated = await ct.update()
+  await updated.publish()
+  console.log('  Added "office" field to teamMember content type.')
+}
+
 // --- Entry creation functions ---
 
 async function createOfficeEntries(
@@ -311,6 +345,7 @@ async function createTeamEntries(
       category: nonLocalized(member.category),
       linkedIn: nonLocalized(member.linkedIn),
       isBoard: nonLocalized(member.isBoard),
+      office: nonLocalized(member.office),
       sortOrder: nonLocalized(member.sortOrder),
     }
 
@@ -333,6 +368,49 @@ async function createTeamEntries(
     const entry = await env.createEntry('teamMember', { fields })
     await entry.publish()
     console.log(`  Created team member ${i + 1}/${teamMembers.length}: ${member.name['it-IT']}`)
+    await new Promise((r) => setTimeout(r, DELAY_MS))
+  }
+}
+
+/**
+ * Update existing team member entries with office field.
+ * Matches by slug and sets office for both locales.
+ */
+async function updateTeamMemberOffices(
+  env: Environment,
+  dryRun: boolean
+): Promise<void> {
+  console.log('\n--- Updating Team Member Offices ---')
+
+  const PADOVA_SURNAMES = ['Gaiani', 'Segatto', 'Simonato', 'Gatto']
+
+  const entries = await env.getEntries({
+    content_type: 'teamMember',
+    limit: 100,
+  })
+
+  for (const entry of entries.items) {
+    const name = entry.fields.name?.['it-IT'] as string | undefined
+    if (!name) continue
+
+    const surname = name.split(' ').pop() || ''
+    const office = PADOVA_SURNAMES.includes(surname) ? 'Padova' : 'Milano'
+
+    const currentOffice = (entry.fields.office as Record<string, string> | undefined)?.['it-IT']
+    if (currentOffice === office) {
+      console.log(`  "${name}" already has office="${office}", skipping.`)
+      continue
+    }
+
+    if (dryRun) {
+      console.log(`  [DRY RUN] Would set "${name}" office to "${office}"`)
+      continue
+    }
+
+    entry.fields.office = { 'it-IT': office }
+    const updated = await entry.update()
+    await updated.publish()
+    console.log(`  Updated "${name}" → office="${office}"`)
     await new Promise((r) => setTimeout(r, DELAY_MS))
   }
 }
@@ -497,6 +575,9 @@ async function main() {
       await createContentTypes(env, false)
     }
 
+    // Step 1b: Add office field to teamMember (idempotent)
+    await ensureTeamMemberOfficeField(env, false)
+
     // Step 2: Images
     let assetMap = new Map<string, string>()
     if (!skipImages) {
@@ -510,6 +591,7 @@ async function main() {
       const fundMap = await createFundEntries(env, platformMap, false)
       await createPortfolioEntries(env, assetMap, false)
       await createTeamEntries(env, assetMap, false)
+      await updateTeamMemberOffices(env, false)
       await createNewsEntries(env, assetMap, false)
       await createPageEntries(env, false)
       await createSiteConfigEntry(env, officeMap, assetMap, false)

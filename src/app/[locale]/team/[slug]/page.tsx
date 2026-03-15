@@ -130,6 +130,21 @@ const BoardBadge = styled.span`
   color: ${colors.bg};
 `
 
+const OfficeLabel = styled.span`
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: ${fonts.body};
+  font-size: 0.875rem;
+  color: ${colors.textSecondary};
+
+  &::before {
+    content: '\\25CB';
+    font-size: 0.5rem;
+    color: ${colors.accentTeal};
+  }
+`
+
 const LinkedInLink = styled.a`
   display: inline-flex;
   align-items: center;
@@ -191,7 +206,7 @@ export default async function TeamDetailPage({
 
   if (!member) notFound()
 
-  const { name, role, bio, photo, linkedIn, isBoard } = member.fields
+  const { name, role, bio, photo, linkedIn, isBoard, office } = member.fields
 
   const photoAsset = photo as unknown as { fields?: { file?: { url?: string } } } | undefined
   const photoUrl = photoAsset?.fields?.file?.url ? `https:${photoAsset.fields.file.url}` : null
@@ -229,6 +244,7 @@ export default async function TeamDetailPage({
           <RoleText>{role}</RoleText>
           <BadgeRow>
             {isBoard && <BoardBadge>{t('boardMember')}</BoardBadge>}
+            {office && <OfficeLabel>{office}</OfficeLabel>}
             {linkedIn && (
               <LinkedInLink href={linkedIn} target="_blank" rel="noopener noreferrer">
                 LinkedIn

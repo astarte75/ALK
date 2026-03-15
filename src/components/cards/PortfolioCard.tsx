@@ -21,12 +21,28 @@ const Card = styled.article`
   display: flex;
   flex-direction: column;
   gap: ${spacing[3]};
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition: transform 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease;
   position: relative;
 
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 12px;
+    background: linear-gradient(to top, rgba(46, 196, 182, 0.06), transparent);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    pointer-events: none;
+  }
+
   &:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+    transform: translateY(-6px);
+    border-color: rgba(46, 196, 182, 0.3);
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.4);
+
+    &::after {
+      opacity: 1;
+    }
   }
 `
 

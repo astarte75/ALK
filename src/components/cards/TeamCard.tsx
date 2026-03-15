@@ -22,8 +22,23 @@ const PhotoContainer = styled.div`
     transition: transform 0.4s ease;
   }
 
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(26, 30, 34, 0.5), transparent 60%);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    z-index: 1;
+    pointer-events: none;
+  }
+
   ${Card}:hover & img {
     transform: scale(1.05);
+  }
+
+  ${Card}:hover &::after {
+    opacity: 0.6;
   }
 `
 
@@ -47,9 +62,26 @@ const Name = styled.h3`
   color: ${colors.textPrimary};
   margin: ${spacing[3]} 0 0 0;
   transition: color 0.3s ease;
+  position: relative;
+  display: inline-block;
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: ${colors.accentTeal};
+    transition: width 0.4s ease;
+  }
 
   ${Card}:hover & {
     color: ${colors.accentTeal};
+
+    &::after {
+      width: 100%;
+    }
   }
 `
 

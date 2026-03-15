@@ -12,6 +12,7 @@ export interface TeamMemberData {
   photoUrl: string
   linkedIn: string
   isBoard: boolean
+  office: string
   sortOrder: number
 }
 
@@ -31,6 +32,7 @@ export const teamMembers: TeamMemberData[] = [
     photoUrl: 'https://www.alkemiacapital.com/wp-content/uploads/2025/05/1.png',
     linkedIn: 'https://www.linkedin.com/in/luca-maurizio-duranti-a76200a4',
     isBoard: true,
+    office: 'Milano',
     sortOrder: 1,
   },
   {
@@ -48,6 +50,7 @@ export const teamMembers: TeamMemberData[] = [
     photoUrl: 'https://www.alkemiacapital.com/wp-content/uploads/2025/05/7.png',
     linkedIn: 'https://www.linkedin.com/in/cremonini/',
     isBoard: true,
+    office: 'Milano',
     sortOrder: 2,
   },
   {
@@ -65,6 +68,7 @@ export const teamMembers: TeamMemberData[] = [
     photoUrl: 'https://www.alkemiacapital.com/wp-content/uploads/2025/05/8.png',
     linkedIn: 'https://www.linkedin.com/in/giacomo-picchetto-535205',
     isBoard: true,
+    office: 'Milano',
     sortOrder: 3,
   },
   {
@@ -78,6 +82,7 @@ export const teamMembers: TeamMemberData[] = [
     photoUrl: 'https://www.alkemiacapital.com/wp-content/uploads/2024/10/HD1A3042-683x1024.jpg',
     linkedIn: '',
     isBoard: false,
+    office: 'Padova',
     sortOrder: 4,
   },
   {
@@ -91,6 +96,7 @@ export const teamMembers: TeamMemberData[] = [
     photoUrl: 'https://www.alkemiacapital.com/wp-content/uploads/2025/05/6.png',
     linkedIn: '',
     isBoard: true,
+    office: 'Padova',
     sortOrder: 5,
   },
   {
@@ -104,6 +110,7 @@ export const teamMembers: TeamMemberData[] = [
     photoUrl: 'https://www.alkemiacapital.com/wp-content/uploads/2025/05/2.png',
     linkedIn: '',
     isBoard: false,
+    office: 'Milano',
     sortOrder: 6,
   },
   {
@@ -117,6 +124,7 @@ export const teamMembers: TeamMemberData[] = [
     photoUrl: 'https://www.alkemiacapital.com/wp-content/uploads/2025/05/9.png',
     linkedIn: '',
     isBoard: true,
+    office: 'Milano',
     sortOrder: 7,
   },
   {
@@ -130,6 +138,7 @@ export const teamMembers: TeamMemberData[] = [
     photoUrl: 'https://www.alkemiacapital.com/wp-content/uploads/2025/05/12.png',
     linkedIn: '',
     isBoard: false,
+    office: 'Milano',
     sortOrder: 8,
   },
   {
@@ -143,6 +152,7 @@ export const teamMembers: TeamMemberData[] = [
     photoUrl: 'https://www.alkemiacapital.com/wp-content/uploads/2025/05/3.png',
     linkedIn: '',
     isBoard: false,
+    office: 'Milano',
     sortOrder: 9,
   },
   {
@@ -156,6 +166,7 @@ export const teamMembers: TeamMemberData[] = [
     photoUrl: 'https://www.alkemiacapital.com/wp-content/uploads/2025/05/11.png',
     linkedIn: '',
     isBoard: false,
+    office: 'Milano',
     sortOrder: 10,
   },
   {
@@ -169,6 +180,7 @@ export const teamMembers: TeamMemberData[] = [
     photoUrl: 'https://www.alkemiacapital.com/wp-content/uploads/2025/05/10.png',
     linkedIn: '',
     isBoard: false,
+    office: 'Milano',
     sortOrder: 11,
   },
   {
@@ -182,6 +194,7 @@ export const teamMembers: TeamMemberData[] = [
     photoUrl: 'https://www.alkemiacapital.com/wp-content/uploads/2025/05/0X4A0282bn-683x1024.jpg',
     linkedIn: '',
     isBoard: false,
+    office: 'Milano',
     sortOrder: 12,
   },
   {
@@ -195,6 +208,7 @@ export const teamMembers: TeamMemberData[] = [
     photoUrl: 'https://www.alkemiacapital.com/wp-content/uploads/2025/05/4.png',
     linkedIn: '',
     isBoard: false,
+    office: 'Padova',
     sortOrder: 13,
   },
   {
@@ -208,6 +222,7 @@ export const teamMembers: TeamMemberData[] = [
     photoUrl: 'https://www.alkemiacapital.com/wp-content/uploads/2025/05/5.png',
     linkedIn: '',
     isBoard: false,
+    office: 'Milano',
     sortOrder: 14,
   },
   {
@@ -221,6 +236,49 @@ export const teamMembers: TeamMemberData[] = [
     photoUrl: 'https://www.alkemiacapital.com/wp-content/uploads/2025/05/13.png',
     linkedIn: '',
     isBoard: false,
+    office: 'Padova',
     sortOrder: 15,
+  },
+  {
+    name: { 'it-IT': 'Diletta Livi', 'en-US': 'Diletta Livi' },
+    slug: 'diletta-livi',
+    role: {
+      'it-IT': 'Partner',
+      'en-US': 'Partner',
+    },
+    category: 'Partners',
+    photoUrl: '',
+    linkedIn: 'https://www.linkedin.com/in/diletta-livi-69081047/',
+    isBoard: false,
+    office: 'Milano',
+    sortOrder: 16,
+  },
+  {
+    name: { 'it-IT': 'Marta Cavalli', 'en-US': 'Marta Cavalli' },
+    slug: 'marta-cavalli',
+    role: {
+      'it-IT': 'Intern',
+      'en-US': 'Intern',
+    },
+    category: 'Investment Team',
+    photoUrl: '',
+    linkedIn: 'https://www.linkedin.com/in/marta-cavalli-8562521b6/',
+    isBoard: false,
+    office: 'Milano',
+    sortOrder: 17,
+  },
+  {
+    name: { 'it-IT': 'Elisa Menegazzi', 'en-US': 'Elisa Menegazzi' },
+    slug: 'elisa-menegazzi',
+    role: {
+      'it-IT': 'Amministrazione Fondi',
+      'en-US': 'Fund Administration',
+    },
+    category: 'Operations',
+    photoUrl: '',
+    linkedIn: 'https://www.linkedin.com/in/elisa-menegazzi-448baa9a/',
+    isBoard: false,
+    office: 'Padova',
+    sortOrder: 18,
   },
 ]

@@ -186,6 +186,8 @@ const MetricValue = styled.span`
 `
 const StatusBadge = styled.span<{ $status: string }>`
   display: inline-block;
+  align-self: flex-start;
+  margin-left: calc(-1 * ${spacing[2]});
   font-family: ${fonts.body};
   font-size: 0.6875rem;
   font-weight: 600;
