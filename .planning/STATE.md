@@ -5,11 +5,11 @@ milestone_name: milestone
 status: executing
 last_updated: "2026-03-15T22:00:00Z"
 progress:
-  total_phases: 10
+  total_phases: 11
   completed_phases: 7
   total_plans: 23
   completed_plans: 23
-  percent: 70
+  percent: 64
 ---
 
 # Project State: Alkemia Capital Website
@@ -34,7 +34,7 @@ progress:
 **Last action:** Completed Phase 7 (Supabase auth, login, dashboard, fund detail, NAV chart, documents, route groups)
 
 ```
-Progress: [##############░░░░░░] 70%
+Progress: [############░░░░░░░░] 64%
 
 Phase 1  Foundation          [########░░] 2/3  ✓
 Phase 2  Content Infra       [##########] 3/3  ✓
@@ -43,9 +43,10 @@ Phase 4  Core Pages          [##########] 5/5  ✓
 Phase 5  Animation Layer     [##########] 2/2  ✓
 Phase 6  Site Review & Polish[##########] 4/4  ✓
 Phase 7  Investor Portal     [##########] 4/4  ✓
-Phase 8  General Review      [░░░░░░░░░░] 0/?  ← next
-Phase 9  SEO & Performance   [░░░░░░░░░░] 0/?
-Phase 10 Prod Hardening      [░░░░░░░░░░] 0/?
+Phase 8  Data Import & Verify[░░░░░░░░░░] 0/4  ← next
+Phase 9  General Review      [░░░░░░░░░░] 0/?
+Phase 10 SEO & Performance   [░░░░░░░░░░] 0/?
+Phase 11 Prod Hardening      [░░░░░░░░░░] 0/?
 ```
 
 ---
@@ -165,7 +166,7 @@ None currently.
 2. Read `.planning/STATE.md` (this file) for decisions, pitfalls, and todos
 3. Run `/gsd:plan-phase [N]` to get the execution plan for the next phase
 
-**Phase sequence:** 1 → 2 → 3 → 4 → 5 → 6 → 7 → 8 → 9 → 10
+**Phase sequence:** 1 → 2 → 3 → 4 → 5 → 6 → 7 → 8 → 9 → 10 → 11
 
 **Current milestone:** v1 (initial launch at alkemiacapital.com)
 

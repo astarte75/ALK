@@ -16,9 +16,10 @@
 - [x] **Phase 5: Animation Layer** — GSAP, Lenis, video hero, scroll-triggered reveals (completed 2026-03-15)
 - [x] **Phase 6: Site Review & Layout Polish** — Full site review, layout fixes, visual polish, UX improvements (completed 2026-03-15)
 - [x] **Phase 7: Investor Portal** — Authenticated area for investors to check fund positions (completed 2026-03-15)
-- [ ] **Phase 8: General Review & Refinements** — Cross-cutting improvements, edge cases, content fine-tuning
-- [ ] **Phase 9: SEO & Performance** — Metadata, structured data, sitemap, Lighthouse 90+
-- [ ] **Phase 10: Production Hardening** — Accessibility audit, ISR webhooks, error states, cross-browser
+- [ ] **Phase 8: Data Import & Verification** — Real fund data import, admin dashboard, E2E verification with real investors
+- [ ] **Phase 9: General Review & Refinements** — Cross-cutting improvements, edge cases, content fine-tuning
+- [ ] **Phase 10: SEO & Performance** — Metadata, structured data, sitemap, Lighthouse 90+
+- [ ] **Phase 11: Production Hardening** — Accessibility audit, ISR webhooks, error states, cross-browser
 
 ---
 
@@ -33,9 +34,10 @@
 | 5. Animation Layer | 2/2 | Complete | 2026-03-15 |
 | 6. Site Review & Layout Polish | 4/4 | Complete | 2026-03-15 |
 | 7. Investor Portal | 4/4 | Complete | 2026-03-15 |
-| 8. General Review & Refinements | 0/? | Not started | - |
-| 9. SEO & Performance | 0/? | Not started | - |
-| 10. Production Hardening | 0/? | Not started | - |
+| 8. Data Import & Verification | 0/? | Not started | - |
+| 9. General Review & Refinements | 0/? | Not started | - |
+| 10. SEO & Performance | 0/? | Not started | - |
+| 11. Production Hardening | 0/? | Not started | - |
 
 ---
 
@@ -220,12 +222,43 @@ Plans:
 
 ---
 
-### Phase 8: General Review & Refinements
-**Goal**: Cross-cutting review of the entire site including the investor portal. Fix edge cases, improve interactions, fine-tune content, and address any accumulated issues.
-**Depends on**: Phase 7 (investor portal must be live)
+### Phase 8: Data Import & Verification
+**Goal**: The investor portal contains real Alkemia fund data, real investor accounts, and an admin dashboard to verify data integrity. The portal is ready for production use with real investors.
+**Depends on**: Phase 7 (portal infrastructure must be live)
+**Requirements**: DATA-01, DATA-02, DATA-03, DATA-04, DATA-05
+**Success Criteria** (what must be TRUE):
+  1. Real fund data (starting with 2 funds) is loaded in Supabase with correct positions, capital calls, and NAV history
+  2. Real investor accounts exist in Supabase Auth with the correct fund positions visible after login
+  3. An admin user can access `/investitori/admin` and see a summary of all imported data with consistency checks
+  4. The import script is reusable for quarterly data updates from Excel exports
+  5. At least one real investor has verified their dashboard shows correct data
+**Plans**: TBD (4 plans estimated)
+
+Plans:
+- [ ] 08-01-PLAN.md — Excel template definition, user fills and validates data (wave 1, checkpoint: user provides Excel)
+- [ ] 08-02-PLAN.md — Import script: read Excel, create Auth users, insert fund data with FK resolution (wave 2)
+- [ ] 08-03-PLAN.md — Admin dashboard page: data summary, per-fund investor list, consistency checks (wave 3)
+- [ ] 08-04-PLAN.md — E2E verification: import real data, test with real investor login, fix anomalies (wave 4)
+
+**Pitfall gates:**
+- `is_admin` flag on investors table (add column if not present) — admin sees all data, investors see only their own
+- Excel must be validated before import: no empty required fields, email format, numeric values
+- Import script must be idempotent (re-runnable without duplicates)
+- Auth user creation must generate temporary passwords and output a credentials list for distribution
+- Clear test data before importing real data (delete seed records)
+
+**External dependencies:**
+- Excel file with real fund data from Ricky (2 funds initially) — required before Plan 02
+- Verification by at least one real investor — required for Plan 04
+
+---
+
+### Phase 9: General Review & Refinements
+**Goal**: Cross-cutting review of the entire site including the investor portal with real data. Fix edge cases, improve interactions, fine-tune content, and address any accumulated issues.
+**Depends on**: Phase 8 (real data must be in portal)
 **Requirements**: REFINE-01, REFINE-02, REFINE-03
 **Success Criteria** (what must be TRUE):
-  1. All accumulated issues from Phase 6-7 reviews are resolved
+  1. All accumulated issues from Phase 6-8 reviews are resolved
   2. Content is accurate and up-to-date in both languages (verified against Contentful)
   3. User flows (homepage → portfolio → detail, homepage → investor portal → dashboard) work smoothly end-to-end
   4. No console errors or warnings in production build
@@ -233,9 +266,9 @@ Plans:
 
 ---
 
-### Phase 9: SEO & Performance
+### Phase 10: SEO & Performance
 **Goal**: Every page is discoverable by search engines with proper metadata, structured data, and hreflang; the site scores 90+ on all Lighthouse metrics.
-**Depends on**: Phase 8 (all content and features finalized before measuring performance)
+**Depends on**: Phase 9 (all content and features finalized before measuring performance)
 **Requirements**: SEO-01, SEO-02, SEO-03, SEO-04, SEO-05
 **Success Criteria** (what must be TRUE):
   1. Every page has a unique `<title>`, `<meta description>`, Open Graph tags, and a canonical URL visible in page source
@@ -247,9 +280,9 @@ Plans:
 
 ---
 
-### Phase 10: Production Hardening
+### Phase 11: Production Hardening
 **Goal**: The site is production-ready: WCAG 2.1 AA compliant, error states handled, on-demand ISR working, and cross-browser tested — ready for the alkemiacapital.com domain.
-**Depends on**: Phase 9 (Lighthouse and SEO baseline established)
+**Depends on**: Phase 10 (Lighthouse and SEO baseline established)
 **Requirements**: A11Y-01, A11Y-02, A11Y-03, A11Y-04
 **Success Criteria** (what must be TRUE):
   1. All text on the dark theme passes WCAG 2.1 AA contrast ratio (4.5:1 for body text, 3:1 for large text) — verified with an automated contrast checker
@@ -272,12 +305,13 @@ Plans:
 | 5 - Animation Layer | HOME-01, HOME-02, HOME-03, HOME-04, HOME-05, HOME-06, HOME-07, HOME-08 | 8 |
 | 6 - Site Review & Layout Polish | REVIEW-01, REVIEW-02, REVIEW-03, REVIEW-04 | 4 |
 | 7 - Investor Portal | PORTAL-01, PORTAL-02, PORTAL-03, PORTAL-04, PORTAL-05, PORTAL-06 | 6 |
-| 8 - General Review & Refinements | REFINE-01, REFINE-02, REFINE-03 | 3 |
-| 9 - SEO & Performance | SEO-01, SEO-02, SEO-03, SEO-04, SEO-05 | 5 |
-| 10 - Production Hardening | A11Y-01, A11Y-02, A11Y-03, A11Y-04 | 4 |
-| **Total** | | **85** |
+| 8 - Data Import & Verification | DATA-01, DATA-02, DATA-03, DATA-04, DATA-05 | 5 |
+| 9 - General Review & Refinements | REFINE-01, REFINE-02, REFINE-03 | 3 |
+| 10 - SEO & Performance | SEO-01, SEO-02, SEO-03, SEO-04, SEO-05 | 5 |
+| 11 - Production Hardening | A11Y-01, A11Y-02, A11Y-03, A11Y-04 | 4 |
+| **Total** | | **90** |
 
-**Coverage: 68/68 v1 requirements + 17 new requirements mapped. No orphans.**
+**Coverage: 68/68 v1 requirements + 22 new requirements mapped. No orphans.**
 
 ---
 
@@ -293,6 +327,8 @@ These must be resolved before the indicated phase can close:
 | Supabase project creation (eu-central-1 region) | Phase 7 Plan 01 | User |
 | Test user in Supabase Auth | Phase 7 Plan 02 | User |
 | Investor credentials provisioning workflow | Phase 7 close | User |
+| Excel file with real fund data (2 funds) | Phase 8 Plan 02 | User |
+| Verification by real investor | Phase 8 Plan 04 | User |
 
 ---
 
