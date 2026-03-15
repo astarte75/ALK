@@ -14,7 +14,7 @@
 - [x] **Phase 3: Layout Shell & Legal** — Header, footer, cookie consent, GDPR pages (completed 2026-03-14)
 - [x] **Phase 4: Core Pages** — All site pages with static content, no animations (completed 2026-03-14)
 - [x] **Phase 5: Animation Layer** — GSAP, Lenis, video hero, scroll-triggered reveals (completed 2026-03-15)
-- [ ] **Phase 6: Site Review & Layout Polish** — Full site review, layout fixes, visual polish, UX improvements
+- [x] **Phase 6: Site Review & Layout Polish** — Full site review, layout fixes, visual polish, UX improvements (completed 2026-03-15)
 - [ ] **Phase 7: Investor Portal** — Authenticated area for investors to check fund positions
 - [ ] **Phase 8: General Review & Refinements** — Cross-cutting improvements, edge cases, content fine-tuning
 - [ ] **Phase 9: SEO & Performance** — Metadata, structured data, sitemap, Lighthouse 90+
@@ -31,7 +31,7 @@
 | 3. Layout Shell & Legal | 3/3 | Complete | 2026-03-14 |
 | 4. Core Pages | 5/5 | Complete | 2026-03-14 |
 | 5. Animation Layer | 2/2 | Complete | 2026-03-15 |
-| 6. Site Review & Layout Polish | 0/4 | Planning complete | - |
+| 6. Site Review & Layout Polish | 4/4 | Complete | 2026-03-15 |
 | 7. Investor Portal | 0/? | Not started | - |
 | 8. General Review & Refinements | 0/? | Not started | - |
 | 9. SEO & Performance | 0/? | Not started | - |
@@ -178,10 +178,10 @@ Plans:
 **Plans:** 4 plans
 
 Plans:
-- [ ] 06-01-PLAN.md — Animation building blocks: ScrollReveal wrapper, AnimatedPageHero, card hover upgrades, GSAP mobile menu (wave 1)
-- [ ] 06-02-PLAN.md — Portfolio, Team, News pages (listing + detail) — scroll reveals, hero animations, responsive polish (wave 2, depends on 06-01)
-- [ ] 06-03-PLAN.md — Content pages (Platforms, Societa, Governance, ESG, Contatti, Culture, Privacy, Cookie) — scroll reveals, typography polish (wave 2, parallel with 06-02)
-- [ ] 06-04-PLAN.md — Final cross-site audit: navigation flows, responsive sweep, typography/visual consistency, production build (wave 3, depends on 06-02 + 06-03)
+- [x] 06-01-PLAN.md — Animation building blocks: ScrollReveal wrapper, AnimatedPageHero, card hover upgrades, GSAP mobile menu (wave 1)
+- [x] 06-02-PLAN.md — Portfolio, Team, News pages (listing + detail) — scroll reveals, hero animations, responsive polish (wave 2)
+- [x] 06-03-PLAN.md — Content pages (Platforms, Societa, Governance, ESG, Contatti, Culture, Privacy, Cookie) — scroll reveals, typography polish (wave 2)
+- [x] 06-04-PLAN.md — Final cross-site audit: navigation flows, responsive sweep, typography/visual consistency, IT↔EN parity, production build (wave 3)
 
 ---
 
@@ -288,4 +288,4 @@ These must be resolved before the indicated phase can close:
 ---
 
 *Created: 2026-03-14*
-*Last updated: 2026-03-15 after Phase 6 planning (4 plans created)*
+*Last updated: 2026-03-15 after Phase 6 completion*
