@@ -126,6 +126,9 @@ Phase 10 Prod Hardening      [░░░░░░░░░░] 0/?
 
 ## Todos
 
+- [x] ~~Populate portfolio company descriptions and websites~~ (done: all 18 companies)
+- [x] ~~Fix accents in Italian news content~~ (done: 9 articles fixed)
+- [x] ~~Upload news featured images~~ (done: all 17 articles)
 - [ ] Upload fund documents (prospetto CONSOB, etc.) to Contentful and link to fund entries (Phase 8)
 - [ ] Populate fund `targetSectors` and `teamMembers` fields in Contentful (Phase 8)
 - [ ] Decide Alkemia brand accent color (blocking Phase 1 close)
