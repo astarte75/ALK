@@ -146,5 +146,50 @@
     "accept": "Accept",
     "reject": "Reject",
     "cookiePolicyLink": "Cookie Policy"
+  },
+  "portal": {
+    "login": {
+      "title": "Investor Portal",
+      "subtitle": "Sign in to view your positions",
+      "email": "Email",
+      "password": "Password",
+      "submit": "Sign In",
+      "loading": "Signing in...",
+      "error": "Invalid credentials. Please try again.",
+      "errorGeneric": "An error occurred. Please try again."
+    },
+    "logout": "Sign Out",
+    "dashboard": {
+      "title": "Your Positions",
+      "welcome": "Welcome, {name}",
+      "fund": "Fund",
+      "type": "Type",
+      "committedCapital": "Committed Capital",
+      "investedCapital": "Invested Capital",
+      "distributions": "Distributions",
+      "currentNav": "Current NAV",
+      "navDate": "NAV Date",
+      "noPositions": "No positions found.",
+      "viewDetails": "Details"
+    },
+    "fundDetail": {
+      "backToDashboard": "Back to Dashboard",
+      "capitalCalls": "Operations",
+      "navChart": "NAV History",
+      "documents": "Documents",
+      "date": "Date",
+      "type": "Type",
+      "amount": "Amount",
+      "description": "Description",
+      "callTypes": {
+        "capital_call": "Capital Call",
+        "distribution": "Distribution",
+        "recallable": "Recallable"
+      },
+      "download": "Download",
+      "noDocuments": "No documents available.",
+      "noCalls": "No operations recorded.",
+      "noNavData": "NAV data not available."
+    }
   }
 }

@@ -146,5 +146,50 @@
     "accept": "Accetta",
     "reject": "Rifiuta",
     "cookiePolicyLink": "Cookie Policy"
+  },
+  "portal": {
+    "login": {
+      "title": "Area Investitori",
+      "subtitle": "Accedi per visualizzare le tue posizioni",
+      "email": "Email",
+      "password": "Password",
+      "submit": "Accedi",
+      "loading": "Accesso in corso...",
+      "error": "Credenziali non valide. Riprova.",
+      "errorGeneric": "Si è verificato un errore. Riprova."
+    },
+    "logout": "Esci",
+    "dashboard": {
+      "title": "Le tue posizioni",
+      "welcome": "Benvenuto, {name}",
+      "fund": "Fondo",
+      "type": "Tipo",
+      "committedCapital": "Capitale impegnato",
+      "investedCapital": "Capitale investito",
+      "distributions": "Distribuzioni",
+      "currentNav": "NAV attuale",
+      "navDate": "Data NAV",
+      "noPositions": "Nessuna posizione trovata.",
+      "viewDetails": "Dettagli"
+    },
+    "fundDetail": {
+      "backToDashboard": "Torna alla dashboard",
+      "capitalCalls": "Operazioni",
+      "navChart": "Andamento NAV",
+      "documents": "Documenti",
+      "date": "Data",
+      "type": "Tipo",
+      "amount": "Importo",
+      "description": "Descrizione",
+      "callTypes": {
+        "capital_call": "Richiamo capitale",
+        "distribution": "Distribuzione",
+        "recallable": "Richiamabile"
+      },
+      "download": "Scarica",
+      "noDocuments": "Nessun documento disponibile.",
+      "noCalls": "Nessuna operazione registrata.",
+      "noNavData": "Dati NAV non disponibili."
+    }
   }
 }
