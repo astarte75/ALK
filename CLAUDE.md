@@ -43,6 +43,7 @@ src/app/[locale]/portfolio/    # Portfolio grid + [slug] detail pages
 src/app/[locale]/team/         # Team grid + [slug] detail pages
 src/app/[locale]/news/         # News list + [slug] detail pages
 src/app/[locale]/investment-platforms/  # Unified platforms page (PE, VC, PIPE + funds)
+src/app/[locale]/investment-platforms/fondi/[slug]/ # Fund detail pages
 src/app/[locale]/societa/      # Chi Siamo (timeline, mission, values) — from Contentful sections JSON
 src/app/[locale]/corporate-governance/ # Board, sindaci, control functions — from Contentful sections JSON
 src/app/[locale]/sostenibilita/ # ESG pillars, SFDR, roadmap, PDFs — from Contentful sections JSON
@@ -56,6 +57,7 @@ src/lib/contentful/            # CMS client, types, fetchers, rich text renderer
 src/components/layout/         # Header, Footer, MobileMenu, NavigationLinks, LanguageSwitcher
 src/components/sections/       # HeroSection, StatsSection, NewsPreview, NewsletterStrip (static originals)
 src/components/sections/animated/ # VideoHero, ScrollNarrative, AnimatedStats, AnimatedNewsPreview, AnimatedNewsletterStrip
+src/components/animations/     # ScrollReveal (reusable scroll wrapper), AnimatedPageHero (parallax hero)
 src/components/providers/      # StyledComponentsRegistry, LenisProvider
 src/components/cards/          # NewsCard, PortfolioCard, TeamCard, FundCard
 src/components/filters/        # FilterPills (reusable pill filter)
@@ -64,7 +66,7 @@ src/components/cursor/         # CustomCursor (desktop only, ref-based)
 src/components/forms/          # ContactForm
 src/components/content/        # PageSections, PdfDownloadList
 src/styles/                    # GlobalStyle, theme tokens, breakpoints, zIndex
-scripts/                       # Migration script (npx tsx scripts/migrate.ts)
+scripts/                       # Migration scripts (migrate.ts, add-fund-fields.ts, upload-news-images.js)
 src/lib/gsap-init.ts           # GSAP + ScrollTrigger plugin registration (singleton)
 src/app/[locale]/HomepageClient.tsx # Animated homepage client wrapper (LenisProvider + all sections)
 src/app/[locale]/homepage-static/  # Backup of original static homepage (no animations)
@@ -79,6 +81,14 @@ All editorial content is managed via Contentful — editable without deploy.
 
 ### Contentful Models
 8 content types: `portfolioCompany`, `teamMember`, `fund`, `newsArticle`, `investmentPlatform`, `page`, `siteConfig`, `office`
+
+### Fund model extended fields
+- `targetSectors` — comma-separated target sectors
+- `documents` — array of asset links (PDF: prospetto CONSOB, etc.)
+- `teamMembers` — array of references to dedicated team members
+
+### Team model extended fields
+- `office` — "Milano" or "Padova" (filterable on team page)
 
 ### Pages using `page.sections` JSON (structured layout from Contentful)
 - **Homepage** (slug: `homepage`) — hero headline/subtitle, stats, newsletter text. Animated version with video hero, 4-panel scroll narrative (Oltre il capitale, Piattaforme, Creazione di valore, La nostra squadra), GSAP scroll reveals, Lenis smooth scroll
@@ -127,13 +137,25 @@ npx tsx scripts/migrate.ts          # Seed Contentful (idempotent)
 npx tsx scripts/validate-content.ts # Validate content
 ```
 
+## Footer Structure
+
+- **Brand column**: Logo + "Alkemia SGR S.p.A." in teal + company legal info (cap. sociale, cod. fisc., R.E.A., albo SGR, Kite Holding)
+- **Offices**: Padova (sede legale), Milano
+- **Legal**: Privacy Notice, Cookie Policy, Whistleblowing (external: whistleblowing.alkemiacapital.com)
+- **Partners**: AIFI, Italian Tech Alliance (logos with teal hover)
+- **Social**: LinkedIn icon
+- **Copyright**: bottom bar
+
 ## Pending (post-launch)
 
-- Accessibility Statement page (Phase 7)
+- Accessibility Statement page (Phase 10)
 - Contact form email routing per request type
 - reCAPTCHA v3 activation (key needed)
 - Newsletter form backend integration
 - SMTP credentials for contact form email sending
+- Upload fund documents (prospetto CONSOB) to Contentful (Phase 8)
+- Populate fund targetSectors and teamMembers in Contentful (Phase 8)
+- Portfolio company images to source with user (Phase 8)
 
 ## Conventions
 
@@ -143,3 +165,6 @@ npx tsx scripts/validate-content.ts # Validate content
 - No over-engineering — simple, readable solutions
 - Never commit secrets (.env.local is gitignored)
 - Always sync Contentful when making content changes
+- No references to old alkemiacapital.com site (all content migrated to new site)
+- ScrollReveal wrapper for scroll-triggered reveals on all pages
+- AnimatedPageHero for internal page heroes with parallax
