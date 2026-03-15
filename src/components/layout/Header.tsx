@@ -41,6 +41,7 @@ export default function Header({ logoUrl, logoAlt }: HeaderProps) {
     { label: t('sostenibilita'), href: '/sostenibilita' },
     { label: t('culture'), href: '/culture' },
     { label: t('contatti'), href: '/contatti' },
+    { label: t('investitori'), href: '/investitori', isPortal: true },
   ]
 
   useEffect(() => {

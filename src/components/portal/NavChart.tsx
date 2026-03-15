@@ -107,8 +107,12 @@ export default function NavChart({ data, locale, currency }: NavChartProps) {
           <XAxis
             dataKey="date"
             stroke={textSecondary}
-            tick={{ fill: textSecondary, fontSize: 12 }}
+            tick={{ fill: textSecondary, fontSize: 11 }}
             tickLine={false}
+            interval="preserveStartEnd"
+            angle={-30}
+            dy={8}
+            height={50}
           />
           <YAxis
             stroke={textSecondary}

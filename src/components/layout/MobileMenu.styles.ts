@@ -94,6 +94,29 @@ export const MobileMenuItem = styled.li`
   }
 `
 
+export const MobilePortalItem = styled.li`
+  opacity: 0;
+  transform: translateY(30px);
+
+  a {
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--color-accent-gold);
+    text-decoration: none;
+    transition: color 0.2s ease, border-color 0.2s ease;
+    border: 1px solid var(--color-accent-gold);
+    border-radius: 8px;
+    padding: 0.5rem 1.5rem;
+    display: inline-block;
+
+    &:hover {
+      color: #fff;
+      border-color: #fff;
+    }
+  }
+`
+
 export const MobileMenuFooter = styled.div`
   display: flex;
   justify-content: center;

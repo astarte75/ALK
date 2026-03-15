@@ -106,6 +106,9 @@ export default async function Footer() {
           <FooterLink href="https://whistleblowing.alkemiacapital.com" target="_blank" rel="noopener noreferrer">
             Whistleblowing
           </FooterLink>
+          <FooterLink href={`/${isIT ? '' : 'en/'}investitori`}>
+            {t('investitori')}
+          </FooterLink>
         </FooterColumn>
 
         {/* Partners */}

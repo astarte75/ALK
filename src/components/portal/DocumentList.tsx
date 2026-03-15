@@ -63,6 +63,15 @@ const DownloadLink = styled.a`
   font-weight: 500;
   white-space: nowrap;
   transition: opacity 0.15s ease;
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--color-accent-teal);
+  border-radius: 6px;
+  text-align: center;
+
+  @media (max-width: 600px) {
+    width: 100%;
+    display: block;
+  }
 
   &:hover {
     text-decoration: underline;

@@ -9,6 +9,7 @@ export interface NavItem {
   label: string
   href: string
   subItems?: { label: string; href: string }[]
+  isPortal?: boolean
 }
 
 interface NavigationLinksProps {
@@ -102,6 +103,23 @@ const DropdownItem = styled.li`
   }
 `
 
+const PortalLink = styled(Link)`
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--color-accent-gold);
+  text-decoration: none;
+  transition: color 0.2s ease, border-color 0.2s ease;
+  white-space: nowrap;
+  border: 1px solid var(--color-accent-gold);
+  border-radius: 6px;
+  padding: 0.35rem 0.85rem;
+
+  &:hover {
+    color: #fff;
+    border-color: #fff;
+  }
+`
+
 const ChevronDown = styled.span`
   display: inline-block;
   width: 0;
@@ -149,9 +167,15 @@ export default function NavigationLinks({ navItems, onItemClick, vertical }: Nav
 
         return (
           <NavItemWrapper key={item.href}>
-            <NavLink href={item.href} onClick={onItemClick}>
-              {item.label}
-            </NavLink>
+            {item.isPortal ? (
+              <PortalLink href={item.href} onClick={onItemClick}>
+                {item.label}
+              </PortalLink>
+            ) : (
+              <NavLink href={item.href} onClick={onItemClick}>
+                {item.label}
+              </NavLink>
+            )}
           </NavItemWrapper>
         )
       })}

@@ -15,6 +15,7 @@ import {
   MobileMenuNav,
   MobileMenuList,
   MobileMenuItem,
+  MobilePortalItem,
   MobileMenuFooter,
 } from './MobileMenu.styles'
 
@@ -30,9 +31,9 @@ export default function MobileMenu({ isOpen, onClose, navItems, logoUrl }: Mobil
   const overlayRef = useRef<HTMLDivElement>(null)
 
   // Flatten sub-items for mobile display
-  const flatItems: { label: string; href: string }[] = []
+  const flatItems: { label: string; href: string; isPortal?: boolean }[] = []
   for (const item of navItems) {
-    flatItems.push({ label: item.label, href: item.href })
+    flatItems.push({ label: item.label, href: item.href, isPortal: item.isPortal })
     if (item.subItems) {
       for (const sub of item.subItems) {
         flatItems.push({ label: sub.label, href: sub.href })
@@ -116,13 +117,21 @@ export default function MobileMenu({ isOpen, onClose, navItems, logoUrl }: Mobil
 
       <MobileMenuNav>
         <MobileMenuList>
-          {flatItems.map((item) => (
-            <MobileMenuItem key={item.href} data-menu-item>
-              <Link href={item.href} onClick={onClose}>
-                {item.label}
-              </Link>
-            </MobileMenuItem>
-          ))}
+          {flatItems.map((item) =>
+            item.isPortal ? (
+              <MobilePortalItem key={item.href} data-menu-item>
+                <Link href={item.href} onClick={onClose}>
+                  {item.label}
+                </Link>
+              </MobilePortalItem>
+            ) : (
+              <MobileMenuItem key={item.href} data-menu-item>
+                <Link href={item.href} onClick={onClose}>
+                  {item.label}
+                </Link>
+              </MobileMenuItem>
+            )
+          )}
         </MobileMenuList>
       </MobileMenuNav>
 

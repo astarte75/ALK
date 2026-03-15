@@ -4,13 +4,25 @@ import { useActionState } from 'react'
 import { useFormStatus } from 'react-dom'
 import { useTranslations } from 'next-intl'
 import Image from 'next/image'
-import styled from 'styled-components'
+import styled, { keyframes } from 'styled-components'
 import { login } from '@/app/[locale]/investitori/actions'
 
 // -- Styled Components --
 
+const fadeIn = keyframes`
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+`
+
 const Wrapper = styled.div`
   min-height: calc(100vh - 64px);
+  min-height: calc(100svh - 64px);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -24,7 +36,16 @@ const Card = styled.div`
   background: var(--color-surface);
   border: 1px solid var(--color-border);
   border-radius: 12px;
-  padding: 2.5rem;
+  padding: 2rem 1.5rem;
+  animation: ${fadeIn} 0.6s ease-out;
+
+  @media (prefers-reduced-motion: reduce) {
+    animation: none;
+  }
+
+  @media (min-width: 480px) {
+    padding: 2.5rem;
+  }
 `
 
 const LogoContainer = styled.div`

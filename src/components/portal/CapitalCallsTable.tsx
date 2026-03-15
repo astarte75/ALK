@@ -13,6 +13,7 @@ const ScrollWrapper = styled.div`
 
 const Table = styled.table`
   width: 100%;
+  min-width: 500px;
   border-collapse: collapse;
   font-family: var(--font-body);
   font-size: 0.9rem;
