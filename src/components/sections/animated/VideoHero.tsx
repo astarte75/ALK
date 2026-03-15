@@ -56,7 +56,7 @@ const Logo = styled.div`
 
 const Headline = styled.h1`
   font-family: ${fonts.heading};
-  font-size: clamp(1.75rem, 7vw, 5.5rem);
+  font-size: clamp(2.25rem, 7vw, 5.5rem);
   font-weight: 700;
   color: ${colors.textPrimary};
   letter-spacing: -0.02em;
