@@ -8,7 +8,7 @@ Premium PE/VC corporate site inspired by hgcapital.com, adapted for Alkemia Capi
 - **CMS:** Contentful REST API (not GraphQL) — ALL content from Contentful
 - **Styling:** styled-components v6 with SSR Registry + CSS custom properties
 - **i18n:** next-intl v4 — IT default (no prefix), EN with `/en/` prefix
-- **Animations:** GSAP + Lenis (Phase 5) — NOT Framer Motion
+- **Animations:** GSAP 3 + @gsap/react (useGSAP) + Lenis smooth scroll — NOT Framer Motion
 - **Email:** nodemailer (contact form)
 - **Deployment:** Vercel with on-demand ISR via Contentful webhooks
 
@@ -28,6 +28,12 @@ Premium PE/VC corporate site inspired by hgcapital.com, adapted for Alkemia Capi
 - Never use `max-width` on text content unless strictly needed for design
 - Body text uses `text-align: justify`
 - Always update Contentful when making content changes — never leave code and CMS out of sync
+- GSAP animations use `useGSAP()` hook (never `useEffect`) with `gsap.matchMedia()` for responsive + `prefers-reduced-motion`
+- GSAP plugins registered once in `src/lib/gsap-init.ts` — import from there, not from `gsap` directly
+- Lenis initialized with `autoRaf: false` and driven by `gsap.ticker` (single RAF loop)
+- `lenis.on('scroll', ScrollTrigger.update)` required for ScrollTrigger sync
+- Fullscreen sections use `height: 100vh; height: 100svh;` (fallback + iOS Safari)
+- No paid GSAP plugins (SplitText, ScrollSmoother) — manual alternatives only
 
 ## Key Paths
 
@@ -48,7 +54,9 @@ src/app/api/revalidate/        # Contentful webhook handler
 src/app/api/contact/           # Contact form email handler (nodemailer + SMTP)
 src/lib/contentful/            # CMS client, types, fetchers, rich text renderer
 src/components/layout/         # Header, Footer, MobileMenu, NavigationLinks, LanguageSwitcher
-src/components/sections/       # HeroSection, StatsSection, NewsPreview, NewsletterStrip
+src/components/sections/       # HeroSection, StatsSection, NewsPreview, NewsletterStrip (static originals)
+src/components/sections/animated/ # VideoHero, ScrollNarrative, AnimatedStats, AnimatedNewsPreview, AnimatedNewsletterStrip
+src/components/providers/      # StyledComponentsRegistry, LenisProvider
 src/components/cards/          # NewsCard, PortfolioCard, TeamCard, FundCard
 src/components/filters/        # FilterPills (reusable pill filter)
 src/components/cookie/         # CookieConsent modal (GDPR Italy)
@@ -57,7 +65,11 @@ src/components/forms/          # ContactForm
 src/components/content/        # PageSections, PdfDownloadList
 src/styles/                    # GlobalStyle, theme tokens, breakpoints, zIndex
 scripts/                       # Migration script (npx tsx scripts/migrate.ts)
+src/lib/gsap-init.ts           # GSAP + ScrollTrigger plugin registration (singleton)
+src/app/[locale]/HomepageClient.tsx # Animated homepage client wrapper (LenisProvider + all sections)
+src/app/[locale]/homepage-static/  # Backup of original static homepage (no animations)
 public/images/                 # Hero images, white logo
+public/videos/                 # Hero background video (hero-bg.mp4)
 .planning/                     # GSD project planning (roadmap, phases, state)
 ```
 
@@ -69,7 +81,7 @@ All editorial content is managed via Contentful — editable without deploy.
 8 content types: `portfolioCompany`, `teamMember`, `fund`, `newsArticle`, `investmentPlatform`, `page`, `siteConfig`, `office`
 
 ### Pages using `page.sections` JSON (structured layout from Contentful)
-- **Homepage** (slug: `homepage`) — hero headline/subtitle, stats, newsletter text
+- **Homepage** (slug: `homepage`) — hero headline/subtitle, stats, newsletter text. Animated version with video hero, 4-panel scroll narrative (Oltre il capitale, Piattaforme, Creazione di valore, La nostra squadra), GSAP scroll reveals, Lenis smooth scroll
 - **Società** (slug: `societa`) — intro, timeline, mission, approach, values, LinkedIn CTA
 - **Sostenibilità** (slug: `sostenibilita`) — intro, pillars, SFDR, roadmap, documents
 - **Corporate Governance** (slug: `corporate-governance`) — shareholding, board members, sindaci, control functions
@@ -99,7 +111,7 @@ ICT, Digital Services, Food, Agri-tech, Cybersecurity, Mobility, Industrial, Ene
 
 | Page | Image |
 |------|-------|
-| Homepage | `/images/hero-poster.jpg` (skyscraper) |
+| Homepage | `/videos/hero-bg.mp4` (video bg) + `/images/hero-poster.jpg` (fallback) |
 | Chi Siamo | `/images/hero-about.jpg` (Duomo Milano B&W) |
 | Sostenibilità | `/images/hero-sustainability-3.jpg` (lake dock) |
 | Investment Platforms | `/images/hero-platforms.jpg` (investment letters) |
