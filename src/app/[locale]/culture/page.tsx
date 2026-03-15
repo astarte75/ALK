@@ -1,6 +1,8 @@
+import { notFound } from 'next/navigation'
 import { setRequestLocale } from 'next-intl/server'
 import styled from 'styled-components'
 import { Link } from '@/i18n/navigation'
+import { getPageBySlug } from '@/lib/contentful/fetchers'
 import { colors, fonts, spacing } from '@/styles/theme'
 import { mq } from '@/styles/breakpoints'
 import AnimatedPageHero from '@/components/animations/AnimatedPageHero'
@@ -138,12 +140,12 @@ const QuoteText = styled.blockquote`
   }
 
   &::before {
-    content: '"';
+    content: '\u201C';
     color: ${colors.accentTeal};
   }
 
   &::after {
-    content: '"';
+    content: '\u201D';
     color: ${colors.accentTeal};
   }
 `
@@ -223,9 +225,8 @@ const CtaButton = styled(Link)`
   }
 `
 
-/* ── Content ── */
+/* ── SVG Icons ── */
 
-// SVG icons — minimal line style
 function IconIntegrity() {
   return (
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
@@ -266,102 +267,16 @@ function IconInnovation() {
 
 const VALUE_ICONS = [IconIntegrity, IconExcellence, IconSustainability, IconInnovation]
 
-interface CultureContent {
+/* ── Types ── */
+
+interface CultureSections {
   hero: { title: string; subtitle: string }
   intro: { label: string; title: string; text: string[] }
-  values: { title: string; text: string }[]
+  values: { label: string; title: string; items: { title: string; text: string }[] }
   quote: { text: string; author: string }
   approach: { label: string; title: string; text: string[] }
   stats: { value: string; label: string }[]
   cta: { text: string; buttonText: string; buttonLink: string }
-}
-
-const CONTENT_IT: CultureContent = {
-  hero: {
-    title: 'Life at Alkemia',
-    subtitle: 'Dove il talento incontra la passione per l\'impresa',
-  },
-  intro: {
-    label: 'Chi siamo',
-    title: 'Le persone al centro',
-    text: [
-      'In Alkemia crediamo che il capitale umano sia il vero motore della creazione di valore. Il nostro team riunisce professionisti con esperienze complementari nel private equity, venture capital, finanza aziendale e gestione operativa — una squadra composita e affiatata, unita dalla passione per l\'impresa italiana.',
-      'Lavoriamo con un approccio collaborativo e orizzontale, dove ogni voce conta e ogni idea può trasformarsi in opportunità. La nostra forza sta nella diversità di competenze e nella coesione del gruppo.',
-    ],
-  },
-  values: [
-    { title: 'Integrità', text: 'Agiamo con trasparenza e coerenza, costruendo relazioni di fiducia durature con investitori, imprenditori e collaboratori.' },
-    { title: 'Eccellenza', text: 'Puntiamo al massimo in ogni aspetto del nostro lavoro, dalla due diligence alla gestione del portafoglio, senza compromessi sulla qualità.' },
-    { title: 'Sostenibilità', text: 'Integriamo i criteri ESG nel nostro processo decisionale perché crediamo che performance e responsabilità siano inscindibili.' },
-    { title: 'Innovazione', text: 'Abbracciamo il cambiamento e le nuove tecnologie, supportando le aziende nel loro percorso di trasformazione digitale e crescita.' },
-  ],
-  quote: {
-    text: 'Supportare le imprese significa accompagnarle lungo tutte le fasi del loro percorso: dalla nascita alla crescita, fino alla maturità.',
-    author: 'Luca Maurizio Duranti, CEO & Managing Partner',
-  },
-  approach: {
-    label: 'Il nostro approccio',
-    title: 'Come lavoriamo',
-    text: [
-      'Non siamo semplici investitori finanziari. Ci affianchiamo agli imprenditori con competenza operativa, visione strategica e capitale paziente. Ogni investimento è una partnership in cui condividiamo obiettivi, sfide e successi.',
-      'Il nostro team opera tra le sedi di Milano e Padova, con una presenza attiva nelle aziende partecipate e un network consolidato nel panorama imprenditoriale italiano ed europeo.',
-    ],
-  },
-  stats: [
-    { value: '18', label: 'Professionisti' },
-    { value: '2', label: 'Sedi in Italia' },
-    { value: '20+', label: 'Anni di esperienza' },
-    { value: '5', label: 'Fondi gestiti' },
-  ],
-  cta: {
-    text: 'Scopri i professionisti che rendono Alkemia un partner unico per le imprese italiane.',
-    buttonText: 'Conosci il team',
-    buttonLink: '/team',
-  },
-}
-
-const CONTENT_EN: CultureContent = {
-  hero: {
-    title: 'Life at Alkemia',
-    subtitle: 'Where talent meets a passion for enterprise',
-  },
-  intro: {
-    label: 'Who we are',
-    title: 'People at the core',
-    text: [
-      'At Alkemia, we believe that human capital is the true engine of value creation. Our team brings together professionals with complementary experience in private equity, venture capital, corporate finance and operational management — a diverse and close-knit group, united by a passion for Italian enterprise.',
-      'We work with a collaborative and horizontal approach, where every voice matters and every idea can become an opportunity. Our strength lies in the diversity of skills and the cohesion of the group.',
-    ],
-  },
-  values: [
-    { title: 'Integrity', text: 'We act with transparency and consistency, building lasting relationships of trust with investors, entrepreneurs and colleagues.' },
-    { title: 'Excellence', text: 'We aim for the highest standards in every aspect of our work, from due diligence to portfolio management, with no compromise on quality.' },
-    { title: 'Sustainability', text: 'We integrate ESG criteria into our decision-making because we believe performance and responsibility are inseparable.' },
-    { title: 'Innovation', text: 'We embrace change and new technologies, supporting companies in their digital transformation and growth journey.' },
-  ],
-  quote: {
-    text: 'Supporting companies means accompanying them through every stage of their journey: from inception to growth, through to maturity.',
-    author: 'Luca Maurizio Duranti, CEO & Managing Partner',
-  },
-  approach: {
-    label: 'Our approach',
-    title: 'How we work',
-    text: [
-      'We are not just financial investors. We work alongside entrepreneurs with operational expertise, strategic vision and patient capital. Every investment is a partnership in which we share objectives, challenges and successes.',
-      'Our team operates between our Milan and Padua offices, with an active presence in portfolio companies and a well-established network across the Italian and European business landscape.',
-    ],
-  },
-  stats: [
-    { value: '18', label: 'Professionals' },
-    { value: '2', label: 'Offices in Italy' },
-    { value: '20+', label: 'Years of experience' },
-    { value: '5', label: 'Funds managed' },
-  ],
-  cta: {
-    text: 'Discover the professionals who make Alkemia a unique partner for Italian enterprises.',
-    buttonText: 'Meet the team',
-    buttonLink: '/team',
-  },
 }
 
 export default async function CulturePage({
@@ -372,7 +287,11 @@ export default async function CulturePage({
   const { locale } = await params
   setRequestLocale(locale)
 
-  const c = locale === 'en' ? CONTENT_EN : CONTENT_IT
+  const page = await getPageBySlug('culture', locale)
+  if (!page) notFound()
+
+  const c = page.fields.sections as unknown as CultureSections
+  if (!c) notFound()
 
   return (
     <>
@@ -399,16 +318,16 @@ export default async function CulturePage({
       <SectionDark>
         <SectionDarkInner>
           <ScrollReveal>
-            <SectionLabel>{locale === 'it' ? 'I nostri valori' : 'Our values'}</SectionLabel>
-            <SectionTitle>{locale === 'it' ? 'Cosa ci guida' : 'What drives us'}</SectionTitle>
+            <SectionLabel>{c.values.label}</SectionLabel>
+            <SectionTitle>{c.values.title}</SectionTitle>
           </ScrollReveal>
           <ValuesGrid>
-            {c.values.map((v, i) => {
+            {c.values.items.map((v, i) => {
               const Icon = VALUE_ICONS[i]
               return (
                 <ScrollReveal key={i} delay={i * 0.1}>
                   <ValueCard>
-                    <ValueIcon><Icon /></ValueIcon>
+                    {Icon && <ValueIcon><Icon /></ValueIcon>}
                     <ValueTitle>{v.title}</ValueTitle>
                     <ValueText>{v.text}</ValueText>
                   </ValueCard>
