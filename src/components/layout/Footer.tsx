@@ -2,13 +2,19 @@ import { getSiteConfig, getOffices } from '@/lib/contentful/fetchers'
 import { getLocale, getTranslations } from 'next-intl/server'
 import {
   FooterWrapper,
-  FooterInner,
+  FooterMain,
+  BrandColumn,
+  FooterLogo,
+  BrandName,
+  CompanyInfo,
+  CompanyInfoLine,
   FooterColumn,
   FooterHeading,
   FooterText,
   FooterLink,
   OfficeName,
   OfficeLabel,
+  PartnersList,
   SocialLinks,
   SocialLink,
   CopyrightBar,
@@ -22,13 +28,23 @@ function LinkedInIcon() {
   )
 }
 
-function XIcon() {
-  return (
-    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-      <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
-    </svg>
-  )
-}
+const COMPANY_LINES_IT = [
+  'Cap. Soc. € 1.200.000,00 I.V.',
+  'Cod. Fisc. e n. iscriz. reg. impr. di Padova 03344740240',
+  'Iscritta al R.E.A. al n. PD-445564',
+  'P. IVA 03344740240',
+  'Iscritta al n. 99 dell\'Albo delle Società di Gestione del Risparmio ex art. 35, comma 1, D.Lgs. n. 58/1998, Sezione Gestori di FIA',
+  'Soggetta all\'attività di direzione e coordinamento da parte di Kite Holding S.r.l.',
+]
+
+const COMPANY_LINES_EN = [
+  'Share Capital € 1,200,000.00 fully paid',
+  'Tax Code and Padova Business Register no. 03344740240',
+  'R.E.A. no. PD-445564',
+  'VAT no. 03344740240',
+  'Registered at no. 99 of the Register of Asset Management Companies pursuant to art. 35, par. 1, Legislative Decree no. 58/1998, AIF Managers Section',
+  'Subject to the direction and coordination of Kite Holding S.r.l.',
+]
 
 export default async function Footer() {
   const locale = await getLocale()
@@ -40,11 +56,26 @@ export default async function Footer() {
 
   const currentYear = new Date().getFullYear()
   const linkedInUrl = config?.fields.socialLinkedIn as string | undefined
-  const twitterUrl = config?.fields.socialTwitter as string | undefined
+  const isIT = locale === 'it'
 
   return (
     <FooterWrapper>
-      <FooterInner>
+      <FooterMain>
+        {/* Brand + Company Info */}
+        <BrandColumn>
+          <FooterLogo
+            src="/images/alkemia-logo-white.png"
+            alt="Alkemia Capital"
+          />
+          <BrandName>Alkemia SGR S.p.A.</BrandName>
+          <CompanyInfo>
+            {(isIT ? COMPANY_LINES_IT : COMPANY_LINES_EN).map((line, i) => (
+              <CompanyInfoLine key={i}>{line}</CompanyInfoLine>
+            ))}
+          </CompanyInfo>
+        </BrandColumn>
+
+        {/* Offices */}
         <FooterColumn>
           <FooterHeading>{t('offices')}</FooterHeading>
           {offices.map((office) => (
@@ -63,16 +94,34 @@ export default async function Footer() {
           ))}
         </FooterColumn>
 
+        {/* Legal */}
         <FooterColumn>
           <FooterHeading>{t('legal')}</FooterHeading>
-          <FooterLink href={`/${locale === 'it' ? '' : 'en/'}privacy`}>
+          <FooterLink href={`/${isIT ? '' : 'en/'}privacy`}>
             {t('privacy')}
           </FooterLink>
-          <FooterLink href={`/${locale === 'it' ? '' : 'en/'}cookie-policy`}>
+          <FooterLink href={`/${isIT ? '' : 'en/'}cookie-policy`}>
             {t('cookiePolicy')}
+          </FooterLink>
+          <FooterLink href="https://whistleblowing.alkemiacapital.com" target="_blank" rel="noopener noreferrer">
+            Whistleblowing
           </FooterLink>
         </FooterColumn>
 
+        {/* Partners */}
+        <FooterColumn>
+          <FooterHeading>Partners</FooterHeading>
+          <PartnersList>
+            <a href="https://www.aifi.it" target="_blank" rel="noopener noreferrer">
+              <img src="/images/logo-aifi.svg" alt="AIFI" />
+            </a>
+            <a href="https://www.italiantechalliance.com" target="_blank" rel="noopener noreferrer">
+              <img src="/images/logo-italian-tech-alliance.png" alt="Italian Tech Alliance" />
+            </a>
+          </PartnersList>
+        </FooterColumn>
+
+        {/* Social */}
         <FooterColumn>
           <FooterHeading>{t('social')}</FooterHeading>
           <SocialLinks>
@@ -86,19 +135,9 @@ export default async function Footer() {
                 <LinkedInIcon />
               </SocialLink>
             )}
-            {twitterUrl && (
-              <SocialLink
-                href={twitterUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="X (Twitter)"
-              >
-                <XIcon />
-              </SocialLink>
-            )}
           </SocialLinks>
         </FooterColumn>
-      </FooterInner>
+      </FooterMain>
 
       <CopyrightBar>
         &copy; {currentYear} {t('copyright')}
