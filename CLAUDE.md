@@ -103,8 +103,8 @@ All editorial content is managed via Contentful — editable without deploy.
 - **Chi siamo** (dropdown) → Società, Corporate Governance
 - Investment Platforms, Portfolio, Team, News, Sostenibilità, Life at Alkemia, Contatti
 
-### Portfolio Sectors
-ICT, Digital Services, Food, Agri-tech, Cybersecurity, Mobility, Industrial, Energy, Fintech, Other
+### Portfolio Companies
+18 companies, all with descriptions (IT+EN), logos, and websites on Contentful. Sectors: ICT, Digital Services, Food, Agri-tech, Cybersecurity, Mobility, Industrial, Energy, Fintech, Other
 
 ### Offices
 - Padova — Sede Legale (Registered Office)
@@ -156,6 +156,10 @@ npx tsx scripts/validate-content.ts # Validate content
 - Upload fund documents (prospetto CONSOB) to Contentful (Phase 8)
 - Populate fund targetSectors and teamMembers in Contentful (Phase 8)
 - Portfolio company images to source with user (Phase 8)
+- All 18 portfolio companies have descriptions and websites populated on Contentful
+- Hero/panel heights capped for 4K: narrative panels min(100svh, 800px), internal heroes min(50vh, 500px)
+- Homepage headline uses clamp(2.25rem, 7vw, 5.5rem) with white-space: nowrap for single-line display
+- Life at Alkemia content on Contentful (page.sections JSON), SVG icons in code
 
 ## Conventions
 
