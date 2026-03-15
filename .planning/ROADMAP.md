@@ -32,7 +32,7 @@
 | 4. Core Pages | 5/5 | Complete | 2026-03-14 |
 | 5. Animation Layer | 2/2 | Complete | 2026-03-15 |
 | 6. Site Review & Layout Polish | 4/4 | Complete | 2026-03-15 |
-| 7. Investor Portal | 0/? | Not started | - |
+| 7. Investor Portal | 0/4 | Planned | - |
 | 8. General Review & Refinements | 0/? | Not started | - |
 | 9. SEO & Performance | 0/? | Not started | - |
 | 10. Production Hardening | 0/? | Not started | - |
@@ -196,18 +196,27 @@ Plans:
   4. The portal UI matches the dark premium aesthetic of the rest of the site
   5. Session management is secure (httpOnly cookies, CSRF protection, session expiry)
   6. The portal works in both Italian and English
-**Plans**: TBD
+**Plans:** 4 plans
+
+Plans:
+- [ ] 07-01-PLAN.md — Supabase client setup, database schema + RLS, combined middleware (wave 1)
+- [ ] 07-02-PLAN.md — Login page UI, auth server actions, portal layout, i18n translations (wave 2)
+- [ ] 07-03-PLAN.md — Dashboard summary table, fund drill-down with capital calls + NAV chart + documents (wave 3)
+- [ ] 07-04-PLAN.md — Site navigation integration, responsive polish, production build verification (wave 4)
 
 **Pitfall gates:**
 - Authentication must NOT use client-side-only auth (no localStorage tokens)
-- Fund position data source must be defined (API? Contentful? Database?)
+- Fund position data source must be defined (API? Contentful? Database?) — RESOLVED: Supabase PostgreSQL
 - GDPR: investor personal data handling must comply with Italian privacy regulations
 - Portal must be excluded from SSG/ISR — always server-rendered or client-fetched behind auth
+- Always use `getUser()` not `getSession()` on server side
+- Only use `getAll`/`setAll` for cookies, never individual `get`/`set`/`remove`
+- Never expose `SUPABASE_SERVICE_ROLE_KEY` to client (no `NEXT_PUBLIC_` prefix)
+- RLS enabled on ALL investor tables
 
 **External dependencies:**
-- Fund position data source and format (blocking)
-- Authentication provider decision (NextAuth.js, Authentik, custom?)
-- Investor credentials provisioning workflow
+- Supabase project creation (eu-central-1 region) — required before Plan 01 checkpoint
+- Test user created in Supabase Auth — required for Plan 02 verification
 
 ---
 
@@ -281,11 +290,11 @@ These must be resolved before the indicated phase can close:
 | Alkemia brand accent color decision | Phase 1 close | User |
 | Font licensing decision (Inter or custom) | Phase 1 close | User |
 | Contentful space created with IT/EN locales | Phase 2 start | User |
-| Fund position data source and format | Phase 7 start | User |
-| Authentication provider decision | Phase 7 start | User |
+| Supabase project creation (eu-central-1 region) | Phase 7 Plan 01 | User |
+| Test user in Supabase Auth | Phase 7 Plan 02 | User |
 | Investor credentials provisioning workflow | Phase 7 close | User |
 
 ---
 
 *Created: 2026-03-14*
-*Last updated: 2026-03-15 after Phase 6 completion*
+*Last updated: 2026-03-15 after Phase 7 planning*
