@@ -21,10 +21,138 @@ export async function generateStaticParams() {
   )
 }
 
-const Page = styled.div`
+/* ── Hero section (full-width with image) ── */
+
+const HeroBanner = styled.section`
+  position: relative;
+  height: 55vh;
+  min-height: 380px;
+  display: flex;
+  align-items: flex-end;
+  overflow: hidden;
+
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to top,
+      var(--color-bg) 0%,
+      rgba(26, 30, 34, 0.7) 50%,
+      rgba(26, 30, 34, 0.3) 100%
+    );
+    z-index: 1;
+  }
+`
+
+const HeroImageContainer = styled.div`
+  position: absolute;
+  inset: 0;
+`
+
+const HeroContent = styled.div`
+  position: relative;
+  z-index: 2;
   max-width: 1200px;
   margin: 0 auto;
-  padding: ${spacing[12]} ${spacing[4]};
+  width: 100%;
+  padding: ${spacing[12]} ${spacing[4]} ${spacing[8]};
+`
+
+const HeroMeta = styled.div`
+  display: flex;
+  align-items: center;
+  gap: ${spacing[3]};
+  margin-bottom: ${spacing[4]};
+`
+
+const HeroCategoryBadge = styled.span`
+  font-family: ${fonts.body};
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: ${colors.accentTeal};
+  border: 1px solid ${colors.accentTeal};
+  border-radius: 9999px;
+  padding: 2px ${spacing[2]};
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+`
+
+const HeroDate = styled.time`
+  font-family: ${fonts.body};
+  font-size: 0.8125rem;
+  color: rgba(249, 250, 251, 0.7);
+`
+
+const HeroTitle = styled.h1`
+  font-family: ${fonts.heading};
+  font-size: 2.25rem;
+  font-weight: 700;
+  color: ${colors.textPrimary};
+  margin: 0;
+  line-height: 1.2;
+
+  ${mq.md} {
+    font-size: 3rem;
+  }
+
+  ${mq.lg} {
+    font-size: 3.25rem;
+  }
+`
+
+/* ── Fallback hero (no image) ── */
+
+const FallbackHero = styled.section`
+  padding: ${spacing[16]} ${spacing[4]} ${spacing[8]};
+  max-width: 1200px;
+  margin: 0 auto;
+`
+
+const FallbackMeta = styled.div`
+  display: flex;
+  align-items: center;
+  gap: ${spacing[3]};
+  margin-bottom: ${spacing[4]};
+`
+
+const FallbackCategoryBadge = styled.span`
+  font-family: ${fonts.body};
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: ${colors.accentTeal};
+  border: 1px solid ${colors.accentTeal};
+  border-radius: 9999px;
+  padding: 2px ${spacing[2]};
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+`
+
+const FallbackDate = styled.time`
+  font-family: ${fonts.body};
+  font-size: 0.8125rem;
+  color: ${colors.textSecondary};
+`
+
+const FallbackTitle = styled.h1`
+  font-family: ${fonts.heading};
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: ${colors.textPrimary};
+  margin: 0;
+  line-height: 1.2;
+
+  ${mq.md} {
+    font-size: 3rem;
+  }
+`
+
+/* ── Article body ── */
+
+const ContentWrapper = styled.div`
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: ${spacing[6]} ${spacing[4]} ${spacing[12]};
 `
 
 const BackLink = styled(Link)`
@@ -45,53 +173,6 @@ const BackLink = styled(Link)`
   &::before {
     content: '\\2190';
     font-size: 1.125rem;
-  }
-`
-
-const FeaturedImageContainer = styled.div`
-  position: relative;
-  aspect-ratio: 16 / 9;
-  overflow: hidden;
-  border-radius: 12px;
-  margin-bottom: ${spacing[6]};
-  background: ${colors.surface};
-`
-
-const MetaRow = styled.div`
-  display: flex;
-  align-items: center;
-  gap: ${spacing[3]};
-  margin-bottom: ${spacing[4]};
-`
-
-const CategoryBadge = styled.span`
-  font-family: ${fonts.body};
-  font-size: 0.7rem;
-  font-weight: 600;
-  color: ${colors.accentTeal};
-  border: 1px solid ${colors.accentTeal};
-  border-radius: 9999px;
-  padding: 2px ${spacing[2]};
-  text-transform: uppercase;
-  letter-spacing: 0.03em;
-`
-
-const DateText = styled.time`
-  font-family: ${fonts.body};
-  font-size: 0.8125rem;
-  color: ${colors.textSecondary};
-`
-
-const ArticleTitle = styled.h1`
-  font-family: ${fonts.heading};
-  font-size: 2.5rem;
-  font-weight: 700;
-  color: ${colors.textPrimary};
-  margin: 0 0 ${spacing[8]} 0;
-  line-height: 1.2;
-
-  ${mq.md} {
-    font-size: 3rem;
   }
 `
 
@@ -154,31 +235,6 @@ const ArticleBody = styled.div`
   }
 `
 
-const ExternalLink = styled.a`
-  display: inline-flex;
-  align-items: center;
-  gap: ${spacing[2]};
-  font-family: ${fonts.body};
-  font-size: 0.9375rem;
-  font-weight: 500;
-  color: ${colors.accentTeal};
-  text-decoration: none;
-  margin-top: ${spacing[8]};
-  padding: 12px ${spacing[6]};
-  border: 1px solid ${colors.accentTeal};
-  border-radius: 8px;
-  transition: background 0.2s ease, color 0.2s ease;
-
-  &:hover {
-    background: ${colors.accentTeal};
-    color: ${colors.bg};
-  }
-
-  &::after {
-    content: '\\2197';
-    font-size: 1rem;
-  }
-`
 
 export default async function NewsDetailPage({
   params,
@@ -195,7 +251,7 @@ export default async function NewsDetailPage({
 
   if (!article) notFound()
 
-  const { title, date, category, body, featuredImage, externalUrl } = article.fields
+  const { title, date, category, body, featuredImage } = article.fields
 
   const imageAsset = featuredImage as unknown as { fields?: { file?: { url?: string } } } | undefined
   const imageUrl = imageAsset?.fields?.file?.url ? `https:${imageAsset.fields.file.url}` : null
@@ -206,46 +262,46 @@ export default async function NewsDetailPage({
   )
 
   return (
-    <Page>
-      <BackLink href="/news">{t('backToNews')}</BackLink>
-
-      <ScrollReveal>
-        {imageUrl && (
-          <FeaturedImageContainer>
+    <>
+      {imageUrl ? (
+        <HeroBanner>
+          <HeroImageContainer>
             <Image
               src={imageUrl}
               alt={title}
               fill
-              sizes="(max-width: 1200px) 100vw, 1200px"
+              sizes="100vw"
               style={{ objectFit: 'cover' }}
               priority
             />
-          </FeaturedImageContainer>
-        )}
+          </HeroImageContainer>
+          <HeroContent>
+            <HeroMeta>
+              {category && <HeroCategoryBadge>{category}</HeroCategoryBadge>}
+              <HeroDate dateTime={date}>{formattedDate}</HeroDate>
+            </HeroMeta>
+            <HeroTitle>{title}</HeroTitle>
+          </HeroContent>
+        </HeroBanner>
+      ) : (
+        <FallbackHero>
+          <FallbackMeta>
+            {category && <FallbackCategoryBadge>{category}</FallbackCategoryBadge>}
+            <FallbackDate dateTime={date}>{formattedDate}</FallbackDate>
+          </FallbackMeta>
+          <FallbackTitle>{title}</FallbackTitle>
+        </FallbackHero>
+      )}
 
-        <MetaRow>
-          {category && <CategoryBadge>{category}</CategoryBadge>}
-          <DateText dateTime={date}>{formattedDate}</DateText>
-        </MetaRow>
+      <ContentWrapper>
+        <BackLink href="/news">{t('backToNews')}</BackLink>
 
-        <ArticleTitle>{title}</ArticleTitle>
-      </ScrollReveal>
-
-      <ScrollReveal delay={0.15}>
-        <ArticleBody>
-          {body && renderRichText(body as unknown as Document)}
-        </ArticleBody>
-      </ScrollReveal>
-
-      {externalUrl && (
-        <ScrollReveal delay={0.25}>
+        <ScrollReveal delay={0.15}>
           <ArticleBody>
-            <ExternalLink href={externalUrl} target="_blank" rel="noopener noreferrer">
-              {t('readOriginal')}
-            </ExternalLink>
+            {body && renderRichText(body as unknown as Document)}
           </ArticleBody>
         </ScrollReveal>
-      )}
-    </Page>
+      </ContentWrapper>
+    </>
   )
 }

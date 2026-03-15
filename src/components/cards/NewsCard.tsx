@@ -89,10 +89,6 @@ const Excerpt = styled.p`
   color: ${colors.textSecondary};
   margin: 0;
   line-height: 1.6;
-  display: -webkit-box;
-  -webkit-line-clamp: 3;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
 `
 
 const StyledLink = styled(Link)`
@@ -100,6 +96,12 @@ const StyledLink = styled(Link)`
   color: inherit;
   display: block;
 `
+
+function truncateWords(text: string, maxWords: number): string {
+  const words = text.split(/\s+/)
+  if (words.length <= maxWords) return text
+  return words.slice(0, maxWords).join(' ') + ' [...]'
+}
 
 interface NewsCardProps {
   article: NewsArticle
@@ -138,7 +140,7 @@ export default function NewsCard({ article, locale }: NewsCardProps) {
             {category && <CategoryBadge>{category}</CategoryBadge>}
           </Meta>
           <Title>{title}</Title>
-          {excerpt && <Excerpt>{excerpt}</Excerpt>}
+          {excerpt && <Excerpt>{truncateWords(excerpt, 25)}</Excerpt>}
         </Body>
       </Card>
     </StyledLink>
