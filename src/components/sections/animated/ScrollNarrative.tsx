@@ -15,7 +15,7 @@ const NarrativeWrapper = styled.div`
 const Panel = styled.section`
   position: relative;
   height: 100vh;
-  height: 100svh;
+  height: min(100svh, 800px);
   display: flex;
   align-items: center;
   overflow: hidden;

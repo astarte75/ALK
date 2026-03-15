@@ -25,7 +25,7 @@ export async function generateStaticParams() {
 
 const HeroBanner = styled.section`
   position: relative;
-  height: 55vh;
+  height: min(55vh, 500px);
   min-height: 380px;
   display: flex;
   align-items: flex-end;

@@ -10,7 +10,7 @@ import { mq } from '@/styles/breakpoints'
 
 const HeroBanner = styled.section`
   position: relative;
-  height: 50vh;
+  height: min(50vh, 500px);
   min-height: 360px;
   display: flex;
   align-items: flex-end;
