@@ -92,6 +92,7 @@ const PillarCard = styled.div<{ $accent: string }>`
   border: 1px solid ${colors.border};
   border-radius: 12px;
   border-top: 3px solid ${({ $accent }) => $accent};
+  height: 100%;
   transition: transform 0.3s ease, border-color 0.3s ease;
   &:hover { transform: translateY(-4px); border-color: ${({ $accent }) => $accent}; }
 `

@@ -10,7 +10,7 @@ import { colors, fonts, spacing } from '@/styles/theme'
 import { mq } from '@/styles/breakpoints'
 import type { NewsArticle } from '@/lib/contentful/types'
 
-const BATCH_SIZE = 6
+const BATCH_SIZE = 100
 
 const Grid = styled.div`
   display: grid;
@@ -117,20 +117,13 @@ export default function NewsList({ articles, locale }: NewsListProps) {
           ))}
         </Grid>
       </ScrollReveal>
-      {(hasMore || filtered.length > 0) && (
-        <ScrollReveal delay={0.25}>
-          <LoadMoreWrapper>
-            <CountText>
-              {visible.length} {t('showing')} {filtered.length} {t('articles')}
-            </CountText>
-            {hasMore && (
-              <LoadMoreButton onClick={() => setVisibleCount((c) => c + BATCH_SIZE)}>
-                {t('loadMore')}
-              </LoadMoreButton>
-            )}
-          </LoadMoreWrapper>
-        </ScrollReveal>
-      )}
+      <ScrollReveal delay={0.25}>
+        <LoadMoreWrapper>
+          <CountText>
+            {filtered.length} {t('articles')}
+          </CountText>
+        </LoadMoreWrapper>
+      </ScrollReveal>
     </>
   )
 }
