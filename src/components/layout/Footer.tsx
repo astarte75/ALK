@@ -103,11 +103,14 @@ export default async function Footer() {
           <FooterLink href={`/${isIT ? '' : 'en/'}cookie-policy`}>
             {t('cookiePolicy')}
           </FooterLink>
+          <FooterLink href={`/${isIT ? '' : 'en/'}disclaimer`}>
+            Disclaimer
+          </FooterLink>
+          <FooterLink href={`/${isIT ? '' : 'en/'}reclami`}>
+            {isIT ? 'Reclami' : 'Complaints'}
+          </FooterLink>
           <FooterLink href="https://whistleblowing.alkemiacapital.com" target="_blank" rel="noopener noreferrer">
             Whistleblowing
-          </FooterLink>
-          <FooterLink href={`/${isIT ? '' : 'en/'}investitori`}>
-            {t('investitori')}
           </FooterLink>
         </FooterColumn>
 
