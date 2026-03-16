@@ -125,8 +125,12 @@ const SectionLink = styled(Link)`
 
 const CardsGrid = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  grid-template-columns: 1fr 1fr 1fr 1.5fr 1.5fr;
   gap: 1rem;
+
+  @media (max-width: 768px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
 `
 
 const Card = styled.div`

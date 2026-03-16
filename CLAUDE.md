@@ -38,6 +38,12 @@ Premium PE/VC corporate site inspired by hgcapital.com, adapted for Alkemia Capi
 - Admin RLS policies via `is_admin()` SQL function — admin sees all investor data
 - Investor dashboard/fund-detail queries must filter by `investor_id` explicitly (admin RLS would expose all)
 - Admin impersonation routes mirror investor routes under `/admin/investitore/[investorId]/`
+- Middleware protected segments must start with `/investitori/` to avoid blocking public `/investment-platforms/fondi/` routes
+- Capital call types: `capital_call`, `distribution`, `recallable`, `management_fee`, `expense`, `setup_cost`, `transfer`
+- Currency formatting: always `minimumFractionDigits: 2`, `maximumFractionDigits: 2`, `useGrouping: 'always'`
+- IRR stored as decimal in DB (e.g. -0.0255), display as percentage (× 100)
+- Fair Value per investor = pro-rata: `(investor NAV / total fund NAV) × total holdings fair value`
+- Office content type has `email` and `pec` fields (non-localized, stored under `it-IT` locale)
 
 ## Key Paths
 
@@ -57,6 +63,8 @@ src/app/[locale]/(site)/contatti/     # Contact form + office locations
 src/app/[locale]/(site)/culture/      # Life at Alkemia
 src/app/[locale]/(site)/privacy/      # Privacy Notice
 src/app/[locale]/(site)/cookie-policy/ # Cookie Policy
+src/app/[locale]/(site)/disclaimer/   # Disclaimer (hardcoded IT/EN)
+src/app/[locale]/(site)/reclami/      # Reclami / Complaints (hardcoded IT/EN)
 src/app/[locale]/(portal)/     # Route group: investor portal (PortalHeader only, no site chrome)
 src/app/[locale]/(portal)/investitori/          # Login page
 src/app/[locale]/(portal)/investitori/dashboard/ # Fund positions dashboard
@@ -154,13 +162,14 @@ npx tsx scripts/migrate.ts          # Seed Contentful (idempotent)
 npx tsx scripts/validate-content.ts # Validate content
 npx tsx --env-file=.env.local scripts/import-fund-data.ts  # Import fund data from Excel
 npx tsx --env-file=.env.local scripts/import-fund-data.ts --dry-run  # Preview import
+npx tsx --env-file=.env.local scripts/add-office-emails.ts  # Add email/PEC to Contentful offices
 ```
 
 ## Footer Structure
 
 - **Brand column**: Logo + "Alkemia SGR S.p.A." in teal + company legal info (cap. sociale, cod. fisc., R.E.A., albo SGR, Kite Holding)
 - **Offices**: Padova (sede legale), Milano
-- **Legal**: Privacy Notice, Cookie Policy, Whistleblowing (external: whistleblowing.alkemiacapital.com)
+- **Legal**: Privacy Notice, Cookie Policy, Disclaimer, Reclami, Whistleblowing (external: whistleblowing.alkemiacapital.com)
 - **Partners**: AIFI, Italian Tech Alliance (logos with teal hover)
 - **Social**: LinkedIn icon
 - **Copyright**: bottom bar
@@ -176,7 +185,7 @@ npx tsx --env-file=.env.local scripts/import-fund-data.ts --dry-run  # Preview i
 - Populate fund targetSectors and teamMembers in Contentful (Phase 8)
 - Portfolio company images to source with user (Phase 8)
 - E2E verification: real investor login test (Plan 08-04, deferred post-launch)
-- Amarone management fees/setup costs not detailed per investor in Excel report
+- Fair value per quarter data pending from accounting (fund_holdings.fair_value currently null)
 - All 18 portfolio companies have descriptions and websites populated on Contentful
 - Hero/panel heights capped for 4K: narrative panels min(100svh, 800px), internal heroes min(50vh, 500px)
 - Homepage headline uses clamp(2.25rem, 7vw, 5.5rem) with white-space: nowrap for single-line display
