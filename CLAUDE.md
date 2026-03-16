@@ -63,8 +63,8 @@ src/app/[locale]/(site)/contatti/     # Contact form + office locations
 src/app/[locale]/(site)/culture/      # Life at Alkemia
 src/app/[locale]/(site)/privacy/      # Privacy Notice
 src/app/[locale]/(site)/cookie-policy/ # Cookie Policy
-src/app/[locale]/(site)/disclaimer/   # Disclaimer (hardcoded IT/EN)
-src/app/[locale]/(site)/reclami/      # Reclami / Complaints (hardcoded IT/EN)
+src/app/[locale]/(site)/disclaimer/   # Disclaimer (Contentful slug: disclaimer)
+src/app/[locale]/(site)/reclami/      # Reclami / Complaints (Contentful slug: reclami)
 src/app/[locale]/(portal)/     # Route group: investor portal (PortalHeader only, no site chrome)
 src/app/[locale]/(portal)/investitori/          # Login page
 src/app/[locale]/(portal)/investitori/dashboard/ # Fund positions dashboard
@@ -122,7 +122,7 @@ All editorial content is managed via Contentful — editable without deploy.
 - **Corporate Governance** (slug: `corporate-governance`) — shareholding, board members, sindaci, control functions
 
 ### Pages using `page.body` rich text
-- Privacy Notice, Cookie Policy, Culture, Contatti
+- Privacy Notice, Cookie Policy, Disclaimer, Reclami, Culture, Contatti
 
 ### Navigation Structure
 - **Chi siamo** (dropdown) → Società, Corporate Governance
