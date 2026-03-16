@@ -231,12 +231,13 @@ export default async function AdminFundDetailPage({
   const fund = fundData as Fund
 
   // Fetch related data — scoped to target investor
-  const [positionResult, callsResult, navResult, docsResult, holdingsResult] = await Promise.all([
+  const [positionResult, callsResult, navResult, docsResult, holdingsResult, totalNavResult] = await Promise.all([
     supabase.from('fund_positions').select('*').eq('fund_id', fund.id).eq('investor_id', investorId).single(),
     supabase.from('capital_calls').select('*').eq('fund_id', fund.id).eq('investor_id', investorId).order('call_date', { ascending: false }),
     supabase.from('nav_history').select('*').eq('fund_id', fund.id).eq('investor_id', investorId).order('report_date', { ascending: true }),
     supabase.from('investor_documents').select('*').eq('fund_id', fund.id).eq('investor_id', investorId).order('uploaded_at', { ascending: false }),
     supabase.from('fund_holdings').select('*').eq('fund_id', fund.id).order('cost', { ascending: false }),
+    supabase.from('fund_positions').select('current_nav').eq('fund_id', fund.id),
   ])
 
   const position = positionResult.data as FundPosition | null
@@ -244,6 +245,7 @@ export default async function AdminFundDetailPage({
   const navHistory = (navResult.data ?? []) as NavHistory[]
   const documents = (docsResult.data ?? []) as InvestorDocument[]
   const holdings = (holdingsResult.data ?? []) as FundHolding[]
+  const totalFundNav = (totalNavResult.data ?? []).reduce((sum, p) => sum + (p.current_nav ?? 0), 0)
 
   const chartData = navHistory.map((n) => ({
     date: formatQuarter(n.report_date),
@@ -299,11 +301,36 @@ export default async function AdminFundDetailPage({
                 <StatValue $accent="teal">{fmtCurrency(position.current_nav)}</StatValue>
               </StatCard>
               <StatCard>
+                <StatLabel>{t('fundDetail.fairValue')}</StatLabel>
+                <StatValue $accent="teal">
+                  {(() => {
+                    const totalFV = holdings.reduce((sum, h) => sum + (h.fair_value ?? h.cost ?? 0), 0)
+                    if (totalFV <= 0 || totalFundNav <= 0) return '—'
+                    const investorFV = totalFV * (position.current_nav / totalFundNav)
+                    return fmtCurrency(investorFV)
+                  })()}
+                </StatValue>
+              </StatCard>
+              <StatCard>
                 <StatLabel>{t('fundDetail.tvpi')}</StatLabel>
                 <StatValue $accent="gold">
                   {position.invested_capital > 0
                     ? `${((position.current_nav + position.distributions) / position.invested_capital).toFixed(2)}x`
                     : '—'}
+                </StatValue>
+              </StatCard>
+              <StatCard>
+                <StatLabel>{t('fundDetail.dpi')}</StatLabel>
+                <StatValue $accent="gold">
+                  {position.invested_capital > 0
+                    ? `${(position.distributions / position.invested_capital).toFixed(2)}x`
+                    : '—'}
+                </StatValue>
+              </StatCard>
+              <StatCard>
+                <StatLabel>{t('fundDetail.irr')}</StatLabel>
+                <StatValue $accent="gold">
+                  {fund.irr != null ? `${(fund.irr * 100).toFixed(2)}%` : '—'}
                 </StatValue>
               </StatCard>
             </StatsGrid>
@@ -313,7 +340,6 @@ export default async function AdminFundDetailPage({
               {position.committed_capital > 0
                 ? `${Math.round((position.invested_capital / position.committed_capital) * 100)}%`
                 : '—'}
-              {fund.irr != null && <> | {t('fundDetail.irr')}: {fund.irr.toFixed(2)}%</>}
             </InfoLine>
           </>
         )}

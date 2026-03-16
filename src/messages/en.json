@@ -190,6 +190,7 @@
       "irr": "Fund IRR",
       "residualCommitment": "Uncalled Capital",
       "tvpi": "TVPI",
+      "dpi": "DPI",
       "calledPercent": "% Called",
       "portfolio": "Portfolio",
       "holding": "Investment",

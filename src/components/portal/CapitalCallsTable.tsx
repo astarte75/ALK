@@ -66,10 +66,10 @@ const TypeBadge = styled.span<{ $callType: string }>`
   background: ${({ $callType }) => {
     switch ($callType) {
       case 'capital_call': return 'var(--color-accent-teal)'
-      case 'distribution': return 'var(--color-accent-gold)'
-      case 'management_fee': return '#5B8DEF'
-      case 'expense': return '#8B95A5'
-      case 'setup_cost': return '#8B95A5'
+      case 'distribution': return '#27ae60'
+      case 'management_fee': return 'var(--color-accent-gold)'
+      case 'setup_cost': return '#9B59B6'
+      case 'expense': return '#e67e22'
       case 'transfer': return '#9B59B6'
       default: return '#9B59B6'
     }
