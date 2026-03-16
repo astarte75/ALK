@@ -31,7 +31,7 @@ progress:
 **Phase:** 8 — Data Import & Verification (3/4 — 08-04 deferred post-launch)
 **Plan:** 3/4 complete (08-04 deferred)
 **Status:** Phase 8 effectively complete — ready for Phase 9
-**Last action:** Admin dashboard with operations, investor impersonation, consistency checks (cd1a75f)
+**Last action:** Amarone detailed capital calls, Disclaimer/Reclami pages, contact emails, portal UI fixes (9ebb75c)
 
 ```
 Progress: [##############░░░░░░] 73%
@@ -117,7 +117,7 @@ Phase 11 Prod Hardening      [░░░░░░░░░░] 0/?
 5. `investmentPlatform` — PE/VC/PIPE, references funds
 6. `fund` — name, vintage, status, platform reference
 7. `siteConfig` — singleton (hero video URL, nav, footer links, offices)
-8. `office` — city, address, map URL
+8. `office` — city, address, phone, email, pec, map URL
 
 ### Research Flags
 
@@ -133,9 +133,9 @@ Phase 11 Prod Hardening      [░░░░░░░░░░] 0/?
 - [ ] Upload fund documents (prospetto CONSOB, etc.) to Contentful and link to fund entries (Phase 8)
 - [ ] Populate fund `targetSectors` and `teamMembers` fields in Contentful (Phase 8)
 - [ ] E2E verification: associare investitore reale ad account Auth e verificare dati dashboard (Plan 08-04, post-launch)
-- [ ] Decide Alkemia brand accent color (blocking Phase 1 close)
-- [ ] Confirm font licensing (blocking Phase 1 close)
-- [ ] Create Contentful space with `it-IT` and `en-US` locales (blocking Phase 2 start)
+- [ ] Fair value per quarter data from accounting (fund_holdings.fair_value currently null)
+- [ ] AFEX costs of management breakdown from accounting
+- [ ] Assign investor emails and create Auth accounts for portal access
 - [x] ~~Obtain video for homepage hero~~ (done: using local stock MP4, Vimeo optional post-launch)
 - [x] ~~Run `/gsd:plan-phase 1` to begin Phase 1 planning~~ (done)
 - [x] ~~Execute 01-01-PLAN.md~~ (done: a286a07, b7421f0)
@@ -174,4 +174,4 @@ None currently.
 ---
 
 *State initialized: 2026-03-14*
-*Last updated: 2026-03-15 after Phase 8 completion (Data Import & Admin Dashboard)*
+*Last updated: 2026-03-17 after Phase 8 enhancements (detailed Amarone data, Disclaimer/Reclami, contact emails, portal UI)*
