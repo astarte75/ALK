@@ -64,8 +64,15 @@ const TypeBadge = styled.span<{ $type: 'PE' | 'VC' | 'PIPE' }>`
 `
 
 const VintageYear = styled.span`
+  display: inline-flex;
+  align-items: center;
+  padding: 0.25rem 0.75rem;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  font-weight: 600;
   color: var(--color-text-secondary);
-  font-size: 0.95rem;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
 `
 
 const StatsGrid = styled.div`
@@ -325,7 +332,7 @@ export default async function FundDetailPage({
               {position.quota_class && <>{t('dashboard.quotaClass')}: {position.quota_class} | </>}
               {t('fundDetail.calledPercent')}:{' '}
               {position.committed_capital > 0
-                ? `${Math.round((position.invested_capital / position.committed_capital) * 100)}%`
+                ? `${((position.invested_capital / position.committed_capital) * 100).toFixed(1)}%`
                 : '—'}
             </InfoLine>
           </>
