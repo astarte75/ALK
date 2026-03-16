@@ -109,6 +109,8 @@ export interface OfficeSkeleton extends EntrySkeletonType {
     city: EntryFieldTypes.Text
     address: EntryFieldTypes.Text
     phone: EntryFieldTypes.Text
+    email: EntryFieldTypes.Text
+    pec: EntryFieldTypes.Text
     isHeadquarters: EntryFieldTypes.Boolean
     sortOrder: EntryFieldTypes.Integer
   }

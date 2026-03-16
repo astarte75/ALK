@@ -98,6 +98,19 @@ const PhoneLink = styled.a`
   }
 `
 
+const ContactLink = styled.a`
+  display: block;
+  font-family: ${fonts.body};
+  font-size: 0.95rem;
+  color: ${colors.accentTeal};
+  text-decoration: none;
+  margin-top: ${spacing[1]};
+
+  &:hover {
+    text-decoration: underline;
+  }
+`
+
 const MapLink = styled.a`
   display: block;
   margin-top: ${spacing[4]};
@@ -159,6 +172,12 @@ export default async function ContattiPage({
                   <PhoneLink href={`tel:${office.fields.phone.replace(/\s/g, '')}`}>
                     {office.fields.phone}
                   </PhoneLink>
+                )}
+                {office.fields.email && (
+                  <ContactLink href={`mailto:${office.fields.email}`}>{office.fields.email}</ContactLink>
+                )}
+                {office.fields.pec && (
+                  <ContactLink href={`mailto:${office.fields.pec}`}>PEC: {office.fields.pec}</ContactLink>
                 )}
                 {isMilano && (
                   <MapLink href="https://www.google.com/maps/search/Alkemia+SGR+SpA+Piazzetta+Pattari+7+Milano" target="_blank" rel="noopener noreferrer">
