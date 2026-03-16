@@ -243,8 +243,9 @@ export default async function FundDetailPage({
     new Intl.NumberFormat(locale === 'en' ? 'en-US' : 'it-IT', {
       style: 'currency',
       currency: fund.currency,
-      minimumFractionDigits: 0,
-      maximumFractionDigits: 0,
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2,
+      useGrouping: 'always',
     }).format(value)
 
   return (

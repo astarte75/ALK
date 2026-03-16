@@ -202,7 +202,8 @@
         "recallable": "Richiamabile",
         "management_fee": "Commissione di gestione",
         "expense": "Altre spese",
-        "setup_cost": "Spese di istituzione"
+        "setup_cost": "Spese di istituzione",
+        "transfer": "Cessione quote"
       },
       "download": "Scarica",
       "noDocuments": "Nessun documento disponibile.",

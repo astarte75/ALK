@@ -4,13 +4,13 @@ import { createServerClient } from '@supabase/ssr'
 import { NextResponse, type NextRequest } from 'next/server'
 import type { Database } from './types'
 
-// Portal routes that require authentication
-const PROTECTED_SEGMENTS = ['/dashboard', '/fondi/', '/documenti', '/admin']
+// Portal routes that require authentication (must start with /investitori/)
+const PROTECTED_SEGMENTS = ['/investitori/dashboard', '/investitori/fondi/', '/investitori/admin']
 
 function isProtectedRoute(pathname: string): boolean {
   // Strip locale prefix for matching
   const path = pathname.replace(/^\/(it|en)/, '')
-  return PROTECTED_SEGMENTS.some((segment) => path.includes(segment))
+  return PROTECTED_SEGMENTS.some((segment) => path.startsWith(segment))
 }
 
 function isAdminRoute(pathname: string): boolean {

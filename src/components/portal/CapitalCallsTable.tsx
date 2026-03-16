@@ -70,6 +70,7 @@ const TypeBadge = styled.span<{ $callType: string }>`
       case 'management_fee': return '#5B8DEF'
       case 'expense': return '#8B95A5'
       case 'setup_cost': return '#8B95A5'
+      case 'transfer': return '#9B59B6'
       default: return '#9B59B6'
     }
   }};
@@ -103,8 +104,9 @@ export default function CapitalCallsTable({ calls, locale, currency }: CapitalCa
     new Intl.NumberFormat(locale === 'en' ? 'en-US' : 'it-IT', {
       style: 'currency',
       currency,
-      minimumFractionDigits: 0,
-      maximumFractionDigits: 0,
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2,
+      useGrouping: 'always',
     }).format(value)
 
   const fmtDate = (dateStr: string) =>

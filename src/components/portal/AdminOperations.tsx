@@ -219,6 +219,7 @@ const TypeBadge = styled.span<{ $type: string }>`
       case 'management_fee': return 'var(--color-accent-gold)'
       case 'setup_cost': return '#9B59B6'
       case 'expense': return '#e67e22'
+      case 'transfer': return '#9B59B6'
       default: return 'var(--color-text-secondary)'
     }
   }};
@@ -259,6 +260,19 @@ export default function AdminOperations({
   const [dateFrom, setDateFrom] = useState<string>('')
   const [dateTo, setDateTo] = useState<string>('')
 
+  // Derive filtered fund/investor options based on cross-filter
+  const filteredFundOptions = useMemo(() => {
+    if (!investorFilter) return fundOptions
+    const fundIds = new Set(calls.filter(c => c.investorId === investorFilter).map(c => c.fundId))
+    return fundOptions.filter(f => fundIds.has(f.id))
+  }, [calls, fundOptions, investorFilter])
+
+  const filteredInvestorOptions = useMemo(() => {
+    if (!fundFilter) return investorOptions
+    const investorIds = new Set(calls.filter(c => c.fundId === fundFilter).map(c => c.investorId))
+    return investorOptions.filter(i => investorIds.has(i.id))
+  }, [calls, investorOptions, fundFilter])
+
   const filtered = useMemo(() => {
     return calls.filter(c => {
       if (fundFilter && c.fundId !== fundFilter) return false
@@ -287,8 +301,9 @@ export default function AdminOperations({
     new Intl.NumberFormat(locale === 'en' ? 'en-US' : 'it-IT', {
       style: 'currency',
       currency: 'EUR',
-      minimumFractionDigits: 0,
-      maximumFractionDigits: 0,
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2,
+      useGrouping: 'always',
     }).format(value)
 
   const fmtDate = (dateStr: string) =>
@@ -330,9 +345,17 @@ export default function AdminOperations({
       <FiltersBar>
         <FilterGroup>
           <FilterLabel>{t('filterFund')}</FilterLabel>
-          <Select value={fundFilter} onChange={e => setFundFilter(e.target.value)}>
+          <Select value={fundFilter} onChange={e => {
+            const val = e.target.value
+            setFundFilter(val)
+            // Reset investor if no longer valid for selected fund
+            if (val && investorFilter) {
+              const investorIds = new Set(calls.filter(c => c.fundId === val).map(c => c.investorId))
+              if (!investorIds.has(investorFilter)) setInvestorFilter('')
+            }
+          }}>
             <option value="">{t('allFunds')}</option>
-            {fundOptions.map(f => (
+            {filteredFundOptions.map(f => (
               <option key={f.id} value={f.id}>{f.name}</option>
             ))}
           </Select>
@@ -340,9 +363,17 @@ export default function AdminOperations({
 
         <FilterGroup>
           <FilterLabel>{t('operationInvestor')}</FilterLabel>
-          <Select value={investorFilter} onChange={e => setInvestorFilter(e.target.value)}>
+          <Select value={investorFilter} onChange={e => {
+            const val = e.target.value
+            setInvestorFilter(val)
+            // Reset fund if no longer valid for selected investor
+            if (val && fundFilter) {
+              const fundIds = new Set(calls.filter(c => c.investorId === val).map(c => c.fundId))
+              if (!fundIds.has(fundFilter)) setFundFilter('')
+            }
+          }}>
             <option value="">{t('allInvestors')}</option>
-            {investorOptions.map(i => (
+            {filteredInvestorOptions.map(i => (
               <option key={i.id} value={i.id}>{i.name}</option>
             ))}
           </Select>

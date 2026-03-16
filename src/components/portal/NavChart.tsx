@@ -75,8 +75,9 @@ function CustomTooltip({ active, payload, label, locale, currency }: CustomToolt
   const fmtCurrency = new Intl.NumberFormat(locale === 'en' ? 'en-US' : 'it-IT', {
     style: 'currency',
     currency,
-    minimumFractionDigits: 0,
-    maximumFractionDigits: 0,
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2,
+    useGrouping: 'always',
   })
 
   return (

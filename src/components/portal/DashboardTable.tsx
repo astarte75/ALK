@@ -109,8 +109,9 @@ export default function DashboardTable({ positions, locale, fundLinkPrefix }: Da
     new Intl.NumberFormat(locale === 'en' ? 'en-US' : 'it-IT', {
       style: 'currency',
       currency: 'EUR',
-      minimumFractionDigits: 0,
-      maximumFractionDigits: 0,
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2,
+      useGrouping: 'always',
     }).format(value)
 
   const fmtDate = (dateStr: string | null) => {

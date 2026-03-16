@@ -202,7 +202,8 @@
         "recallable": "Recallable",
         "management_fee": "Management Fee",
         "expense": "Other Expenses",
-        "setup_cost": "Setup Costs"
+        "setup_cost": "Setup Costs",
+        "transfer": "Share Transfer"
       },
       "download": "Download",
       "noDocuments": "No documents available.",

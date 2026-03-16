@@ -126,7 +126,7 @@ export type Database = {
           investor_id: string
           fund_id: string
           call_date: string
-          call_type: 'capital_call' | 'distribution' | 'recallable' | 'management_fee' | 'expense' | 'setup_cost'
+          call_type: 'capital_call' | 'distribution' | 'recallable' | 'management_fee' | 'expense' | 'setup_cost' | 'transfer'
           amount: number
           description: string | null
           created_at: string
@@ -136,7 +136,7 @@ export type Database = {
           investor_id: string
           fund_id: string
           call_date: string
-          call_type: 'capital_call' | 'distribution' | 'recallable' | 'management_fee' | 'expense' | 'setup_cost'
+          call_type: 'capital_call' | 'distribution' | 'recallable' | 'management_fee' | 'expense' | 'setup_cost' | 'transfer'
           amount: number
           description?: string | null
           created_at?: string
@@ -146,7 +146,7 @@ export type Database = {
           investor_id?: string
           fund_id?: string
           call_date?: string
-          call_type?: 'capital_call' | 'distribution' | 'recallable'
+          call_type?: 'capital_call' | 'distribution' | 'recallable' | 'transfer'
           amount?: number
           description?: string | null
           created_at?: string

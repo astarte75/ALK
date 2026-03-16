@@ -396,12 +396,15 @@ export default function AdminDashboard({
     new Intl.NumberFormat(locale === 'en' ? 'en-US' : 'it-IT', {
       style: 'currency',
       currency: 'EUR',
-      minimumFractionDigits: 0,
-      maximumFractionDigits: 0,
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2,
+      useGrouping: 'always',
     }).format(value)
 
   const fmtNumber = (value: number) =>
-    new Intl.NumberFormat(locale === 'en' ? 'en-US' : 'it-IT').format(value)
+    new Intl.NumberFormat(locale === 'en' ? 'en-US' : 'it-IT', {
+      useGrouping: 'always',
+    }).format(value)
 
   return (
     <Container>
