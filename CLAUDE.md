@@ -130,6 +130,8 @@ All editorial content is managed via Contentful — editable without deploy.
 
 ### Portfolio Companies
 18 companies, all with descriptions (IT+EN), logos, and websites on Contentful. Sectors: ICT, Digital Services, Food, Agri-tech, Cybersecurity, Mobility, Industrial, Energy, Fintech, Other
+- All companies linked to their fund via `fundRef` — displayed as clickable cards on fund detail pages
+- Mapping: Sinergia Venture Fund (8 VC), Fondo PIPE (8 PIPE), Amarone (Pakelo Motor Oil), Alkemia Food Excellence I (Convivio)
 
 ### Offices
 - Padova — Sede Legale (Registered Office)
