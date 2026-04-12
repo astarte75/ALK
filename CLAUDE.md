@@ -193,6 +193,21 @@ npx tsx --env-file=.env.local scripts/add-office-emails.ts  # Add email/PEC to C
 - Homepage headline uses clamp(2.25rem, 7vw, 5.5rem) with white-space: nowrap for single-line display
 - Life at Alkemia content on Contentful (page.sections JSON), SVG icons in code
 
+## Supabase
+
+- Project: **Alkemia** (ID: `lyegqqrfjnatkrmuzmyk`) — free tier
+- **Piano free: si mette in pausa dopo 7 giorni di inattività** — riattivare dal dashboard Supabase
+- Per evitare pause: accedere periodicamente al dashboard o upgradare al piano Pro
+- Unpause: supabase.com/dashboard/project/lyegqqrfjnatkrmuzmyk
+
+## Contentful Token Management
+
+- `CONTENTFUL_ACCESS_TOKEN` — Delivery API, no expiry, in `.env.local` + Vercel
+- `CONTENTFUL_PREVIEW_TOKEN` — Preview API, no expiry, in `.env.local` + Vercel
+- `CONTENTFUL_MANAGEMENT_TOKEN` — Management API (CLIToken), local only (scripts), NOT on Vercel
+  - Token name: `Contentful CLI` — expires **14 Mar 2031**
+  - Generated via `contentful login` (CLI auto-generates CLIToken, not PAT). Renew with same command.
+
 ## Conventions
 
 - Commit format: `<type>(<scope>): <description>` (English)
