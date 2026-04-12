@@ -551,7 +551,7 @@ export default function AdminDashboard({
                 </CheckIcon>
                 <CheckLabel>{check.label}</CheckLabel>
                 <CheckCount $warning={check.isWarning}>
-                  {check.count} {check.isWarning ? t('checkFailed') : t('checkPassed')}
+                  {check.isWarning ? t('checkFailed', { count: check.count }) : `${check.count} ${t('checkPassed')}`}
                 </CheckCount>
                 {check.isWarning && check.records.length > 0 && (
                   <ChevronIcon $open={isOpen}>&#x25BC;</ChevronIcon>

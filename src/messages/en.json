@@ -233,7 +233,7 @@
       "hasEmail": "Email",
       "consistencyChecks": "Consistency Checks",
       "checkPassed": "OK",
-      "checkFailed": "Issue",
+      "checkFailed": "{count, plural, one {# issue} other {# issues}}",
       "checkInvestorsNoAuth": "Investors without Auth account",
       "checkInvestorsNoEmail": "Investors without email",
       "checkPositionsNoNav": "Positions with NAV = 0",
