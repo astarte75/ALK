@@ -156,6 +156,7 @@ All editorial content is managed via Contentful — editable without deploy.
 ## Commands
 
 ```bash
+./start.sh               # Dev launcher (env/service checks + next dev)
 npm run dev              # Local dev server
 npm run build            # Production build
 npx tsc --noEmit         # Type check
@@ -165,6 +166,7 @@ npx tsx scripts/validate-content.ts # Validate content
 npx tsx --env-file=.env.local scripts/import-fund-data.ts  # Import fund data from Excel
 npx tsx --env-file=.env.local scripts/import-fund-data.ts --dry-run  # Preview import
 npx tsx --env-file=.env.local scripts/add-office-emails.ts  # Add email/PEC to Contentful offices
+npx tsx --env-file=.env.local scripts/generate-fund-templates.ts  # Export fund data templates (fund-data/)
 ```
 
 ## Footer Structure
@@ -199,6 +201,16 @@ npx tsx --env-file=.env.local scripts/add-office-emails.ts  # Add email/PEC to C
 - **Piano free: si mette in pausa dopo 7 giorni di inattività** — riattivare dal dashboard Supabase
 - Per evitare pause: accedere periodicamente al dashboard o upgradare al piano Pro
 - Unpause: supabase.com/dashboard/project/lyegqqrfjnatkrmuzmyk
+- **Fondi attualmente a DB**: `amarone` (2023) e `alkemia-food-excellence-i` (2025). Sinergia Venture Fund e Fondo PIPE sono solo su Contentful (editoriale) finché non verranno recuperati i dati storici e importati.
+
+## Fund Data Import
+
+- `./fund-data/` (gitignored) contiene i template Excel per importare nuovi fondi nel portale
+- File popolati dal DB: `amarone-dati.xlsx`, `alkemia-food-excellence-i-dati.xlsx`
+- Template vuoti da compilare: `sinergia-venture-fund-template.xlsx`, `fondo-pipe-template.xlsx`
+- Rigenera i popolati con `scripts/generate-fund-templates.ts` (sovrascrive con lo stato corrente Supabase)
+- Istruzioni complete: `./fund-data/README.md`
+- L'import reale usa `scripts/import-fund-data.ts` (attualmente hardcoded per formato report interno Amarone/AFEX)
 
 ## Contentful Token Management
 
