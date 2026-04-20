@@ -202,6 +202,7 @@ npx tsx --env-file=.env.local scripts/generate-fund-templates.ts  # Export fund 
 - Per evitare pause: accedere periodicamente al dashboard o upgradare al piano Pro
 - Unpause: supabase.com/dashboard/project/lyegqqrfjnatkrmuzmyk
 - **Fondi attualmente a DB**: `amarone` (2023) e `alkemia-food-excellence-i` (2025). Sinergia Venture Fund e Fondo PIPE sono solo su Contentful (editoriale) finché non verranno recuperati i dati storici e importati.
+- **API keys**: formato nuovo `sb_publishable_*` (anon) + `sb_secret_*` (service role) dal 2026-04-20. Legacy JWT (`eyJ...`) disabilitate. Nomi env var invariati (`NEXT_PUBLIC_SUPABASE_ANON_KEY`, `SUPABASE_SERVICE_ROLE_KEY`). Rotazione: dashboard → Settings → API Keys → "Publishable and secret API keys" → reset.
 
 ## Fund Data Import
 
@@ -219,6 +220,8 @@ npx tsx --env-file=.env.local scripts/generate-fund-templates.ts  # Export fund 
 - `CONTENTFUL_MANAGEMENT_TOKEN` — Management API (CLIToken), local only (scripts), NOT on Vercel
   - Token name: `Contentful CLI` — expires **14 Mar 2031**
   - Generated via `contentful login` (CLI auto-generates CLIToken, not PAT). Renew with same command.
+- **Current delivery API key**: `Alkemia Website (rotated 2026-04-20)` (ID `033313hR5uJMwc2W5scHyj`). Previous key revoked after Vercel security incident rotation.
+- `CONTENTFUL_WEBHOOK_SECRET` — random 32-byte hex (rotated 2026-04-20). Arbitrary secret, not issued by Contentful. Currently no webhook configured on the space; the `/api/revalidate` endpoint validates this header defensively.
 
 ## Conventions
 
