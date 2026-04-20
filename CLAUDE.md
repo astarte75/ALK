@@ -202,7 +202,7 @@ npx tsx --env-file=.env.local scripts/generate-fund-templates.ts  # Export fund 
 - Per evitare pause: accedere periodicamente al dashboard o upgradare al piano Pro
 - Unpause: supabase.com/dashboard/project/lyegqqrfjnatkrmuzmyk
 - **Fondi attualmente a DB**: `amarone` (2023) e `alkemia-food-excellence-i` (2025). Sinergia Venture Fund e Fondo PIPE sono solo su Contentful (editoriale) finché non verranno recuperati i dati storici e importati.
-- **API keys**: formato nuovo `sb_publishable_*` (anon) + `sb_secret_*` (service role) dal 2026-04-20. Legacy JWT (`eyJ...`) disabilitate. Nomi env var invariati (`NEXT_PUBLIC_SUPABASE_ANON_KEY`, `SUPABASE_SERVICE_ROLE_KEY`). Rotazione: dashboard → Settings → API Keys → "Publishable and secret API keys" → reset.
+- **API keys**: formato nuovo `sb_publishable_*` (anon) + `sb_secret_*` (service role) dal 2026-04-20. Legacy JWT (`eyJ...`) disabilitate. Nomi env var invariati (`NEXT_PUBLIC_SUPABASE_ANON_KEY`, `SUPABASE_SERVICE_ROLE_KEY`). Rotazione: dashboard → Settings → API Keys → "Publishable and secret API keys" → reset. Aggiorna `.env.local` + Vercel (le chiavi Supabase **non** sono su GitHub Actions, il CI non le richiede).
 
 ## Fund Data Import
 
@@ -215,8 +215,10 @@ npx tsx --env-file=.env.local scripts/generate-fund-templates.ts  # Export fund 
 
 ## Contentful Token Management
 
-- `CONTENTFUL_ACCESS_TOKEN` — Delivery API, no expiry, in `.env.local` + Vercel
-- `CONTENTFUL_PREVIEW_TOKEN` — Preview API, no expiry, in `.env.local` + Vercel
+- `CONTENTFUL_ACCESS_TOKEN` — Delivery API, no expiry, in `.env.local` + Vercel + **GitHub Actions secrets** (usato dal CI Playwright)
+- `CONTENTFUL_PREVIEW_TOKEN` — Preview API, no expiry, in `.env.local` + Vercel + **GitHub Actions secrets**
+- `CONTENTFUL_SPACE_ID` / `CONTENTFUL_WEBHOOK_SECRET` — anche questi su **GitHub Actions secrets**
+- **Rotazione**: quando ruoti una chiave Contentful aggiorna SEMPRE e.env.local, Vercel **e** GitHub secrets (`gh secret set <NAME>`). Il workflow `.github/workflows/ci.yml` fa il build + Playwright contro Contentful live e fallisce se i secret sono stale.
 - `CONTENTFUL_MANAGEMENT_TOKEN` — Management API (CLIToken), local only (scripts), NOT on Vercel
   - Token name: `Contentful CLI` — expires **14 Mar 2031**
   - Generated via `contentful login` (CLI auto-generates CLIToken, not PAT). Renew with same command.
